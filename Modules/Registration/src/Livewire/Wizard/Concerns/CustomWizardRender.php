@@ -2,6 +2,8 @@
 
 namespace Modules\Registration\Livewire\Wizard\Concerns;
 
+use Livewire\Attributes\On;
+
 trait CustomWizardRender
 {
     public function render()
@@ -29,6 +31,7 @@ trait CustomWizardRender
 
     /**
      * Navigate to next step without requiring currentStepState parameter.
+     * This will trigger the step's saveAndNext or continue method if available.
      */
     public function goToNextStep(): void
     {
@@ -36,8 +39,8 @@ trait CustomWizardRender
             return;
         }
 
-        $currentStepState = $this->getCurrentStepState();
-        $this->nextStep($currentStepState);
+        // Dispatch event to current step to call saveAndNext or continue
+        $this->dispatch('wizard-next-step')->to($this->currentStepName);
     }
 
     /**
@@ -51,6 +54,17 @@ trait CustomWizardRender
 
         $currentStepState = $this->getCurrentStepState();
         $this->showStep($stepName, $currentStepState);
+    }
+
+    /**
+     * Listen for step completion events from steps.
+     */
+    #[On('step-completed')]
+    public function handleStepCompleted(): void
+    {
+        // Step has completed its saveAndNext/continue, now navigate
+        $currentStepState = $this->getCurrentStepState();
+        $this->nextStep($currentStepState);
     }
 }
 

@@ -2,6 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard\Steps\Certification;
 
+use Livewire\Attributes\On;
 use Modules\Registration\Models\RegistrationType;
 use Modules\Registration\Models\TemporaryRegistration;
 use Modules\Registration\Services\EligibilityValidationService;
@@ -81,7 +82,17 @@ class PersonalInfoStep extends StepComponent
         );
         $temp->setStepData(3, $this->form);
 
-        $this->nextStep();
+        // Notify wizard that step is completed
+        $this->dispatch('step-completed')->to($this->wizardClassName);
+    }
+
+    /**
+     * Handle wizard next button click - calls saveAndNext.
+     */
+    #[On('wizard-next-step')]
+    public function handleWizardNext(): void
+    {
+        $this->saveAndNext();
     }
 
     protected function rules(): array

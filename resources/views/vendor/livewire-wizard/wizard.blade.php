@@ -109,16 +109,30 @@
                                 <div class="next">
                                     <button type="button"
                                             class="btn btn-primary"
-                                            wire:click="goToNextStep">
-                                        Próximo<i class="ti ti-arrow-right ms-2"></i>
+                                            wire:click="goToNextStep"
+                                            wire:loading.attr="disabled">
+                                        <span wire:loading.remove wire:target="goToNextStep">
+                                            Próximo<i class="ti ti-arrow-right ms-2"></i>
+                                        </span>
+                                        <span wire:loading wire:target="goToNextStep">
+                                            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                            A processar...
+                                        </span>
                                     </button>
                                 </div>
                             @else
                                 <div class="last">
                                     <button type="button"
                                             class="btn btn-success"
-                                            wire:click="goToNextStep">
-                                        <i class="ti ti-check me-2"></i>Finalizar
+                                            wire:click="goToNextStep"
+                                            wire:loading.attr="disabled">
+                                        <span wire:loading.remove wire:target="goToNextStep">
+                                            <i class="ti ti-check me-2"></i>Finalizar
+                                        </span>
+                                        <span wire:loading wire:target="goToNextStep">
+                                            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                            A processar...
+                                        </span>
                                     </button>
                                 </div>
                             @endif

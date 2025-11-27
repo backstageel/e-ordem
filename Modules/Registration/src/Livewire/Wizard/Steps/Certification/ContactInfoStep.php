@@ -2,6 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard\Steps\Certification;
 
+use Livewire\Attributes\On;
 use Modules\Registration\Models\RegistrationType;
 use Modules\Registration\Models\TemporaryRegistration;
 use Spatie\LivewireWizard\Components\StepComponent;
@@ -79,7 +80,17 @@ class ContactInfoStep extends StepComponent
             'phone' => $this->phone,
         ]);
 
-        $this->nextStep();
+        // Notify wizard that step is completed
+        $this->dispatch('step-completed')->to($this->wizardClassName);
+    }
+
+    /**
+     * Handle wizard next button click - calls continue.
+     */
+    #[On('wizard-next-step')]
+    public function handleWizardNext(): void
+    {
+        $this->continue();
     }
 
     protected function getCategoriesProperty(): array

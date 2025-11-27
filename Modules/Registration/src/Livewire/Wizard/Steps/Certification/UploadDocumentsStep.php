@@ -4,6 +4,7 @@ namespace Modules\Registration\Livewire\Wizard\Steps\Certification;
 
 use Livewire\WithFileUploads;
 use Modules\Registration\Models\RegistrationType;
+use Livewire\Attributes\On;
 use Modules\Registration\Models\TemporaryRegistration;
 use Spatie\LivewireWizard\Components\StepComponent;
 
@@ -147,7 +148,17 @@ class UploadDocumentsStep extends StepComponent
         ]);
         $temp->setStepData(6, ['uploads' => $this->uploads]);
 
-        $this->nextStep();
+        // Notify wizard that step is completed
+        $this->dispatch('step-completed')->to($this->wizardClassName);
+    }
+
+    /**
+     * Handle wizard next button click - calls saveAndNext.
+     */
+    #[On('wizard-next-step')]
+    public function handleWizardNext(): void
+    {
+        $this->saveAndNext();
     }
 
     public function render()
