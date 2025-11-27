@@ -2,19 +2,19 @@
     <script src="{{URL::asset('build/js/jquery-3.7.1.min.js')}}"></script>
 
     <!-- Bootstrap Core JS -->
-    <script src="{{URL::asset('build/js/bootstrap.bundle.min.js')}}"></script>    
+    <script src="{{URL::asset('build/js/bootstrap.bundle.min.js')}}"></script>
 
 	<!-- Simplebar JS -->
 	<script src="{{URL::asset('build/plugins/simplebar/simplebar.min.js')}}"></script>
-    
+
 	<!-- Daterangepikcer JS -->
 	<script src="{{URL::asset('build/js/moment.min.js')}}"></script>
 	<script src="{{URL::asset('build/plugins/daterangepicker/daterangepicker.js')}}"></script>
 
-@if (Route::is(['add-doctor', 'add-invoices', 'appointment-calendar', 'appointment-consultations', 'appointment-settings', 'appointments', 'assets', 'calendar', 'create-patient', 'delete-account-request', 'designation', 'doctor-dashboard', 'doctor-details', 'doctor-schedule', 'doctors-appointment-details', 'doctors-appointments', 'doctors-leaves', 'doctors-list', 'doctors-patient-details', 'doctors-prescriptions', 'doctors-reviews', 'doctors-schedules', 'doctors', 'edit-doctor', 'edit-invoices', 'edit-patient', 'expense-category', 'expenses', 'holidays', 'hrm-departments', 'income', 'index', 'invoice', 'invoice-details', 'invoices', 'layout-full-width', 'layout-hidden', 'layout-hover-view', 'layout-mini', 'layout-dark', 'layout-rtl', 'leaves', 'new-appointment', 'notes', 'patient-appointment-details', 'patient-appointments', 'patient-dashboard', 'patient-details', 'patient-doctors', 'patient-invoices', 'patients-doctor-details', 'patient-prescriptions', 'patients', 'payments', 'payroll', 'specializations', 'staffs', 'todo-list', 'todo', 'transactions', 'working-hours-settings']))    
+@if (Route::is(['add-doctor', 'add-invoices', 'appointment-calendar', 'appointment-consultations', 'appointment-settings', 'appointments', 'assets', 'calendar', 'create-patient', 'delete-account-request', 'designation', 'doctor-dashboard', 'doctor-details', 'doctor-schedule', 'doctors-appointment-details', 'doctors-appointments', 'doctors-leaves', 'doctors-list', 'doctors-patient-details', 'doctors-prescriptions', 'doctors-reviews', 'doctors-schedules', 'doctors', 'edit-doctor', 'edit-invoices', 'edit-patient', 'expense-category', 'expenses', 'holidays', 'hrm-departments', 'income', 'index', 'invoice', 'invoice-details', 'invoices', 'layout-full-width', 'layout-hidden', 'layout-hover-view', 'layout-mini', 'layout-dark', 'layout-rtl', 'leaves', 'new-appointment', 'notes', 'patient-appointment-details', 'patient-appointments', 'patient-dashboard', 'patient-details', 'patient-doctors', 'patient-invoices', 'patients-doctor-details', 'patient-prescriptions', 'patients', 'payments', 'payroll', 'specializations', 'staffs', 'todo-list', 'todo', 'transactions', 'working-hours-settings']))
     <!-- Date Time Pikcer JS -->
 	<script src="{{URL::asset('build/js/bootstrap-datetimepicker.min.js')}}"></script>
-@endif    
+@endif
 
 @if (Route::is(['appointment-calendar', 'calendar', 'doctors-appointment-details', 'patient-appointment-details']))
     <!-- Fullcalendar JS -->
@@ -25,7 +25,7 @@
 @if (Route::is(['add-blog', 'add-page', 'appointment-report', 'attendance', 'ban-ip-address-settings', 'clear-cache-settings', 'cronjob-settings', 'currencies-settings', 'database-backup-settings', 'delete-account-request', 'designation', 'doctor-schedule', 'doctors-list', 'doctors-notifications', 'doctor-schedules', 'edit-blog', 'edit-page', 'email-reply', 'email-templates-settings', 'email', 'expense-report', 'hrm-departments', 'income-report', 'language-settings', 'language-settings2', 'language-settings3', 'leaves', 'notifications', 'patient-notifications', 'patient-report', 'payroll-2', 'profit-and-loss', 'roles-and-permissions', 'security-settings', 'seo-setup-settings', 'services', 'sitemap-settigs', 'sms-templates-settings', 'specializations', 'storage-settings', 'system-backup-settings', 'system-update', 'tax-ratings-settings']))
     <!-- Bootstrap Tagsinput JS -->
     <script src="{{URL::asset('build/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
-@endif 
+@endif
 
 @if (Route::is(['contact-messages', 'create-patient', 'edit-patient', 'new-appointment', 'patient-details', 'patients-doctor-details', 'security-settings', 'ticket-details', 'tickets']))
     <!-- intel Input -->
@@ -37,13 +37,13 @@
 	<script src="{{URL::asset('build/plugins/ion-rangeslider/js/ion.rangeSlider.js')}}"></script>
 	<script src="{{URL::asset('build/plugins/ion-rangeslider/js/custom-rangeslider.js')}}"></script>
 	<script src="{{URL::asset('build/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-@endif    
+@endif
 
 @if (Route::is(['add-invoices', 'announcements', 'appointment-calendar', 'appointment-consultations', 'appointment-report', 'appointments', 'assets', 'attendance', 'contact-messages', 'contacts', 'data-tables', 'delete-account-request', 'designation', 'doctor-schedule', 'doctors-appointment-details', 'doctors-appointments', 'doctors-leaves', 'doctors-list', 'doctors-notifications', 'doctors-patient-details', 'doctors-prescription-details', 'doctors-prescriptions', 'doctors-reviews', 'doctors-schedules', 'edit-invoices', 'expense-category', 'expense-report', 'expenses', 'hrm-departments', 'income-report', 'income', 'invoice', 'invoice-details', 'invoices', 'leaves', 'newsletters', 'notifications', 'online-consultations', 'pages', 'patient-appointment-details', 'patient-appointments', 'patient-details', 'patient-doctors', 'patient-invoice-details', 'patient-invoices', 'patient-notifications', 'patient-prescription-details', 'patient-prescriptions', 'patient-report', 'patients-doctor-details', 'patients', 'payments', 'payroll-2', 'payroll', 'profit-and-loss', 'roles-and-permissions', 'services', 'specializations', 'staffs', 'tickets', 'transactions']))
     <!-- Datatable JS -->
     <script src="{{URL::asset('build/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{URL::asset('build/js/dataTables.bootstrap5.min.js')}}"></script>
-@endif    
+@endif
 
 @if (Route::is(['add-blog', 'add-page', 'edit-blog', 'edit-page', 'email-templates-settings', 'file-manager', 'form-editors', 'gdpr-cookies-settings', 'invoice-settings', 'invoice-templates-settings', 'notes', 'sms-templates-settings', 'ticket-details', 'todo-list', 'todo']))
     <!-- Quill JS -->
@@ -59,8 +59,8 @@
 @if (Route::is(['appointment-report', 'chart-apex', 'doctor-dashboard', 'file-manager', 'index', 'layout-full-width', 'layout-hidden', 'layout-hover-view', 'layout-mini', 'layout-rtl', 'layout-dark', 'patient-dashboard', 'widgets']) || Route::is('admin.dashboard.*') || Route::is('member.dashboard.*') || Route::is('secretariat.dashboard.*'))
     <!-- Chart JS -->
     <script src="{{URL::asset('build/plugins/apexchart/apexcharts.min.js')}}"></script>
-    <script src="{{URL::asset('build/plugins/apexchart/chart-data.js')}}"></script>   
-@endif  
+    <script src="{{URL::asset('build/plugins/apexchart/chart-data.js')}}"></script>
+@endif
 
 @if (Route::is(['chart-c3']))
     <!-- Chart JS -->
@@ -236,10 +236,10 @@
     <script src="{{URL::asset('build/js/jquery.ui.touch-punch.min.js')}}"></script>
 @endif
 
-@if (Route::is(['add-doctor', 'appointment-report', 'attendance', 'delete-account-request', 'designation', 'doctor-schedule', 'doctors-notifications', 'doctors-schedules', 'doctors', 'edit-doctor', 'expense-report', 'hrm-departments', 'income-report', 'leaves', 'notifications', 'patient-notifications', 'patient-report', 'payroll-2', 'payroll', 'permissions', 'profit-and-loss', 'roles-and-permissions', 'services', 'specializations', 'staffs']))    
+@if (Route::is(['add-doctor', 'appointment-report', 'attendance', 'delete-account-request', 'designation', 'doctor-schedule', 'doctors-notifications', 'doctors-schedules', 'doctors', 'edit-doctor', 'expense-report', 'hrm-departments', 'income-report', 'leaves', 'notifications', 'patient-notifications', 'patient-report', 'payroll-2', 'payroll', 'permissions', 'profit-and-loss', 'roles-and-permissions', 'services', 'specializations', 'staffs']))
     <!-- Custom JS -->
     <script src="{{URL::asset('build/js/doctors.js')}}"></script>
-@endif    
+@endif
 
 @if (Route::is(['chat', 'messages', 'video-call']))
 	<!-- Custom JS -->
@@ -255,12 +255,12 @@
 @if (Route::is(['doctor-details', 'doctors-patient-details', 'email-reply', 'email', 'social-feed']))
     <!-- Custom JS -->
     <script src="{{URL::asset('build/js/email.js')}}"></script>
-@endif      
+@endif
 
 @if (Route::is(['coming-soon', 'under-maintenance']))
     <!-- Custom JS -->
     <script src="{{URL::asset('build/js/coming-soon.js')}}"></script>
-@endif    
+@endif
 
 @if (Route::is(['kanban-view']))
 	<!-- Custom JS -->
@@ -272,7 +272,7 @@
     <script src="{{URL::asset('build/js/todo.js')}}"></script>
 @endif
 
-@if (Route::is(['ui-clipboard'])) 
+@if (Route::is(['ui-clipboard']))
     <!-- Clipboard JS -->
     <script src="{{URL::asset('build/plugins/clipboard/clipboard.min.js')}}"></script>
 
@@ -295,4 +295,4 @@
     <script src="{{URL::asset('build/js/script.js')}}"></script>
 @endif
 
-@stack('scripts')    
+@stack('scripts')
