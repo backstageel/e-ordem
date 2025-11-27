@@ -76,21 +76,14 @@
                 </div>
             </div>
 
-            <!-- Status Legend -->
-            <div class="row mb-4">
-                <div class="col-12">
-                    <x-status-legend title="Legenda de Status de Inscrições" :statusEnum="\App\Enums\RegistrationStatus::class" />
-                </div>
-            </div>
-
             <!-- Main Details -->
             <div class="row">
                 <!-- Left Column - Personal, Academic, Professional Info -->
                 <div class="col-lg-8">
                     <!-- Personal Information -->
                     <div class="border card rounded-2 shadow-sm mb-4">
-                        <div class="card-header bg-transparent border-bottom">
-                            <h5 class="card-title mb-0 fw-semibold">Informações Pessoais</h5>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="fw-bold mb-0">Informações Pessoais</h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -137,8 +130,8 @@
 
                     <!-- Academic Information -->
                     <div class="border card rounded-2 shadow-sm mb-4">
-                        <div class="card-header bg-transparent border-bottom">
-                            <h5 class="card-title mb-0 fw-semibold">Informações Académicas</h5>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="fw-bold mb-0">Informações Académicas</h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -168,8 +161,8 @@
 
                     <!-- Professional Information -->
                     <div class="border card rounded-2 shadow-sm mb-4">
-                        <div class="card-header bg-transparent border-bottom">
-                            <h5 class="card-title mb-0 fw-semibold">Informações Profissionais</h5>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="fw-bold mb-0">Informações Profissionais</h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -198,8 +191,8 @@
                 <div class="col-lg-4">
                     <!-- Registration Details -->
                     <div class="border card rounded-2 shadow-sm mb-4">
-                        <div class="card-header bg-transparent border-bottom d-flex justify-content-between align-items-center">
-                            <h5 class="card-title mb-0 fw-semibold">Detalhes da Inscrição</h5>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="fw-bold mb-0">Detalhes da Inscrição</h5>
                             <i class="ti ti-settings text-muted"></i>
                         </div>
                         <div class="card-body">
@@ -246,8 +239,8 @@
 
                     <!-- Payment Information -->
                     <div class="border card rounded-2 shadow-sm mb-4">
-                        <div class="card-header bg-transparent border-bottom">
-                            <h5 class="card-title mb-0 fw-semibold">Informações de Pagamento</h5>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="fw-bold mb-0">Informações de Pagamento</h5>
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
@@ -288,8 +281,8 @@
 
                     <!-- Documents Status -->
                     <div class="border card rounded-2 shadow-sm mb-4">
-                        <div class="card-header bg-transparent border-bottom">
-                            <h5 class="card-title mb-0 fw-semibold">Status dos Documentos</h5>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="fw-bold mb-0">Status dos Documentos</h5>
                         </div>
                         <div class="card-body">
                             <div class="list-group list-group-flush">
@@ -335,8 +328,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="border card rounded-2 shadow-sm mb-4">
-                        <div class="card-header bg-transparent border-bottom d-flex justify-content-between align-items-center">
-                            <h5 class="card-title mb-0 fw-semibold">Documentos Anexados</h5>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="fw-bold mb-0">Documentos Anexados</h5>
                             <div class="d-flex gap-2">
                                 @if($registration->person->documents->where('registration_id', $registration->id)->count() > 0)
                                 <button class="btn btn-sm btn-primary" onclick="downloadAllDocuments()"><i class="ti ti-download me-1"></i>Baixar Todos</button>
@@ -406,8 +399,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="border card rounded-2 shadow-sm">
-                        <div class="card-header bg-transparent border-bottom">
-                            <h5 class="card-title mb-0 fw-semibold">Histórico de Atividades</h5>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="fw-bold mb-0">Histórico de Atividades</h5>
                         </div>
                         <div class="card-body">
                             <div class="timeline">
