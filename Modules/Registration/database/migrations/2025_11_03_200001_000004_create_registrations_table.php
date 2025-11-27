@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('registration_type_id')->constrained('registration_types');
             $table->foreignId('person_id')->nullable()->constrained('people');
-            $table->foreignId('member_id')->nullable()->constrained('members')->onDelete('set null');
+            $table->unsignedBigInteger('member_id')->nullable(); // Foreign key will be added later
 
             // Campo discriminador de tipo
             $table->string('type')->nullable()->comment('certification, provisional, effective');

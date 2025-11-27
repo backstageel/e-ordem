@@ -10,6 +10,10 @@ class EnsureRegistrationTypesArePresent
 {
     public function __invoke()
     {
+        // Check if required tables exist before proceeding
+        if (!$this->tablesExist()) {
+            return;
+        }
 
         if ($this->present()) {
             return;
@@ -404,6 +408,21 @@ class EnsureRegistrationTypesArePresent
 
         DB::table('registration_types')->insert($registrationTypes);
 
+    }
+
+    private function tablesExist(): bool
+    {
+        try {
+            // Check if required tables exist
+            if (!DB::getSchemaBuilder()->hasTable('registration_types')) {
+                return false;
+            }
+            
+            return true;
+        } catch (\Exception $e) {
+            // If there's any error checking tables, assume they don't exist yet
+            return false;
+        }
     }
 
     private function present()

@@ -24,7 +24,7 @@ return new class extends Migration
 
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('member_id'); // Foreign key will be added later
             $table->foreignId('card_type_id')->constrained('card_types');
             $table->string('card_number')->unique();
             $table->string('status'); // pending, issued, active, expired, revoked, lost

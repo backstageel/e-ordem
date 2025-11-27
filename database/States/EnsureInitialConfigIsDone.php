@@ -12,6 +12,10 @@ class EnsureInitialConfigIsDone
 {
     public function __invoke()
     {
+        // Check if required tables exist before proceeding
+        if (!$this->tablesExist()) {
+            return;
+        }
 
         if ($this->alreadyRun()) {
             return;
@@ -529,6 +533,25 @@ class EnsureInitialConfigIsDone
                 ['code' => $specialty['code']],
                 $specialty
             );
+        }
+    }
+
+    private function tablesExist(): bool
+    {
+        try {
+            // Check if required tables exist
+            $requiredTables = ['genders', 'civil_states', 'continents', 'countries', 'medical_specialities'];
+            
+            foreach ($requiredTables as $table) {
+                if (!DB::getSchemaBuilder()->hasTable($table)) {
+                    return false;
+                }
+            }
+            
+            return true;
+        } catch (\Exception $e) {
+            // If there's any error checking tables, assume they don't exist yet
+            return false;
         }
     }
 

@@ -15,6 +15,11 @@ Artisan::command('ensure-database-state-is-loaded', function () {
 })->purpose('Load Default Data to Database');
 
 Artisan::command('ensure-super-admin-user', function () {
+    // Check if required tables exist
+    if (!\Illuminate\Support\Facades\Schema::hasTable('roles') || !\Illuminate\Support\Facades\Schema::hasTable('permissions')) {
+        return;
+    }
+    
     $role = Role::firstOrCreate(['name' => 'super-admin']);
     $permissions = Permission::all();
     $role->syncPermissions($permissions);

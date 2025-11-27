@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('due_date');
             $table->date('payment_date')->nullable();
             $table->string('status')->default('pending'); // pending, paid, overdue, waived
-            $table->foreignId('payment_id')->nullable()->constrained('payments')->onDelete('set null');
+            $table->unsignedBigInteger('payment_id')->nullable(); // Foreign key will be added later
             $table->decimal('penalty_amount', 10, 2)->default(0);
             $table->text('notes')->nullable();
             $table->timestamps();

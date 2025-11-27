@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('document_checklists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('registration_type_id')->constrained('registration_types');
+            $table->unsignedBigInteger('registration_type_id'); // Foreign key will be added later
             $table->foreignId('document_type_id')->constrained('document_types');
             $table->boolean('is_required')->default(true);
             $table->boolean('requires_translation')->default(false);

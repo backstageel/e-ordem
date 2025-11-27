@@ -33,7 +33,7 @@ return new class extends Migration
 
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->nullable()->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('member_id')->nullable(); // Foreign key will be added later
             $table->foreignId('person_id')->constrained('people');
             $table->foreignId('payment_type_id')->constrained('payment_types');
             $table->foreignId('payment_method_id')->nullable()->constrained('payment_methods');

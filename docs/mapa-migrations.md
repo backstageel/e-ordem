@@ -245,10 +245,14 @@ Estas migrations são compartilhadas entre módulos ou fazem parte da infraestru
 
 ## 📝 Notas Importantes
 
-1. **Ordem de Execução:** As migrations dos módulos devem ser executadas após as migrations core, pois dependem de tabelas como `users`, `people`, `countries`, etc.
+1. **Ordem de Execução:** 
+   - ✅ **Core migrations** executam primeiro (timestamps: 2024-08-30 até 2025-11-02)
+   - ✅ **Module migrations** executam depois (timestamp base: 2025-11-03)
+   - As migrations dos módulos foram renomeadas para garantir que executem após todas as migrations core
+   - Ordem dentro dos módulos: Document (100000) → Registration (200000) → Exam (300000) → Member (400000) → Payment (500000) → Card (600000) → Notification (700000) → Residency (800000)
 
 2. **Dependências:**
-   - Módulos dependem de tabelas core (people, users, countries, etc.)
+   - Módulos dependem de tabelas core (people, users, countries, medical_specialities, etc.)
    - Registration depende de application_statuses
    - Member depende de people, medical_specialities
    - Payment depende de members, people
@@ -256,16 +260,22 @@ Estas migrations são compartilhadas entre módulos ou fazem parte da infraestru
    - Document depende de document_types, people, members
    - Exam depende de exam_types, users
    - Notification depende de notification_templates
+   - Residency depende de members, countries
 
 3. **Migrations que Criam Múltiplas Tabelas:**
    - `create_payments_table.php` cria: payments, payment_types, payment_methods
    - `create_cards_table.php` cria: cards, card_types
    - `create_medical_residency_table.php` cria: residency_programs, residency_locations, residency_program_locations, residency_applications, residency_evaluations
 
-4. **Próximos Passos:**
-   - Verificar se os módulos têm migrations próprias que precisam ser integradas
-   - Executar `php artisan module:publish-migration` se necessário
-   - Testar ordem de execução das migrations
+4. **Renomeação de Timestamps:**
+   - Todas as migrations dos módulos foram renomeadas de `2025_07_01_*` para `2025_11_03_*`
+   - Isso garante que executem após a última migration core (`2025_11_02_144221_create_medical_specialities_table.php`)
+   - Os números sequenciais (100000, 200000, etc.) garantem a ordem correta entre módulos
+
+5. **Status:**
+   - ✅ Migrations organizadas por módulo
+   - ✅ Timestamps corrigidos para garantir ordem de execução
+   - ⏳ Próximo passo: Executar `php artisan migrate` para testar
 
 ---
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('specializations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained('members')->onDelete('cascade');
+            $table->unsignedBigInteger('member_id'); // Foreign key will be added later
             $table->string('specialty_name');
             $table->string('subspecialty')->nullable();
             $table->string('institution_name');

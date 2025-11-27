@@ -1,0 +1,12 @@
+{
+    "Archive": true,
+    "Card": true,
+    "Dashboard": true,
+    "Document": true,
+    "Exam": true,
+    "Member": true,
+    "Notification": true,
+    "Payment": true,
+    "Registration": true,
+    "Residency": true
+}

@@ -12,6 +12,10 @@ class EnsureAdministratorIsPresent
 {
     public function __invoke()
     {
+        // Check if required tables exist before proceeding
+        if (!$this->tablesExist()) {
+            return;
+        }
 
         if ($this->present()) {
             return;
@@ -525,6 +529,25 @@ class EnsureAdministratorIsPresent
             }
         }
 
+    }
+
+    private function tablesExist(): bool
+    {
+        try {
+            // Check if required tables exist
+            $requiredTables = ['users', 'permissions', 'roles'];
+            
+            foreach ($requiredTables as $table) {
+                if (!DB::getSchemaBuilder()->hasTable($table)) {
+                    return false;
+                }
+            }
+            
+            return true;
+        } catch (\Exception $e) {
+            // If there's any error checking tables, assume they don't exist yet
+            return false;
+        }
     }
 
     private function present()

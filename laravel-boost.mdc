@@ -1,0 +1,110 @@
+# Laravel Boost Guidelines
+
+This project uses Laravel Sail for development environment management. All commands should be run through Sail to ensure consistency.
+
+## Laravel Sail Usage
+
+### Artisan Commands
+- **Always use `sail artisan` instead of `php artisan`**
+- Examples:
+  - `sail artisan make:model User`
+  - `sail artisan migrate`
+  - `sail artisan test`
+  - `sail artisan make:controller UserController`
+  - `sail artisan make:livewire ComponentName`
+  - `sail artisan folio:page 'page-name'`
+
+### Composer Commands
+- Use `sail composer` instead of `composer`
+- Examples:
+  - `sail composer install`
+  - `sail composer require package/name`
+  - `sail composer update`
+
+### NPM Commands
+- Use `sail npm` instead of `npm`
+- Examples:
+  - `sail npm install`
+  - `sail npm run dev`
+  - `sail npm run build`
+
+### Code Style (Pint)
+- Use `sail pint` instead of `vendor/bin/pint`
+- Examples:
+  - `sail pint`
+  - `sail pint --dirty`
+
+### Testing
+- Run all tests: `sail artisan test`
+- Run specific test: `sail artisan test --filter=TestName`
+- Run tests with coverage: `sail artisan test --coverage`
+
+### Development Environment
+- Start: `sail up`
+- Stop: `sail down`
+- Start detached: `sail up -d`
+
+## Package Versions
+
+This application uses the following Laravel ecosystem packages:
+
+- php - 8.4.13
+- laravel/folio (FOLIO) - v1
+- laravel/framework (LARAVEL) - v12
+- laravel/prompts (PROMPTS) - v0
+- laravel/sanctum (SANCTUM) - v4
+- laravel/telescope (TELESCOPE) - v5
+- livewire/livewire (LIVEWIRE) - v3
+- laravel/breeze (BREEZE) - v2
+- laravel/mcp (MCP) - v0
+- laravel/pint (PINT) - v1
+- laravel/sail (SAIL) - v1
+- pestphp/pest (PEST) - v4
+- phpunit/phpunit (PHPUNIT) - v12
+
+## Development Guidelines
+
+### Code Conventions
+- Follow existing code conventions used in this application
+- Use descriptive names for variables and methods
+- Check for existing components to reuse before writing new ones
+- Use explicit return type declarations for methods and functions
+- Use PHP 8 constructor property promotion in `__construct()`
+
+### Database
+- Always use proper Eloquent relationship methods with return type hints
+- Prefer relationship methods over raw queries or manual joins
+- Use Eloquent models and relationships before suggesting raw database queries
+- Avoid `DB::`; prefer `Model::query()`
+- Generate code that prevents N+1 query problems by using eager loading
+
+### Testing
+- Every change must be programmatically tested
+- Write a new test or update an existing test, then run the affected tests
+- Use `sail artisan make:test --pest <name>` for creating tests
+- Run the minimum number of tests needed to ensure code quality and speed
+- Use `sail artisan test` with a specific filename or filter
+
+### Frontend
+- This project uses Bootstrap, never Tailwind CSS
+- Always use blade components for layout
+- All layouts must be based on `<x-layouts.app>`
+- Use Resource routes with `Route::resource` unless it's a single route
+
+### Security
+- Always validate user input using Form Request classes
+- Use Laravel's built-in authentication and authorization features
+- Always include CSRF tokens in forms
+- Use environment variables only in configuration files
+- Never use the `env()` function directly outside of config files
+
+## Important Notes
+
+- **Always use Sail commands instead of direct PHP/Composer/NPM commands**
+- This ensures consistency across different development environments
+- Sail provides a Docker-based environment that matches production
+- All dependencies and services are containerized for reliability
+- Never use fillable in models; use `guarded=false`
+- Use `sail artisan` for all Artisan commands
+- Use `sail pint` for code formatting
+- Use `sail artisan test` for running tests

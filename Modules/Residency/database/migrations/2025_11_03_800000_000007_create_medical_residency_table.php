@@ -57,7 +57,7 @@ return new class extends Migration
 
         Schema::create('residency_applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('member_id'); // Foreign key will be added later
             $table->foreignId('residency_program_id')->constrained()->onDelete('cascade');
             $table->foreignId('residency_location_id')->nullable()->constrained()->onDelete('set null');
             $table->string('status'); // pending, approved, rejected, in_progress, completed, cancelled
