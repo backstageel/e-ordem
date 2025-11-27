@@ -70,7 +70,7 @@
 
         @if($showHeaderSidebar)
             @include('layout.partials.header')
-            @include('layout.partials.sidebar')
+            <x-layouts.sidebar-selector />
         @endif
 
         {{ $slot }}
