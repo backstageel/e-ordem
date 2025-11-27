@@ -6,7 +6,7 @@
         <div>
             <!-- Logo Normal -->
             <a href="{{ route('member.dashboard.index') }}" class="logo logo-normal">
-                <img src="{{ asset('build/img/logo.svg') }}" alt="Ordem dos Médicos de Moçambique">
+                <img src="{{ asset('build/img/logo.png') }}" alt="Ordem dos Médicos de Moçambique">
             </a>
 
             <!-- Logo Small -->

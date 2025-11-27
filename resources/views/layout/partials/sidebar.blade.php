@@ -17,13 +17,13 @@
 
 <!-- Sidenav Menu Start -->
 <div class="sidebar" id="sidebar">
-    
+
     <!-- Start Logo -->
     <div class="sidebar-logo">
         <div>
             <!-- Logo Normal -->
             <a href="{{url('index')}}" class="logo logo-normal">
-                <img src="{{URL::asset('build/img/logo.svg')}}" alt="Logo">
+                <img src="{{URL::asset('build/img/logo.png')}}" alt="Logo">
             </a>
 
             <!-- Logo Small -->
@@ -36,20 +36,20 @@
                 <img src="{{URL::asset('build/img/logo-white.svg')}}" alt="Logo">
             </a>
         </div>
-        <button class="sidenav-toggle-btn btn border-0 p-0 active" id="toggle_btn"> 
+        <button class="sidenav-toggle-btn btn border-0 p-0 active" id="toggle_btn">
             <i class="ti ti-arrow-left"></i>
         </button>
 
         <!-- Sidebar Menu Close -->
         <button class="sidebar-close">
             <i class="ti ti-x align-middle"></i>
-        </button>                
+        </button>
     </div>
     <!-- End Logo -->
 
     <!-- Sidenav Menu -->
-    <div class="sidebar-inner" data-simplebar>                
-        <div id="sidebar-menu" class="sidebar-menu">            
+    <div class="sidebar-inner" data-simplebar>
+        <div id="sidebar-menu" class="sidebar-menu">
             @if (!Route::is(['doctor-dashboard', 'doctors-appointments', 'doctors-appointment-details', 'doctors-patient-details', 'online-consultations', 'doctors-schedules', 'doctors-prescriptions', 'doctors-prescription-details', 'doctors-leaves', 'doctors-reviews', 'doctors-profile-settings', 'doctors-password-settings', 'doctors-notification-settings', 'doctors-notifications', 'patient-dashboard', 'patient-appointments', 'patient-appointment-details', 'patients-doctor-details', 'patient-doctors', 'patient-prescriptions', 'patient-prescription-details', 'patient-invoices', 'patient-invoice-details', 'patient-profile-settings', 'patient-password-settings', 'patient-notifications-settings', 'patient-notifications']))
             <div class="sidebar-top shadow-sm p-2 rounded-1 mb-3 dropend">
                 <a href="javascript:void(0);" class="drop-arrow-none" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-offset="0,22" aria-haspopup="false" aria-expanded="false">
@@ -61,39 +61,39 @@
                                 <p class="fs-13 mb-0">Lasvegas</p>
                             </div>
                         </div>
-                        <i class="ti ti-arrows-transfer-up"></i>                            
+                        <i class="ti ti-arrows-transfer-up"></i>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg">
-                    <div class="p-2"> 
+                    <div class="p-2">
                         <label class="dropdown-item d-flex align-items-center justify-content-between p-1">
                             <span class="d-flex align-items-center">
                                 <span class="me-2"><img src="{{URL::asset('build/img/icons/clinic-01.svg')}}" alt=""></span>
                                 <span class="fw-semibold text-dark">CureWell Medical Hub<small class="d-block text-muted fw-normal fs-13">Ohio</small></span>
                             </span>
                             <input class="form-check-input m-0 me-2" type="checkbox">
-                        </label> 
+                        </label>
                         <label class="dropdown-item d-flex align-items-center justify-content-between p-1">
                             <span class="d-flex align-items-center">
                                 <span class="me-2"><img src="{{URL::asset('build/img/icons/clinic-02.svg')}}" alt=""></span>
                                 <span class="fw-semibold text-dark">Trustcare Clinic<small class="d-block text-muted fw-normal fs-13">Lasvegas</small></span>
                             </span>
                             <input class="form-check-input m-0 me-2" type="checkbox">
-                        </label> 
+                        </label>
                         <label class="dropdown-item d-flex align-items-center justify-content-between p-1">
                             <span class="d-flex align-items-center">
                                 <span class="me-2"><img src="{{URL::asset('build/img/icons/clinic-03.svg')}}" alt=""></span>
                                 <span class="fw-semibold text-dark">NovaCare Medical<small class="d-block text-muted fw-normal fs-13">Washington</small></span>
                             </span>
                             <input class="form-check-input m-0 me-2" type="checkbox">
-                        </label> 
+                        </label>
                         <label class="dropdown-item d-flex align-items-center justify-content-between p-1">
                             <span class="d-flex align-items-center">
                                 <span class="me-2"><img src="{{URL::asset('build/img/icons/clinic-04.svg')}}" alt=""></span>
                                 <span class="fw-semibold text-dark">Greeny Medical Clinic<small class="d-block text-muted fw-normal fs-13">Illinios</small></span>
                             </span>
                             <input class="form-check-input m-0 me-2" type="checkbox">
-                        </label> 
+                        </label>
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="{{url('calendar')}}" class="{{ Request::is('calendar') ? 'active' : '' }}">Calendar</a></li>
-                                <li><a href="{{url('contacts')}}" class="{{ Request::is('contacts') ? 'active' : '' }}">Contacts</a></li>		
+                                <li><a href="{{url('contacts')}}" class="{{ Request::is('contacts') ? 'active' : '' }}">Contacts</a></li>
                                 <li><a href="{{url('email')}}" class="{{ Request::is('email', 'email-reply') ? 'active' : '' }}">Email</a></li>
                                 <li class="submenu submenu-two">
                                     <a href="#" class="{{ Request::is('invoice', 'add-invoices', 'edit-invoices', 'invoice-details') ? 'active subdrop' : '' }}">Invoices<span class="menu-arrow inside-submenu"></span></a>
@@ -160,7 +160,7 @@
                                 <li><a href="{{url('layout-hidden')}}" class="{{ Request::is('layout-hidden') ? 'active' : '' }}">Hidden</a></li>
                                 <li><a href="{{url('layout-full-width')}}" class="{{ Request::is('layout-full-width') ? 'active' : '' }}">Full Width</a></li>
                                 <li><a href="{{url('layout-rtl')}}" class="{{ Request::is('layout-rtl') ? 'active' : '' }}">RTL</a></li>
-                                <li><a href="{{url('layout-dark')}}" class="{{ Request::is('layout-dark') ? 'active' : '' }}">Dark</a></li>                                
+                                <li><a href="{{url('layout-dark')}}" class="{{ Request::is('layout-dark') ? 'active' : '' }}">Dark</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -206,32 +206,32 @@
                             <a href="{{url('locations')}}">
                                 <i class="ti ti-map-pin"></i><span>Locations</span>
                             </a>
-                        </li>  
+                        </li>
                         <li class="{{ Request::is('services') ? 'active' : '' }}">
                             <a href="{{url('services')}}">
                                 <i class="ti ti-user-cog"></i><span>Services</span>
                             </a>
-                        </li>  
+                        </li>
                         <li class="{{ Request::is('specializations') ? 'active' : '' }}">
                             <a href="{{url('specializations')}}">
                                 <i class="ti ti-user-shield"></i><span>Specializations</span>
                             </a>
-                        </li> 
+                        </li>
                         <li class="{{ Request::is('assets') ? 'active' : '' }}">
                             <a href="{{url('assets')}}">
                                 <i class="ti ti-asset"></i><span>Assets</span>
                             </a>
-                        </li>  
+                        </li>
                         <li class="{{ Request::is('activities') ? 'active' : '' }}">
                             <a href="{{url('activities')}}">
                                 <i class="ti ti-activity"></i><span>Activities</span>
                             </a>
-                        </li> 
+                        </li>
                         <li class="{{ Request::is('messages') ? 'active' : '' }}">
                             <a href="{{url('messages')}}">
                                 <i class="ti ti-messages"></i><span>Messages</span>
                             </a>
-                        </li>                           
+                        </li>
                     </ul>
                 </li>
                 <li class="menu-title"><span>HRM</span></li>
@@ -812,10 +812,10 @@
                             </ul>
                         </li>
                     </ul>
-                </li>                        
-            </ul>  
-            @endif   
-            
+                </li>
+            </ul>
+            @endif
+
             @if (Route::is(['doctor-dashboard', 'doctors-appointments', 'doctors-appointment-details', 'doctors-patient-details', 'online-consultations', 'doctors-schedules', 'doctors-prescriptions', 'doctors-prescription-details', 'doctors-leaves', 'doctors-reviews', 'doctors-profile-settings', 'doctors-password-settings', 'doctors-notification-settings', 'doctors-notifications']))
             <ul>
                 <li class="menu-title"><span>Main Menu</span></li>
@@ -868,8 +868,8 @@
                             </ul>
                         </li>
                     </ul>
-                </li>                                
-            </ul>  
+                </li>
+            </ul>
             @endif
 
             @if (Route::is(['patient-dashboard', 'patient-appointments', 'patient-appointment-details', 'patients-doctor-details', 'patient-doctors', 'patient-prescriptions', 'patient-prescription-details', 'patient-invoices', 'patient-invoice-details', 'patient-profile-settings', 'patient-password-settings', 'patient-notifications-settings', 'patient-notifications']))
@@ -914,8 +914,8 @@
                             </ul>
                         </li>
                     </ul>
-                </li>                                
-            </ul>  
+                </li>
+            </ul>
             @endif
         </div>
         <div class="sidebar-footer border-top mt-3">

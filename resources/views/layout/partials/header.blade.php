@@ -8,7 +8,7 @@
 
                 <!-- Logo Normal -->
                 <span class="logo-light">
-                    <span class="logo-lg"><img src="{{URL::asset('build/img/logo.svg')}}" alt="logo"></span>
+                    <span class="logo-lg"><img src="{{URL::asset('build/img/logo.png')}}" alt="logo"></span>
                     <span class="logo-sm"><img src="{{URL::asset('build/img/logo-small.svg')}}" alt="small logo"></span>
                 </span>
 
@@ -23,10 +23,10 @@
                 <i class="ti ti-menu-deep fs-24"></i>
             </a>
 
-            <button class="sidenav-toggle-btn btn border-0 p-0 active" id="toggle_btn2"> 
+            <button class="sidenav-toggle-btn btn border-0 p-0 active" id="toggle_btn2">
                 <i class="ti ti-arrow-right"></i>
-            </button> 
-            
+            </button>
+
             <!-- Search -->
             <div class="me-auto d-flex align-items-center header-search d-lg-flex d-none">
                 <!-- Search -->
@@ -39,19 +39,19 @@
                 </div>
                 <!-- /Search -->
             </div>
-            
+
         </div>
 
         @if (!Route::is(['doctor-dashboard', 'doctors-appointments', 'doctors-appointment-details', 'doctors-patient-details', 'online-consultations', 'doctors-schedules', 'doctors-prescriptions', 'doctors-prescription-details', 'doctors-leaves', 'doctors-reviews', 'doctors-profile-settings', 'doctors-password-settings', 'doctors-notification-settings', 'doctors-notifications', 'patient-dashboard', 'patient-appointments', 'patient-appointment-details', 'patients-doctor-details', 'patient-doctors', 'patient-prescriptions', 'patient-prescription-details', 'patient-invoices', 'patient-invoice-details', 'patient-profile-settings', 'patient-password-settings', 'patient-notifications-settings', 'patient-notifications']))
         <div class="d-flex align-items-center">
-        
+
             <!-- Search for Mobile -->
             <div class="header-item d-flex d-lg-none me-2">
                 <button class="topbar-link btn btn-icon" data-bs-toggle="modal" data-bs-target="#searchModal" type="button">
                     <i class="ti ti-search fs-16"></i>
                 </button>
             </div>
-            
+
             <!-- AI Assistance -->
             <a href="javascript:void(0);" class="btn btn-liner-gradient me-3 d-lg-flex d-none">AI Assistance<i class="ti ti-chart-bubble-filled ms-1"></i></a>
             <!-- AI Assistance -->
@@ -61,16 +61,16 @@
                 <div class="dropdown me-2">
                     <a href="{{url('new-appointment')}}" class="btn topbar-link"><i class="ti ti-calendar-due"></i></a>
                 </div>
-            </div>                    
+            </div>
             <!-- Appointment -->
 
             <!-- Settings -->
             <div class="header-item">
                 <div class="dropdown me-2">
                     <a href="{{url('profile-settings')}}" class="btn topbar-link"><i class="ti ti-settings-2"></i></a>
-                </div> 
-            </div> 
-            <!-- Settings -->                   
+                </div>
+            </div>
+            <!-- Settings -->
 
             @if (!Route::is(['layout-dark', 'layout-mini', 'layout-hidden', 'layout-hover-view', 'layout-full-width', 'layout-rtl']))
             <!-- Light/Dark Mode Button -->
@@ -80,19 +80,19 @@
                 </button>
             </div>
             @endif
-            
-            
+
+
             <!-- Notification Dropdown -->
             <div class="header-item">
                 <div class="dropdown me-3">
-                
+
                     <button class="topbar-link btn btn-icon topbar-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false" aria-expanded="false">
                         <i class="ti ti-bell-check fs-16 animate-ring"></i>
                         <span class="notification-badge"></span>
                     </button>
-                    
+
                     <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">
-                    
+
                         <div class="p-2 border-bottom">
                             <div class="row align-items-center">
                                 <div class="col">
@@ -100,10 +100,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Notification Body -->
                         <div class="notification-body position-relative z-2 rounded-0" data-simplebar>
-                            
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-1">
                                 <div class="d-flex">
@@ -113,7 +113,7 @@
                                     <div class="flex-grow-1">
                                         <p class="mb-0 fw-medium text-dark">Dr. Smith</p>
                                         <p class="mb-1 text-wrap">
-                                            updated the <span class="fw-medium text-dark">surgery</span> schedule. 
+                                            updated the <span class="fw-medium text-dark">surgery</span> schedule.
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="fs-12"><i class="ti ti-clock me-1"></i>4 min ago</span>
@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
                             </div>
-                    
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-2">
                                 <div class="d-flex">
@@ -151,7 +151,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-3">
                                 <div class="d-flex">
@@ -175,7 +175,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap" id="notification-4">
                                 <div class="d-flex">
@@ -199,20 +199,20 @@
                                     </div>
                                 </div>
                             </div>
-                                
+
                         </div>
-                        
+
                         <!-- View All-->
                         <div class="p-2 rounded-bottom border-top text-center">
                             <a href="{{url('notifications')}}" class="text-center text-decoration-underline fs-14 mb-0">
                                 View All Notifications
                             </a>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
-            
+
             <!-- User Dropdown -->
             <div class="dropdown profile-dropdown d-flex align-items-center justify-content-center">
                 <a href="javascript:void(0);" class="topbar-link dropdown-toggle drop-arrow-none position-relative" data-bs-toggle="dropdown" data-bs-offset="0,22" aria-haspopup="false" aria-expanded="false">
@@ -220,7 +220,7 @@
                     <span class="online text-success"><i class="ti ti-circle-filled d-flex bg-white rounded-circle border border-1 border-white"></i></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-2">
-                
+
                     <div class="d-flex align-items-center bg-light rounded-3 p-2 mb-2">
                         <img src="{{URL::asset('build/img/users/user-01.jpg')}}" class="rounded-circle" width="42" height="42" alt="">
                         <div class="ms-2">
@@ -253,8 +253,8 @@
                         <span class="align-middle">Transactions</span>
                     </a>
 
-                                
-                    
+
+
                     <!-- Item-->
                     <div class="pt-2 mt-2 border-top">
                         <a href="{{url('login')}}" class="dropdown-item text-danger">
@@ -264,20 +264,20 @@
                     </div>
                 </div>
             </div>
-                
+
         </div>
         @endif
 
         @if (Route::is(['doctor-dashboard', 'doctors-appointments', 'doctors-appointment-details', 'doctors-patient-details', 'online-consultations', 'doctors-schedules', 'doctors-prescriptions', 'doctors-prescription-details', 'doctors-leaves', 'doctors-reviews', 'doctors-profile-settings', 'doctors-password-settings', 'doctors-notification-settings', 'doctors-notifications']))
         <div class="d-flex align-items-center">
-        
+
             <!-- Search for Mobile -->
             <div class="header-item d-flex d-lg-none me-2">
                 <button class="topbar-link btn btn-icon" data-bs-toggle="modal" data-bs-target="#searchModal" type="button">
                     <i class="ti ti-search fs-16"></i>
                 </button>
             </div>
-            
+
             <!-- AI Assistance -->
             <a href="javascript:void(0);" class="btn btn-liner-gradient me-3 d-lg-flex d-none">AI Assistance<i class="ti ti-chart-bubble-filled ms-1"></i></a>
 
@@ -285,32 +285,32 @@
                 <div class="dropdown me-2">
                     <a href="{{url('doctors-appointments')}}" class="btn topbar-link"><i class="ti ti-calendar-due"></i></a>
                 </div>
-            </div>                    
+            </div>
 
             <div class="header-item">
                 <div class="dropdown me-2">
                     <a href="{{url('doctors-profile-settings')}}" class="btn topbar-link"><i class="ti ti-settings-2"></i></a>
-                </div> 
-            </div>                    
-            
+                </div>
+            </div>
+
             <!-- Light/Dark Mode Button -->
             <div class="header-item d-none d-sm-flex me-2">
                 <button class="topbar-link btn btn-icon topbar-link" id="light-dark-mode" type="button">
                     <i class="ti ti-moon fs-16"></i>
                 </button>
-            </div>          
-            
+            </div>
+
             <!-- Notification Dropdown -->
             <div class="header-item">
                 <div class="dropdown me-3">
-                
+
                     <button class="topbar-link btn btn-icon topbar-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false" aria-expanded="false">
                         <i class="ti ti-bell-check fs-16 animate-ring"></i>
                         <span class="notification-badge"></span>
                     </button>
-                    
+
                     <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">
-                    
+
                         <div class="p-2 border-bottom">
                             <div class="row align-items-center">
                                 <div class="col">
@@ -318,10 +318,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Notification Body -->
                         <div class="notification-body position-relative z-2 rounded-0" data-simplebar>
-                            
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-1">
                                 <div class="d-flex">
@@ -331,7 +331,7 @@
                                     <div class="flex-grow-1">
                                         <p class="mb-0 fw-medium text-dark">Dr. Smith</p>
                                         <p class="mb-1 text-wrap">
-                                            updated the <span class="fw-medium text-dark">surgery</span> schedule. 
+                                            updated the <span class="fw-medium text-dark">surgery</span> schedule.
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="fs-12"><i class="ti ti-clock me-1"></i>4 min ago</span>
@@ -345,7 +345,7 @@
                                     </div>
                                 </div>
                             </div>
-                    
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-2">
                                 <div class="d-flex">
@@ -369,7 +369,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-3">
                                 <div class="d-flex">
@@ -393,7 +393,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap" id="notification-4">
                                 <div class="d-flex">
@@ -417,20 +417,20 @@
                                     </div>
                                 </div>
                             </div>
-                                
+
                         </div>
-                        
+
                         <!-- View All-->
                         <div class="p-2 rounded-bottom border-top text-center">
                             <a href="{{url('doctors-notifications')}}" class="text-center text-decoration-underline fs-14 mb-0">
                                 View All Notifications
                             </a>
-                        </div> 
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
-            
+
             <!-- User Dropdown -->
             <div class="dropdown profile-dropdown d-flex align-items-center justify-content-center">
                 <a href="javascript:void(0);" class="topbar-link dropdown-toggle drop-arrow-none position-relative" data-bs-toggle="dropdown" data-bs-offset="0,22" aria-haspopup="false" aria-expanded="false">
@@ -438,7 +438,7 @@
                     <span class="online text-success"><i class="ti ti-circle-filled d-flex bg-white rounded-circle border border-1 border-white"></i></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-2">
-                
+
                     <div class="d-flex align-items-center bg-light rounded-3 p-2 mb-2">
                         <img src="{{URL::asset('build/img/doctors/doctor-01.jpg')}}" class="rounded-circle" width="42" height="42" alt="">
                         <div class="ms-2">
@@ -470,8 +470,8 @@
                         <i class="ti ti-help me-1 align-middle"></i>
                         <span class="align-middle">Help & Support</span>
                     </a>
-                                
-                    
+
+
                     <!-- Item-->
                     <div class="pt-2 mt-2 border-top">
                         <a href="{{url('login')}}" class="dropdown-item text-danger">
@@ -481,20 +481,20 @@
                     </div>
                 </div>
             </div>
-                
+
         </div>
         @endif
 
         @if (Route::is(['patient-dashboard', 'patient-appointments', 'patient-appointment-details', 'patients-doctor-details', 'patient-doctors', 'patient-prescriptions', 'patient-prescription-details', 'patient-invoices', 'patient-invoice-details', 'patient-profile-settings', 'patient-password-settings', 'patient-notifications-settings', 'patient-notifications']))
         <div class="d-flex align-items-center">
-        
+
             <!-- Search for Mobile -->
             <div class="header-item d-flex d-lg-none me-2">
                 <button class="topbar-link btn btn-icon" data-bs-toggle="modal" data-bs-target="#searchModal" type="button">
                     <i class="ti ti-search fs-16"></i>
                 </button>
             </div>
-            
+
             <!-- AI Assistance -->
             <a href="javascript:void(0);" class="btn btn-liner-gradient me-3 d-lg-flex d-none">AI Assistance<i class="ti ti-chart-bubble-filled ms-1"></i></a>
 
@@ -502,13 +502,13 @@
                 <div class="dropdown me-2">
                     <a href="{{url('patient-appointments')}}" class="btn topbar-link"><i class="ti ti-calendar-due"></i></a>
                 </div>
-            </div>                    
+            </div>
 
             <div class="header-item">
                 <div class="dropdown me-2">
                     <a href="{{url('patient-profile-settings')}}" class="btn topbar-link"><i class="ti ti-settings-2"></i></a>
-                </div> 
-            </div>                    
+                </div>
+            </div>
 
             <!-- Light/Dark Mode Button -->
             <div class="header-item d-none d-sm-flex me-2">
@@ -516,19 +516,19 @@
                     <i class="ti ti-moon fs-16"></i>
                 </button>
             </div>
-            
-            
+
+
             <!-- Notification Dropdown -->
             <div class="header-item">
                 <div class="dropdown me-3">
-                
+
                     <button class="topbar-link btn btn-icon topbar-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false" aria-expanded="false">
                         <i class="ti ti-bell-check fs-16 animate-ring"></i>
                         <span class="notification-badge"></span>
                     </button>
-                    
+
                     <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">
-                    
+
                         <div class="p-2 border-bottom">
                             <div class="row align-items-center">
                                 <div class="col">
@@ -536,10 +536,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Notification Body -->
                         <div class="notification-body position-relative z-2 rounded-0" data-simplebar>
-                            
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-1">
                                 <div class="d-flex">
@@ -549,7 +549,7 @@
                                     <div class="flex-grow-1">
                                         <p class="mb-0 fw-medium text-dark">Dr. Smith</p>
                                         <p class="mb-1 text-wrap">
-                                            updated the <span class="fw-medium text-dark">surgery</span> schedule. 
+                                            updated the <span class="fw-medium text-dark">surgery</span> schedule.
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="fs-12"><i class="ti ti-clock me-1"></i>4 min ago</span>
@@ -563,7 +563,7 @@
                                     </div>
                                 </div>
                             </div>
-                    
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-2">
                                 <div class="d-flex">
@@ -587,7 +587,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-3">
                                 <div class="d-flex">
@@ -611,7 +611,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Item-->
                             <div class="dropdown-item notification-item py-3 text-wrap" id="notification-4">
                                 <div class="d-flex">
@@ -635,20 +635,20 @@
                                     </div>
                                 </div>
                             </div>
-                                
+
                         </div>
-                        
+
                         <!-- View All-->
                         <div class="p-2 rounded-bottom border-top text-center">
                             <a href="{{url('patient-notifications')}}" class="text-center text-decoration-underline fs-14 mb-0">
                                 View All Notifications
                             </a>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
-            
+
             <!-- User Dropdown -->
             <div class="dropdown profile-dropdown d-flex align-items-center justify-content-center">
                 <a href="javascript:void(0);" class="topbar-link dropdown-toggle drop-arrow-none position-relative" data-bs-toggle="dropdown" data-bs-offset="0,22" aria-haspopup="false" aria-expanded="false">
@@ -656,7 +656,7 @@
                     <span class="online text-success"><i class="ti ti-circle-filled d-flex bg-white rounded-circle border border-1 border-white"></i></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-2">
-                
+
                     <div class="d-flex align-items-center bg-light rounded-3 p-2 mb-2">
                         <img src="{{URL::asset('build/img/users/user-02.jpg')}}" class="rounded-circle" width="42" height="42" alt="">
                         <div class="ms-2">
@@ -688,8 +688,8 @@
                         <i class="ti ti-help me-1 align-middle"></i>
                         <span class="align-middle">Help & Support</span>
                     </a>
-                                
-                    
+
+
                     <!-- Item-->
                     <div class="pt-2 mt-2 border-top">
                         <a href="{{url('login')}}" class="dropdown-item text-danger">
@@ -699,7 +699,7 @@
                     </div>
                 </div>
             </div>
-                
+
         </div>
         @endif
 
