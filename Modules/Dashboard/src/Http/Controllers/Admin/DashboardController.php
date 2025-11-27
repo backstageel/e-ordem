@@ -2,12 +2,14 @@
 
 namespace Modules\Dashboard\Http\Controllers\Admin;
 
+use App\Enums\PaymentStatus;
 use App\Enums\RegistrationStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Exam;
 use App\Models\MedicalSpeciality;
 use App\Models\Member;
 use App\Models\Payment;
+use App\Models\PaymentType;
 use Modules\Registration\Models\Registration;
 use App\Models\ResidencyApplication;
 use App\Models\SystemConfig;
@@ -26,6 +28,7 @@ class DashboardController extends Controller
         $recentActivities = $this->getRecentActivities();
         $registrationChartData = $this->getRegistrationChartData();
         $membersBySpecialityChartData = $this->getMembersBySpecialityChartData();
+        $sparklineChartData = $this->getSparklineChartData();
         $systemAlerts = $this->getSystemAlerts();
 
         return view('dashboard::admin.index', array_merge(
@@ -33,6 +36,7 @@ class DashboardController extends Controller
             $paymentStatistics,
             $recentActivities,
             $registrationChartData,
+            $sparklineChartData,
             ['members_by_speciality' => $membersBySpecialityChartData],
             ['system_alerts' => $systemAlerts]
         ));
@@ -48,6 +52,12 @@ class DashboardController extends Controller
         // Inscrições Pendentes: status diferente de approved e rejected
         $pendingStatuses = RegistrationStatus::getPendingStatuses();
         $totalPendingRegistrations = Registration::whereIn('status', array_map(fn ($status) => $status->value, $pendingStatuses))->count();
+
+        // Total de inscrições por status
+        $totalAllRegistrations = Registration::count();
+        $totalRejectedRegistrations = Registration::where('status', RegistrationStatus::REJECTED)->count();
+        $totalUnderReviewRegistrations = Registration::where('status', RegistrationStatus::UNDER_REVIEW)->count();
+        $totalApprovedRegistrations = Registration::where('status', RegistrationStatus::APPROVED)->count();
 
         // Residentes Activos: status approved ou in_progress
         $totalActiveResidents = ResidencyApplication::whereIn('status', ['approved', 'in_progress'])->count();
@@ -67,6 +77,10 @@ class DashboardController extends Controller
             'total_doctors' => $totalMembers, // Mantido para compatibilidade
             'total_members' => $totalMembers,
             'total_registrations' => $totalPendingRegistrations,
+            'total_all_registrations' => $totalAllRegistrations,
+            'total_rejected_registrations' => $totalRejectedRegistrations,
+            'total_under_review_registrations' => $totalUnderReviewRegistrations,
+            'total_approved_registrations' => $totalApprovedRegistrations,
             'total_residents' => $totalActiveResidents,
             'total_users' => $totalUsers,
             'total_exams' => $totalOpenExams,
@@ -84,16 +98,52 @@ class DashboardController extends Controller
     private function getPaymentStatistics(): array
     {
         // Pagamentos Recebidos Este Ano
-        $paymentsReceived = Payment::where('status', 'completed')
+        $paymentsReceived = Payment::where('status', PaymentStatus::COMPLETED->value)
             ->whereYear('created_at', now()->year)
             ->sum('amount');
 
-        $paymentsPending = Payment::where('status', 'pending')
+        $paymentsPending = Payment::where('status', PaymentStatus::PENDING->value)
             ->sum('amount');
 
-        $paymentsOverdue = Payment::where('status', 'pending')
+        $paymentsOverdue = Payment::where('status', PaymentStatus::PENDING->value)
             ->where('due_date', '<', now())
             ->sum('amount');
+
+        // Payment counts
+        $paymentsCompletedCount = Payment::where('status', PaymentStatus::COMPLETED->value)->count();
+        $paymentsPendingCount = Payment::where('status', PaymentStatus::PENDING->value)->count();
+        $paymentsOverdueCount = Payment::where('status', PaymentStatus::PENDING->value)
+            ->where('due_date', '<', now())
+            ->count();
+
+        // Payments by type - using payment_type.code instead of type column
+        // Map payment type codes to our categories
+        $paymentTypeMapping = [
+            'registration' => ['enrollment_fee', 'processing_fee_provisional_foreign', 'provisional_authorization_3m', 'provisional_authorization_6m', 'provisional_authorization_other'],
+            'quota' => ['annual_quota', 'quota_late_penalty'],
+            'exam' => ['exam_application'],
+            'card' => ['card_issue_initial', 'card_renewal', 'professional_id_card'],
+        ];
+
+        $paymentsByType = [];
+        foreach ($paymentTypeMapping as $category => $codes) {
+            $paymentTypeIds = PaymentType::whereIn('code', $codes)->pluck('id');
+
+            $paymentsByType[$category] = [
+                'amount' => Payment::whereIn('payment_type_id', $paymentTypeIds)
+                    ->where('status', PaymentStatus::COMPLETED->value)
+                    ->sum('amount'),
+                'count' => Payment::whereIn('payment_type_id', $paymentTypeIds)
+                    ->where('status', PaymentStatus::COMPLETED->value)
+                    ->count(),
+            ];
+        }
+
+        // Recent payments
+        $recentPayments = Payment::with('paymentType')
+            ->latest()
+            ->limit(5)
+            ->get();
 
         $paymentsGrowth = $this->calculatePaymentGrowth();
 
@@ -101,6 +151,11 @@ class DashboardController extends Controller
             'payments_received' => $paymentsReceived,
             'payments_pending' => $paymentsPending,
             'payments_overdue' => $paymentsOverdue,
+            'payments_completed_count' => $paymentsCompletedCount,
+            'payments_pending_count' => $paymentsPendingCount,
+            'payments_overdue_count' => $paymentsOverdueCount,
+            'payments_by_type' => $paymentsByType,
+            'recent_payments' => $recentPayments,
             'payments_growth' => $paymentsGrowth,
         ];
     }
@@ -151,10 +206,43 @@ class DashboardController extends Controller
                 ->count();
         }
 
+        // Data for registration status statistics chart
+        $approvedData = [];
+        $pendingData = [];
+        $rejectedData = [];
+        $underReviewData = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $approvedData[] = Registration::where('status', RegistrationStatus::APPROVED->value)
+                ->whereMonth('created_at', $i)
+                ->whereYear('created_at', now()->year)
+                ->count();
+
+            $pendingStatuses = RegistrationStatus::getPendingStatuses();
+            $pendingData[] = Registration::whereIn('status', array_map(fn ($status) => $status->value, $pendingStatuses))
+                ->whereMonth('created_at', $i)
+                ->whereYear('created_at', now()->year)
+                ->count();
+
+            $rejectedData[] = Registration::where('status', RegistrationStatus::REJECTED->value)
+                ->whereMonth('created_at', $i)
+                ->whereYear('created_at', now()->year)
+                ->count();
+
+            $underReviewData[] = Registration::where('status', RegistrationStatus::UNDER_REVIEW->value)
+                ->whereMonth('created_at', $i)
+                ->whereYear('created_at', now()->year)
+                ->count();
+        }
+
         return [
             'months' => $months,
             'provisional_data' => $provisionalData,
             'effective_data' => $effectiveData,
+            'approved_data' => $approvedData,
+            'pending_data' => $pendingData,
+            'rejected_data' => $rejectedData,
+            'under_review_data' => $underReviewData,
         ];
     }
 
@@ -188,7 +276,7 @@ class DashboardController extends Controller
         $alerts = [];
 
         // Check for overdue payments
-        $overduePayments = Payment::where('status', 'pending')
+        $overduePayments = Payment::where('status', PaymentStatus::PENDING->value)
             ->where('due_date', '<', now())
             ->count();
 
@@ -226,23 +314,23 @@ class DashboardController extends Controller
     }
 
     /**
-     * Calculate growth percentage for a model.
+     * Calculate growth percentage for a model (last 7 days vs previous 7 days).
      */
     private function calculateGrowth(string $model, string $dateColumn): float
     {
-        $currentMonth = $model::whereMonth($dateColumn, now()->month)
-            ->whereYear($dateColumn, now()->year)
+        $last7Days = $model::where($dateColumn, '>=', now()->subDays(7))
+            ->where($dateColumn, '<', now())
             ->count();
 
-        $lastMonth = $model::whereMonth($dateColumn, now()->subMonth()->month)
-            ->whereYear($dateColumn, now()->subMonth()->year)
+        $previous7Days = $model::where($dateColumn, '>=', now()->subDays(14))
+            ->where($dateColumn, '<', now()->subDays(7))
             ->count();
 
-        if ($lastMonth === 0) {
-            return $currentMonth > 0 ? 100.0 : 0.0;
+        if ($previous7Days === 0) {
+            return $last7Days > 0 ? 100.0 : 0.0;
         }
 
-        return round((($currentMonth - $lastMonth) / $lastMonth) * 100, 1);
+        return round((($last7Days - $previous7Days) / $previous7Days) * 100, 1);
     }
 
     /**
@@ -250,12 +338,12 @@ class DashboardController extends Controller
      */
     private function calculatePaymentGrowth(): float
     {
-        $currentMonth = Payment::where('status', 'completed')
+        $currentMonth = Payment::where('status', PaymentStatus::COMPLETED->value)
             ->whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year)
             ->sum('amount');
 
-        $lastMonth = Payment::where('status', 'completed')
+        $lastMonth = Payment::where('status', PaymentStatus::COMPLETED->value)
             ->whereMonth('created_at', now()->subMonth()->month)
             ->whereYear('created_at', now()->subMonth()->year)
             ->sum('amount');
@@ -265,5 +353,60 @@ class DashboardController extends Controller
         }
 
         return round((($currentMonth - $lastMonth) / $lastMonth) * 100, 1);
+    }
+
+    /**
+     * Get sparkline chart data for stat cards.
+     */
+    private function getSparklineChartData(): array
+    {
+        // Members chart data (last 7 days vs current day)
+        $membersLast7Days = Member::where('created_at', '>=', now()->subDays(7))
+            ->where('created_at', '<', now())
+            ->count();
+        $membersCurrentDay = Member::where('created_at', '>=', now()->startOfDay())
+            ->count();
+
+        // Registrations chart data
+        $registrationsLast7Days = Registration::where('created_at', '>=', now()->subDays(7))
+            ->where('created_at', '<', now())
+            ->count();
+        $registrationsCurrentDay = Registration::where('created_at', '>=', now()->startOfDay())
+            ->count();
+
+        // Exams chart data
+        $examsLast7Days = Exam::where('created_at', '>=', now()->subDays(7))
+            ->where('created_at', '<', now())
+            ->count();
+        $examsCurrentDay = Exam::where('created_at', '>=', now()->startOfDay())
+            ->count();
+
+        // Payments chart data (amount in thousands)
+        $paymentsLast7Days = Payment::where('status', PaymentStatus::COMPLETED->value)
+            ->where('created_at', '>=', now()->subDays(7))
+            ->where('created_at', '<', now())
+            ->sum('amount') / 1000; // Convert to thousands
+        $paymentsCurrentDay = Payment::where('status', PaymentStatus::COMPLETED->value)
+            ->where('created_at', '>=', now()->startOfDay())
+            ->sum('amount') / 1000; // Convert to thousands
+
+        return [
+            'members_chart_data' => [
+                'last_7_days' => $membersLast7Days,
+                'current_day' => $membersCurrentDay,
+            ],
+            'registrations_chart_data' => [
+                'last_7_days' => $registrationsLast7Days,
+                'current_day' => $registrationsCurrentDay,
+            ],
+            'exams_chart_data' => [
+                'last_7_days' => $examsLast7Days,
+                'current_day' => $examsCurrentDay,
+            ],
+            'payments_chart_data' => [
+                'last_7_days' => round($paymentsLast7Days, 2),
+                'current_day' => round($paymentsCurrentDay, 2),
+            ],
+        ];
     }
 }

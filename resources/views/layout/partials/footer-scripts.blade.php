@@ -56,7 +56,7 @@
     <script src="{{URL::asset('build/plugins/fancybox/jquery.fancybox.min.js')}}"></script>
 @endif
 
-@if (Route::is(['appointment-report', 'chart-apex', 'doctor-dashboard', 'file-manager', 'index', 'layout-full-width', 'layout-hidden', 'layout-hover-view', 'layout-mini', 'layout-rtl', 'layout-dark', 'patient-dashboard', 'widgets']))
+@if (Route::is(['appointment-report', 'chart-apex', 'doctor-dashboard', 'file-manager', 'index', 'layout-full-width', 'layout-hidden', 'layout-hover-view', 'layout-mini', 'layout-rtl', 'layout-dark', 'patient-dashboard', 'widgets']) || Route::is('admin.dashboard.*') || Route::is('member.dashboard.*') || Route::is('secretariat.dashboard.*'))
     <!-- Chart JS -->
     <script src="{{URL::asset('build/plugins/apexchart/apexcharts.min.js')}}"></script>
     <script src="{{URL::asset('build/plugins/apexchart/chart-data.js')}}"></script>   
@@ -293,4 +293,6 @@
 @if (!Route::is(['form-mask']))
     <!-- Main JS -->
     <script src="{{URL::asset('build/js/script.js')}}"></script>
-@endif    
+@endif
+
+@stack('scripts')    
