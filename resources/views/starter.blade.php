@@ -1,11 +1,10 @@
 <?php $page = 'starter'; ?>
-@extends('layout.mainlayout')
-@section('content')
+<x-layouts.app>
 
     <!-- ========================
         Start Page Content
     ========================= -->
-        
+
     <div class="page-wrapper">
 
         <!-- Start Content -->
@@ -16,12 +15,11 @@
                 <h4 class="fw-bold mb-0">Starter</h4>
             </div>
             <!-- End Page Header -->
-                            
+
         </div>
         <!-- End Content -->
 
-        @component('components.footer')
-        @endcomponent
+        <x-footer />
 
     </div>
 
@@ -29,4 +27,4 @@
         End Page Content
     ========================= -->
 
-@endsection    
+</x-layouts.app>

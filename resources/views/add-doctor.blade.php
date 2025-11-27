@@ -1,6 +1,5 @@
 <?php $page = 'add-doctor'; ?>
-@extends('layout.mainlayout')
-@section('content')
+<x-layouts.app>
 
     <!-- ========================
         Start Page Content
@@ -26,7 +25,7 @@
 
                          <div class="card mb-0">
                             <!-- <div class="card-header">
-                                
+
                             </div> -->
                             <div class="card-body">
                                 <div class="border-bottom d-flex align-items-center justify-content-between pb-3 mb-3">
@@ -88,7 +87,7 @@
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">DOB <span class="text-danger">*</span></label>
-                                                            <div class="input-icon-end position-relative">  
+                                                            <div class="input-icon-end position-relative">
                                                                 <input type="text" class="form-control datetimepicker" placeholder="dd/mm/yyyy">
                                                                 <span class="input-icon-addon">
                                                                     <i class="ti ti-calendar"></i>
@@ -313,7 +312,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">From</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -324,7 +323,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">To</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -366,7 +365,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">From</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -377,7 +376,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">To</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -419,7 +418,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">From</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -430,7 +429,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">To</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -472,7 +471,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">From</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -483,7 +482,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">To</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -525,7 +524,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">From</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -536,7 +535,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">To</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -578,7 +577,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">From</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -589,7 +588,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">To</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -631,7 +630,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">From</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -642,7 +641,7 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">To</label>
-                                                                                <div class="input-icon-end position-relative">  
+                                                                                <div class="input-icon-end position-relative">
                                                                                     <input type="text" class="form-control timepicker" placeholder="03 : 05  AM">
                                                                                     <span class="input-icon-addon">
                                                                                         <i class="ti ti-clock-hour-10"></i>
@@ -748,7 +747,7 @@
                                                         <div class="col-lg-3">
                                                             <div class="mb-3">
                                                                 <label class="form-label">From</label>
-                                                                <div class="input-icon-end position-relative">  
+                                                                <div class="input-icon-end position-relative">
                                                                     <input type="text" class="form-control datetimepicker" placeholder="dd/mm/yyyy">
                                                                     <span class="input-icon-addon">
                                                                         <i class="ti ti-calendar"></i>
@@ -759,7 +758,7 @@
                                                         <div class="col-lg-3">
                                                             <div class="mb-3">
                                                                 <label class="form-label">To</label>
-                                                                <div class="input-icon-end position-relative">  
+                                                                <div class="input-icon-end position-relative">
                                                                     <input type="text" class="form-control datetimepicker" placeholder="dd/mm/yyyy">
                                                                     <span class="input-icon-addon">
                                                                         <i class="ti ti-calendar"></i>
@@ -796,7 +795,7 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label class="form-label">From</label>
-                                                                <div class="input-icon-end position-relative">  
+                                                                <div class="input-icon-end position-relative">
                                                                     <input type="text" class="form-control datetimepicker" placeholder="dd/mm/yyyy">
                                                                     <span class="input-icon-addon">
                                                                         <i class="ti ti-calendar"></i>
@@ -833,7 +832,7 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label class="form-label">From</label>
-                                                                <div class="input-icon-end position-relative">  
+                                                                <div class="input-icon-end position-relative">
                                                                     <input type="text" class="form-control datetimepicker" placeholder="dd/mm/yyyy">
                                                                     <span class="input-icon-addon">
                                                                         <i class="ti ti-calendar"></i>
@@ -860,7 +859,7 @@
                                 </form>
                             </div>
                             <!-- <div class="card-footer">
-                                
+
                             </div> -->
                          </div>
 
@@ -868,7 +867,7 @@
 
                     </div>
                 </div>
-                                
+
             </div>
             <!-- End Content -->
 
@@ -881,4 +880,4 @@
         End Page Content
     ========================= -->
 
-@endsection    
+</x-layouts.app>
