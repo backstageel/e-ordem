@@ -1,0 +1,20 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('people', function (Blueprint $table) {
+            // Current work and academic qualifications
+            $table->foreignId('current_work_experience_id')->nullable()->constrained('work_experiences')->onDelete('set null');
+            $table->foreignId('current_academic_qualification_id')->nullable()->constrained('academic_qualifications')->onDelete('set null');
+        });
+    }
+};

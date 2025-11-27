@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 Route::get('/', function () {
     return view('index');
 })->name('index');
@@ -9,6 +9,55 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('index');
 })->name('index');
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+// Member routes are now in routes/member.php
+
+// Teacher Dashboard Route
+Route::get('/teacher/dashboard', [App\Http\Controllers\Teacher\DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified', 'mfa.verified', 'teacher'])
+    ->name('teacher.dashboard');
+
+// Guest routes for registrations moved to Modules/Registration/routes/web.php
+
+// Guest routes for member profiles
+Route::prefix('guest/members')->name('guest.members.')->group(function () {
+    Route::get('/{id}', [App\Http\Controllers\Guest\MemberController::class, 'show'])->name('show');
+});
+
+// Include admin routes
+require __DIR__.'/admin.php';
+
+// Include member routes
+require __DIR__.'/member.php';
+
+// Teacher routes
+Route::middleware(['auth', 'verified', 'mfa.verified', 'teacher'])->prefix('teacher')->name('teacher.')->group(function () {
+    // Add teacher-specific routes here
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Role switching
+    Route::post('/role/switch', [App\Http\Controllers\RoleSwitchController::class, 'switch'])->name('role.switch');
+
+    // MFA routes
+    Route::get('/mfa/setup', [App\Http\Controllers\MfaController::class, 'setup'])->name('mfa.setup');
+    Route::post('/mfa/enable', [App\Http\Controllers\MfaController::class, 'enable'])->name('mfa.enable');
+    Route::post('/mfa/disable', [App\Http\Controllers\MfaController::class, 'disable'])->name('mfa.disable');
+    Route::get('/mfa/recovery-codes', [App\Http\Controllers\MfaController::class, 'showRecoveryCodes'])->name('mfa.recovery-codes');
+    Route::post('/mfa/recovery-codes', [App\Http\Controllers\MfaController::class, 'regenerateRecoveryCodes'])->name('mfa.regenerate-recovery-codes');
+
+    Route::get('/mfa/verify', [App\Http\Controllers\MfaVerificationController::class, 'show'])->name('mfa.verify');
+    Route::post('/mfa/verify', [App\Http\Controllers\MfaVerificationController::class, 'verify'])->name('mfa.verify.store');
+});
+
+require __DIR__.'/auth.php';
 
 // Doctor dashboard pages
 

@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,8 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (config('app.env') === 'production') {
-            URL::forceScheme('https');
-        }
+        Paginator::useBootstrapFive();
+
+        // Register model observers
+        \App\Models\Payment::observe(\App\Observers\PaymentObserver::class);
     }
 }

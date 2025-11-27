@@ -16,7 +16,15 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('status')->default('active'); // active, inactive, suspended
+            $table->string('phone')->nullable();
+            $table->string('employee_id')->nullable();
+            $table->text('notes')->nullable();
+            $table->timestamp('last_login_at')->nullable();
             $table->string('password');
+            $table->text('two_factor_secret')->nullable();
+            $table->text('two_factor_recovery_codes')->nullable();
+            $table->boolean('two_factor_enabled')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
