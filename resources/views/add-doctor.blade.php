@@ -1,6 +1,5 @@
 <?php $page = 'add-doctor'; ?>
-@extends('layout.mainlayout')
-@section('content')
+<x-layouts.app>
 
     <!-- ========================
         Start Page Content
@@ -881,4 +880,4 @@
         End Page Content
     ========================= -->
 
-@endsection
+</x-layouts.app>

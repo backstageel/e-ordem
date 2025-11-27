@@ -1,29 +1,30 @@
 <?php $page = 'starter'; ?>
-<x-layouts.main>
+<x-layouts.app>
+
     <!-- ========================
-            Start Page Content
-        ========================= -->
+        Start Page Content
+    ========================= -->
 
-        <div class="page-wrapper">
+    <div class="page-wrapper">
 
-            <!-- Start Content -->
-            <div class="content">
+        <!-- Start Content -->
+        <div class="content">
 
-                <!-- Page Header -->
-                <div class="pb-3 mb-3 border-bottom">
-                    <h4 class="fw-bold mb-0">Starter</h4>
-                </div>
-                <!-- End Page Header -->
-
+            <!-- Page Header -->
+            <div class="pb-3 mb-3 border-bottom">
+                <h4 class="fw-bold mb-0">Starter</h4>
             </div>
-            <!-- End Content -->
-
-            @component('components.footer')
-            @endcomponent
+            <!-- End Page Header -->
 
         </div>
+        <!-- End Content -->
 
-        <!-- ========================
-            End Page Content
-        ========================= -->
-</x-layouts.main>
+        <x-footer />
+
+    </div>
+
+    <!-- ========================
+        End Page Content
+    ========================= -->
+
+</x-layouts.app>
