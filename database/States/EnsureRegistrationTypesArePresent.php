@@ -417,7 +417,7 @@ class EnsureRegistrationTypesArePresent
             if (!DB::getSchemaBuilder()->hasTable('registration_types')) {
                 return false;
             }
-            
+
             return true;
         } catch (\Exception $e) {
             // If there's any error checking tables, assume they don't exist yet

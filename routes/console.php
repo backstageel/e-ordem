@@ -19,7 +19,7 @@ Artisan::command('ensure-super-admin-user', function () {
     if (!\Illuminate\Support\Facades\Schema::hasTable('roles') || !\Illuminate\Support\Facades\Schema::hasTable('permissions')) {
         return;
     }
-    
+
     $role = Role::firstOrCreate(['name' => 'super-admin']);
     $permissions = Permission::all();
     $role->syncPermissions($permissions);

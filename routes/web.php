@@ -3,13 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
-    return view('index');
-})->name('index');
-
-Route::get('/index', function () {
-    return view('index');
-})->name('index');
-Route::get('/', function () {
     return redirect()->route('login');
 });
 
@@ -622,9 +615,6 @@ Route::get('/maintenance-mode-settings', function () {
     return view('maintenance-mode-settings');
 })->name('maintenance-mode-settings');
 
-Route::get('/login-and-register-settings', function () {
-    return view('login-and-register-settings');
-})->name('login-and-register-settings');
 
 Route::get('/preferences-settings', function () {
     return view('preferences-settings');
@@ -753,106 +743,6 @@ Route::get('/layout-rtl', function () {
 })->name('layout-rtl');
 
 // Authentication Pages
-
-Route::get('/login-cover', function () {
-    return view('login-cover');
-})->name('login-cover');
-
-Route::get('/login-illustration', function () {
-    return view('login-illustration');
-})->name('login-illustration');
-
-Route::get('/login-basic', function () {
-    return view('login-basic');
-})->name('login-basic');
-
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-
-Route::get('/register-cover', function () {
-    return view('register-cover');
-})->name('register-cover');
-
-Route::get('/register-illustration', function () {
-    return view('register-illustration');
-})->name('register-illustration');
-
-Route::get('/register-basic', function () {
-    return view('register-basic');
-})->name('register-basic');
-
-Route::get('/forgot-password-cover', function () {
-    return view('forgot-password-cover');
-})->name('forgot-password-cover');
-
-Route::get('/forgot-password-illustration', function () {
-    return view('forgot-password-illustration');
-})->name('forgot-password-illustration');
-
-Route::get('/forgot-password-basic', function () {
-    return view('forgot-password-basic');
-})->name('forgot-password-basic');
-
-Route::get('/reset-password-cover', function () {
-    return view('reset-password-cover');
-})->name('reset-password-cover');
-
-Route::get('/reset-password-illustration', function () {
-    return view('reset-password-illustration');
-})->name('reset-password-illustration');
-
-Route::get('/reset-password-basic', function () {
-    return view('reset-password-basic');
-})->name('reset-password-basic');
-
-Route::get('/email-verification-cover', function () {
-    return view('email-verification-cover');
-})->name('email-verification-cover');
-
-Route::get('/email-verification-illustration', function () {
-    return view('email-verification-illustration');
-})->name('email-verification-illustration');
-
-Route::get('/email-verification-basic', function () {
-    return view('email-verification-basic');
-})->name('email-verification-basic');
-
-Route::get('/success-cover', function () {
-    return view('success-cover');
-})->name('success-cover');
-
-Route::get('/success-illustration', function () {
-    return view('success-illustration');
-})->name('success-illustration');
-
-Route::get('/success-basic', function () {
-    return view('success-basic');
-})->name('success-basic');
-
-Route::get('/two-step-verification-cover', function () {
-    return view('two-step-verification-cover');
-})->name('two-step-verification-cover');
-
-Route::get('/two-step-verification-illustration', function () {
-    return view('two-step-verification-illustration');
-})->name('two-step-verification-illustration');
-
-Route::get('/two-step-verification-basic', function () {
-    return view('two-step-verification-basic');
-})->name('two-step-verification-basic');
-
-Route::get('/lock-screen', function () {
-    return view('lock-screen');
-})->name('lock-screen');
-
-Route::get('/error-404', function () {
-    return view('error-404');
-})->name('error-404');
-
-Route::get('/error-500', function () {
-    return view('error-500');
-})->name('error-500');
 
 // UI Charts
 
