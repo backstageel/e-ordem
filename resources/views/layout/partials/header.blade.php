@@ -4,18 +4,8 @@
         <div class="d-flex align-items-center gap-2">
 
             <!-- Logo -->
-            <a href="{{url('index')}}" class="logo">
-
-                <!-- Logo Normal -->
-                <span class="logo-light">
-                    <span class="logo-lg"><img src="{{URL::asset('build/img/logo.png')}}" alt="logo"></span>
-                    <span class="logo-sm"><img src="{{URL::asset('build/img/logo-small.svg')}}" alt="small logo"></span>
-                </span>
-
-                <!-- Logo Dark -->
-                <span class="logo-dark">
-                    <span class="logo-lg"><img src="{{URL::asset('build/img/logo-white.svg')}}" alt="dark logo"></span>
-                </span>
+            <a href="{{ auth()->user()->hasRole('admin') ? route('admin.dashboard.index') : (auth()->user()->hasRole('member') ? route('member.dashboard.index') : route('dashboard')) }}" class="logo">
+                <img src="{{URL::asset('build/img/logo.png')}}" alt="logo" class="logo-lg">
             </a>
 
             <!-- Sidebar Mobile Button -->
@@ -27,50 +17,10 @@
                 <i class="ti ti-arrow-right"></i>
             </button>
 
-            <!-- Search -->
-            <div class="me-auto d-flex align-items-center header-search d-lg-flex d-none">
-                <!-- Search -->
-                <div class="input-icon-start position-relative me-2">
-                    <span class="input-icon-addon">
-                        <i class="ti ti-search"></i>
-                    </span>
-                    <input type="text" class="form-control shadow-sm" placeholder="Search">
-                    <span class="input-icon-addon text-dark shadow fs-18 d-inline-flex p-0 header-search-icon"><i class="ti ti-command"></i></span>
-                </div>
-                <!-- /Search -->
-            </div>
-
         </div>
 
         @if (!Route::is(['doctor-dashboard', 'doctors-appointments', 'doctors-appointment-details', 'doctors-patient-details', 'online-consultations', 'doctors-schedules', 'doctors-prescriptions', 'doctors-prescription-details', 'doctors-leaves', 'doctors-reviews', 'doctors-profile-settings', 'doctors-password-settings', 'doctors-notification-settings', 'doctors-notifications', 'patient-dashboard', 'patient-appointments', 'patient-appointment-details', 'patients-doctor-details', 'patient-doctors', 'patient-prescriptions', 'patient-prescription-details', 'patient-invoices', 'patient-invoice-details', 'patient-profile-settings', 'patient-password-settings', 'patient-notifications-settings', 'patient-notifications']))
         <div class="d-flex align-items-center">
-
-            <!-- Search for Mobile -->
-            <div class="header-item d-flex d-lg-none me-2">
-                <button class="topbar-link btn btn-icon" data-bs-toggle="modal" data-bs-target="#searchModal" type="button">
-                    <i class="ti ti-search fs-16"></i>
-                </button>
-            </div>
-
-            <!-- AI Assistance -->
-            <a href="javascript:void(0);" class="btn btn-liner-gradient me-3 d-lg-flex d-none">AI Assistance<i class="ti ti-chart-bubble-filled ms-1"></i></a>
-            <!-- AI Assistance -->
-
-            <!-- Appointment -->
-            <div class="header-item">
-                <div class="dropdown me-2">
-                    <a href="{{url('new-appointment')}}" class="btn topbar-link"><i class="ti ti-calendar-due"></i></a>
-                </div>
-            </div>
-            <!-- Appointment -->
-
-            <!-- Settings -->
-            <div class="header-item">
-                <div class="dropdown me-2">
-                    <a href="{{url('profile-settings')}}" class="btn topbar-link"><i class="ti ti-settings-2"></i></a>
-                </div>
-            </div>
-            <!-- Settings -->
 
             @if (!Route::is(['layout-dark', 'layout-mini', 'layout-hidden', 'layout-hover-view', 'layout-full-width', 'layout-rtl']))
             <!-- Light/Dark Mode Button -->
@@ -81,14 +31,19 @@
             </div>
             @endif
 
-
             <!-- Notification Dropdown -->
             <div class="header-item">
                 <div class="dropdown me-3">
+                    @php
+                        $notifications = auth()->user()->unreadNotifications()->latest()->take(5)->get();
+                        $unreadCount = auth()->user()->unreadNotifications()->count();
+                    @endphp
 
-                    <button class="topbar-link btn btn-icon topbar-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false" aria-expanded="false">
+                    <button class="topbar-link btn btn-icon topbar-link dropdown-toggle drop-arrow-none position-relative" data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false" aria-expanded="false">
                         <i class="ti ti-bell-check fs-16 animate-ring"></i>
-                        <span class="notification-badge"></span>
+                        @if($unreadCount > 0)
+                            <span class="notification-badge">{{ $unreadCount > 9 ? '9+' : $unreadCount }}</span>
+                        @endif
                     </button>
 
                     <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">
@@ -96,118 +51,58 @@
                         <div class="p-2 border-bottom">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h6 class="m-0 fs-16 fw-semibold"> Notifications</h6>
+                                    <h6 class="m-0 fs-16 fw-semibold">Notificações</h6>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Notification Body -->
                         <div class="notification-body position-relative z-2 rounded-0" data-simplebar>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-1">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-01.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Dr. Smith</p>
-                                        <p class="mb-1 text-wrap">
-                                            updated the <span class="fw-medium text-dark">surgery</span> schedule.
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>4 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-1">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
+                            @forelse($notifications as $notification)
+                                <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-{{ $notification->id }}">
+                                    <div class="d-flex">
+                                        <div class="me-2 position-relative flex-shrink-0">
+                                            <div class="avatar-md rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                <i class="ti ti-bell text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <p class="mb-0 fw-medium text-dark">{{ $notification->data['title'] ?? 'Notificação' }}</p>
+                                            <p class="mb-1 text-wrap">
+                                                {{ $notification->data['message'] ?? $notification->data['body'] ?? 'Nova notificação' }}
+                                            </p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="fs-12"><i class="ti ti-clock me-1"></i>{{ $notification->created_at->diffForHumans() }}</span>
+                                                <div class="notification-action d-flex align-items-center float-end gap-2">
+                                                    <form method="POST" action="{{ route('notifications.mark-read', $notification->id) }}" class="d-inline">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit" class="notification-read rounded-circle bg-danger border-0" data-bs-toggle="tooltip" title="Marcar como lida" aria-label="Marcar como lida"></button>
+                                                    </form>
+                                                    <button class="btn rounded-circle p-0" data-dismissible="#notification-{{ $notification->id }}">
+                                                        <i class="ti ti-x"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-2">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-06.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Dr. Patel</p>
-                                        <p class="mb-1 text-wrap">
-                                            completed a <span class="fw-medium text-dark">follow-up</span> report for patient <span class="fw-medium text-dark">Emily</span>.
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>8 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-2">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                            @empty
+                                <div class="dropdown-item text-center py-5">
+                                    <i class="ti ti-bell-off fs-48 text-muted mb-2"></i>
+                                    <p class="text-muted mb-0">Nenhuma notificação</p>
                                 </div>
-                            </div>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-3">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-02.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Emily</p>
-                                        <p class="mb-1 text-wrap">
-                                            booked an appointment with <span class="fw-medium text-dark">Dr. Patel</span> for <span class="fw-medium text-dark">April 15</span>
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>15 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-3">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap" id="notification-4">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-07.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Amelia</p>
-                                        <p class="mb-1 text-wrap">
-                                            completed the <span class="fw-medium text-dark">pre-visit</span> health questionnaire.
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>20 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-4">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @endforelse
                         </div>
 
                         <!-- View All-->
+                        @if($unreadCount > 0)
                         <div class="p-2 rounded-bottom border-top text-center">
-                            <a href="{{url('notifications')}}" class="text-center text-decoration-underline fs-14 mb-0">
-                                View All Notifications
+                            <a href="{{ auth()->user()->hasRole('admin') ? route('admin.notifications.index') : route('member.notifications.index') }}" class="text-center text-decoration-underline fs-14 mb-0">
+                                Ver Todas as Notificações
                             </a>
                         </div>
+                        @endif
 
                     </div>
                 </div>
@@ -215,487 +110,55 @@
 
             <!-- User Dropdown -->
             <div class="dropdown profile-dropdown d-flex align-items-center justify-content-center">
-                <a href="javascript:void(0);" class="topbar-link dropdown-toggle drop-arrow-none position-relative" data-bs-toggle="dropdown" data-bs-offset="0,22" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{URL::asset('build/img/users/user-01.jpg')}}" width="32" class="rounded-circle d-flex" alt="user-image">
+                @php
+                    $userPhoto = auth()->user()->person?->profile_picture_url
+                        ? asset('storage/' . auth()->user()->person->profile_picture_url)
+                        : URL::asset('build/img/users/user-01.jpg');
+                @endphp
+                <a href="javascript:void(0);" class="topbar-link dropdown-toggle drop-arrow-none position-relative d-flex align-items-center gap-2" data-bs-toggle="dropdown" data-bs-offset="0,22" aria-haspopup="false" aria-expanded="false">
+                    <img src="{{ $userPhoto }}" width="32" class="rounded-circle d-flex" alt="user-image">
                     <span class="online text-success"><i class="ti ti-circle-filled d-flex bg-white rounded-circle border border-1 border-white"></i></span>
+                    <!-- User Name and Role -->
+                    <div class="d-flex flex-column ms-2 d-none d-md-flex">
+                        <span class="fw-semibold text-dark fs-14">{{ auth()->user()->name }}</span>
+                        <span class="text-muted fs-12">{{ auth()->user()->roles->first()?->name ?? 'Usuário' }}</span>
+                    </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-2">
 
                     <div class="d-flex align-items-center bg-light rounded-3 p-2 mb-2">
-                        <img src="{{URL::asset('build/img/users/user-01.jpg')}}" class="rounded-circle" width="42" height="42" alt="">
+                        <img src="{{ $userPhoto }}" class="rounded-circle" width="42" height="42" alt="">
                         <div class="ms-2">
-                            <p class="fw-medium text-dark mb-0">Jimmy Anderson</p>
-                            <span class="d-block fs-13">Administrator</span>
+                            <p class="fw-medium text-dark mb-0">{{ auth()->user()->name }}</p>
+                            <span class="d-block fs-13">{{ auth()->user()->roles->first()?->name ?? 'Usuário' }}</span>
                         </div>
                     </div>
 
                     <!-- Item-->
-                    <a href="{{url('profile-settings')}}" class="dropdown-item">
+                    @php
+                        if (auth()->user()->hasRole('member')) {
+                            $profileRoute = route('member.profile');
+                        } elseif (auth()->user()->hasRole(['admin', 'super-admin'])) {
+                            $profileRoute = url('/profile');
+                        } else {
+                            $profileRoute = url('/profile');
+                        }
+                    @endphp
+                    <a href="{{ $profileRoute }}" class="dropdown-item">
                         <i class="ti ti-user-circle me-1 align-middle"></i>
-                        <span class="align-middle">Profile Settings</span>
+                        <span class="align-middle">Meu Perfil</span>
                     </a>
 
-                    <!-- Item-->
-                    <a href="{{url('bank-accounts-settings')}}" class="dropdown-item">
-                        <i class="ti ti-settings me-1 align-middle"></i>
-                        <span class="align-middle">Account Settings</span>
-                    </a>
-
-                    <!-- item -->
-                    <div class="form-check form-switch form-check-reverse d-flex align-items-center justify-content-between dropdown-item mb-0">
-                        <label class="form-check-label" for="notify"><i class="ti ti-bell me-1"></i>Notifications</label>
-                        <input class="form-check-input me-0" type="checkbox" role="switch" id="notify">
-                    </div>
-
-                    <!-- Item-->
-                    <a href="{{url('transactions')}}" class="dropdown-item">
-                        <i class="ti ti-transition-right me-1 align-middle"></i>
-                        <span class="align-middle">Transactions</span>
-                    </a>
-
-
-
-                    <!-- Item-->
+                    <!-- Separator -->
                     <div class="pt-2 mt-2 border-top">
-                        <a href="{{url('login')}}" class="dropdown-item text-danger">
-                            <i class="ti ti-logout me-1 fs-17 align-middle"></i>
-                            <span class="align-middle">Log Out</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        @endif
-
-        @if (Route::is(['doctor-dashboard', 'doctors-appointments', 'doctors-appointment-details', 'doctors-patient-details', 'online-consultations', 'doctors-schedules', 'doctors-prescriptions', 'doctors-prescription-details', 'doctors-leaves', 'doctors-reviews', 'doctors-profile-settings', 'doctors-password-settings', 'doctors-notification-settings', 'doctors-notifications']))
-        <div class="d-flex align-items-center">
-
-            <!-- Search for Mobile -->
-            <div class="header-item d-flex d-lg-none me-2">
-                <button class="topbar-link btn btn-icon" data-bs-toggle="modal" data-bs-target="#searchModal" type="button">
-                    <i class="ti ti-search fs-16"></i>
-                </button>
-            </div>
-
-            <!-- AI Assistance -->
-            <a href="javascript:void(0);" class="btn btn-liner-gradient me-3 d-lg-flex d-none">AI Assistance<i class="ti ti-chart-bubble-filled ms-1"></i></a>
-
-            <div class="header-item">
-                <div class="dropdown me-2">
-                    <a href="{{url('doctors-appointments')}}" class="btn topbar-link"><i class="ti ti-calendar-due"></i></a>
-                </div>
-            </div>
-
-            <div class="header-item">
-                <div class="dropdown me-2">
-                    <a href="{{url('doctors-profile-settings')}}" class="btn topbar-link"><i class="ti ti-settings-2"></i></a>
-                </div>
-            </div>
-
-            <!-- Light/Dark Mode Button -->
-            <div class="header-item d-none d-sm-flex me-2">
-                <button class="topbar-link btn btn-icon topbar-link" id="light-dark-mode" type="button">
-                    <i class="ti ti-moon fs-16"></i>
-                </button>
-            </div>
-
-            <!-- Notification Dropdown -->
-            <div class="header-item">
-                <div class="dropdown me-3">
-
-                    <button class="topbar-link btn btn-icon topbar-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="ti ti-bell-check fs-16 animate-ring"></i>
-                        <span class="notification-badge"></span>
-                    </button>
-
-                    <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">
-
-                        <div class="p-2 border-bottom">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h6 class="m-0 fs-16 fw-semibold"> Notifications</h6>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Notification Body -->
-                        <div class="notification-body position-relative z-2 rounded-0" data-simplebar>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-1">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-01.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Dr. Smith</p>
-                                        <p class="mb-1 text-wrap">
-                                            updated the <span class="fw-medium text-dark">surgery</span> schedule.
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>4 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-1">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-2">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-06.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Dr. Patel</p>
-                                        <p class="mb-1 text-wrap">
-                                            completed a <span class="fw-medium text-dark">follow-up</span> report for patient <span class="fw-medium text-dark">Emily</span>.
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>8 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-2">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-3">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-02.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Emily</p>
-                                        <p class="mb-1 text-wrap">
-                                            booked an appointment with <span class="fw-medium text-dark">Dr. Patel</span> for <span class="fw-medium text-dark">April 15</span>
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>15 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-3">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap" id="notification-4">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-07.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Amelia</p>
-                                        <p class="mb-1 text-wrap">
-                                            completed the <span class="fw-medium text-dark">pre-visit</span> health questionnaire.
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>20 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-4">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- View All-->
-                        <div class="p-2 rounded-bottom border-top text-center">
-                            <a href="{{url('doctors-notifications')}}" class="text-center text-decoration-underline fs-14 mb-0">
-                                View All Notifications
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- User Dropdown -->
-            <div class="dropdown profile-dropdown d-flex align-items-center justify-content-center">
-                <a href="javascript:void(0);" class="topbar-link dropdown-toggle drop-arrow-none position-relative" data-bs-toggle="dropdown" data-bs-offset="0,22" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{URL::asset('build/img/doctors/doctor-01.jpg')}}" width="32" class="rounded-circle d-flex" alt="user-image">
-                    <span class="online text-success"><i class="ti ti-circle-filled d-flex bg-white rounded-circle border border-1 border-white"></i></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-2">
-
-                    <div class="d-flex align-items-center bg-light rounded-3 p-2 mb-2">
-                        <img src="{{URL::asset('build/img/doctors/doctor-01.jpg')}}" class="rounded-circle" width="42" height="42" alt="">
-                        <div class="ms-2">
-                            <p class="fw-medium text-dark mb-0">Dr.Michael Smith</p>
-                            <span class="d-block fs-13">Cardiologist</span>
-                        </div>
-                    </div>
-
-                    <!-- Item-->
-                    <a href="{{url('doctors-profile-settings')}}" class="dropdown-item">
-                        <i class="ti ti-user-circle me-1 align-middle"></i>
-                        <span class="align-middle">Profile Settings</span>
-                    </a>
-
-                    <!-- item -->
-                    <div class="form-check form-switch form-check-reverse d-flex align-items-center justify-content-between dropdown-item mb-0">
-                        <label class="form-check-label" for="notify"><i class="ti ti-bell me-1"></i>Notifications</label>
-                        <input class="form-check-input me-0" type="checkbox" role="switch" id="notify">
-                    </div>
-
-                    <!-- Item-->
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <i class="ti ti-receipt me-1 align-middle"></i>
-                        <span class="align-middle">Activity Logs</span>
-                    </a>
-
                         <!-- Item-->
-                        <a href="javascript:void(0);" class="dropdown-item">
-                        <i class="ti ti-help me-1 align-middle"></i>
-                        <span class="align-middle">Help & Support</span>
-                    </a>
-
-
-                    <!-- Item-->
-                    <div class="pt-2 mt-2 border-top">
-                        <a href="{{url('login')}}" class="dropdown-item text-danger">
-                            <i class="ti ti-logout me-1 fs-17 align-middle"></i>
-                            <span class="align-middle">Log Out</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        @endif
-
-        @if (Route::is(['patient-dashboard', 'patient-appointments', 'patient-appointment-details', 'patients-doctor-details', 'patient-doctors', 'patient-prescriptions', 'patient-prescription-details', 'patient-invoices', 'patient-invoice-details', 'patient-profile-settings', 'patient-password-settings', 'patient-notifications-settings', 'patient-notifications']))
-        <div class="d-flex align-items-center">
-
-            <!-- Search for Mobile -->
-            <div class="header-item d-flex d-lg-none me-2">
-                <button class="topbar-link btn btn-icon" data-bs-toggle="modal" data-bs-target="#searchModal" type="button">
-                    <i class="ti ti-search fs-16"></i>
-                </button>
-            </div>
-
-            <!-- AI Assistance -->
-            <a href="javascript:void(0);" class="btn btn-liner-gradient me-3 d-lg-flex d-none">AI Assistance<i class="ti ti-chart-bubble-filled ms-1"></i></a>
-
-            <div class="header-item">
-                <div class="dropdown me-2">
-                    <a href="{{url('patient-appointments')}}" class="btn topbar-link"><i class="ti ti-calendar-due"></i></a>
-                </div>
-            </div>
-
-            <div class="header-item">
-                <div class="dropdown me-2">
-                    <a href="{{url('patient-profile-settings')}}" class="btn topbar-link"><i class="ti ti-settings-2"></i></a>
-                </div>
-            </div>
-
-            <!-- Light/Dark Mode Button -->
-            <div class="header-item d-none d-sm-flex me-2">
-                <button class="topbar-link btn btn-icon topbar-link" id="light-dark-mode" type="button">
-                    <i class="ti ti-moon fs-16"></i>
-                </button>
-            </div>
-
-
-            <!-- Notification Dropdown -->
-            <div class="header-item">
-                <div class="dropdown me-3">
-
-                    <button class="topbar-link btn btn-icon topbar-link dropdown-toggle drop-arrow-none" data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="ti ti-bell-check fs-16 animate-ring"></i>
-                        <span class="notification-badge"></span>
-                    </button>
-
-                    <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">
-
-                        <div class="p-2 border-bottom">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h6 class="m-0 fs-16 fw-semibold"> Notifications</h6>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Notification Body -->
-                        <div class="notification-body position-relative z-2 rounded-0" data-simplebar>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-1">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-01.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Dr. Smith</p>
-                                        <p class="mb-1 text-wrap">
-                                            updated the <span class="fw-medium text-dark">surgery</span> schedule.
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>4 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-1">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-2">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-06.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Dr. Patel</p>
-                                        <p class="mb-1 text-wrap">
-                                            completed a <span class="fw-medium text-dark">follow-up</span> report for patient <span class="fw-medium text-dark">Emily</span>.
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>8 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-2">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom" id="notification-3">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-02.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Emily</p>
-                                        <p class="mb-1 text-wrap">
-                                            booked an appointment with <span class="fw-medium text-dark">Dr. Patel</span> for <span class="fw-medium text-dark">April 15</span>
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>15 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-3">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item-->
-                            <div class="dropdown-item notification-item py-3 text-wrap" id="notification-4">
-                                <div class="d-flex">
-                                    <div class="me-2 position-relative flex-shrink-0">
-                                        <img src="{{URL::asset('build/img/doctors/doctor-07.jpg')}}" class="avatar-md rounded-circle" alt="">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <p class="mb-0 fw-medium text-dark">Amelia</p>
-                                        <p class="mb-1 text-wrap">
-                                            completed the <span class="fw-medium text-dark">pre-visit</span> health questionnaire.
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>20 min ago</span>
-                                            <div class="notification-action d-flex align-items-center float-end gap-2">
-                                                <a href="javascript:void(0);" class="notification-read rounded-circle bg-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="Make as Read" aria-label="Make as Read"></a>
-                                                <button class="btn rounded-circle p-0" data-dismissible="#notification-4">
-                                                    <i class="ti ti-x"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- View All-->
-                        <div class="p-2 rounded-bottom border-top text-center">
-                            <a href="{{url('patient-notifications')}}" class="text-center text-decoration-underline fs-14 mb-0">
-                                View All Notifications
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- User Dropdown -->
-            <div class="dropdown profile-dropdown d-flex align-items-center justify-content-center">
-                <a href="javascript:void(0);" class="topbar-link dropdown-toggle drop-arrow-none position-relative" data-bs-toggle="dropdown" data-bs-offset="0,22" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{URL::asset('build/img/users/user-02.jpg')}}" width="32" class="rounded-circle d-flex" alt="user-image">
-                    <span class="online text-success"><i class="ti ti-circle-filled d-flex bg-white rounded-circle border border-1 border-white"></i></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-2">
-
-                    <div class="d-flex align-items-center bg-light rounded-3 p-2 mb-2">
-                        <img src="{{URL::asset('build/img/users/user-02.jpg')}}" class="rounded-circle" width="42" height="42" alt="">
-                        <div class="ms-2">
-                            <p class="fw-medium text-dark mb-0">Carol Lam</p>
-                            <span class="d-block fs-13">Patient</span>
-                        </div>
-                    </div>
-
-                    <!-- Item-->
-                    <a href="{{url('patient-profile-settings')}}" class="dropdown-item">
-                        <i class="ti ti-user-circle me-1 align-middle"></i>
-                        <span class="align-middle">Profile Settings</span>
-                    </a>
-
-                    <!-- item -->
-                    <div class="form-check form-switch form-check-reverse d-flex align-items-center justify-content-between dropdown-item mb-0">
-                        <label class="form-check-label" for="notify"><i class="ti ti-bell me-1"></i>Notifications</label>
-                        <input class="form-check-input me-0" type="checkbox" role="switch" id="notify">
-                    </div>
-
-                    <!-- Item-->
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <i class="ti ti-receipt me-1 align-middle"></i>
-                        <span class="align-middle">Activity Logs</span>
-                    </a>
-
-                        <!-- Item-->
-                        <a href="javascript:void(0);" class="dropdown-item">
-                        <i class="ti ti-help me-1 align-middle"></i>
-                        <span class="align-middle">Help & Support</span>
-                    </a>
-
-
-                    <!-- Item-->
-                    <div class="pt-2 mt-2 border-top">
-                        <a href="{{url('login')}}" class="dropdown-item text-danger">
-                            <i class="ti ti-logout me-1 fs-17 align-middle"></i>
-                            <span class="align-middle">Log Out</span>
-                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger w-100 text-start border-0 bg-transparent">
+                                <i class="ti ti-logout me-1 fs-17 align-middle"></i>
+                                <span class="align-middle">Sair</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

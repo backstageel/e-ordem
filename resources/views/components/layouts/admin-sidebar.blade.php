@@ -4,19 +4,9 @@
     <!-- Start Logo -->
     <div class="sidebar-logo">
         <div>
-            <!-- Logo Normal -->
+            <!-- Logo -->
             <a href="{{ route('admin.dashboard.index') }}" class="logo logo-normal">
                 <img src="{{ asset('build/img/logo.png') }}" alt="Ordem dos Médicos de Moçambique">
-            </a>
-
-            <!-- Logo Small -->
-            <a href="{{ route('admin.dashboard.index') }}" class="logo-small">
-                <img src="{{ asset('build/img/logo-small.svg') }}" alt="Ordem dos Médicos de Moçambique">
-            </a>
-
-            <!-- Logo Dark -->
-            <a href="{{ route('admin.dashboard.index') }}" class="dark-logo">
-                <img src="{{ asset('build/img/logo-white.svg') }}" alt="Ordem dos Médicos de Moçambique">
             </a>
         </div>
         <button class="sidenav-toggle-btn btn border-0 p-0 active" id="toggle_btn">

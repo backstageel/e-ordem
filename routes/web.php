@@ -36,6 +36,20 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Global notifications routes
+    Route::prefix('notifications')->name('notifications.')->group(function () {
+        Route::get('/', function () {
+            return redirect()->route(auth()->user()->hasRole('admin') ? 'admin.notifications.index' : 'member.notifications.index');
+        })->name('index');
+        Route::patch('/{notification}/read', function (\Illuminate\Notifications\DatabaseNotification $notification) {
+            if ($notification->notifiable_id !== auth()->id()) {
+                abort(403);
+            }
+            $notification->markAsRead();
+            return response()->json(['success' => true]);
+        })->name('mark-read');
+    });
+
     // Role switching
     Route::post('/role/switch', [App\Http\Controllers\RoleSwitchController::class, 'switch'])->name('role.switch');
 
