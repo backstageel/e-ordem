@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma de Implementação - Sistema OrMM</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c5aa0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            max-height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            color: #2c5aa0;
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header h2 {
+            color: #666;
+            margin: 10px 0 0 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .project-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .status-summary {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .status-summary h3 {
+            color: #2c5aa0;
+            margin-top: 0;
+            font-size: 16px;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .status-item {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #2c5aa0;
+        }
+
+        .status-item strong {
+            color: #2c5aa0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 12px;
+        }
+
+        th {
+            background: #2c5aa0;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #1e3d6f;
+        }
+
+        td {
+            padding: 10px 8px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e3f2fd;
+        }
+
+        .status-completed {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .status-in-progress {
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            color: #6c757d;
+            font-weight: bold;
+        }
+
+        .phase-header {
+            background: #e9ecef;
+            color: #495057;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            border-left: 5px solid #2c5aa0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            transition: width 0.3s ease;
+        }
+
+        .milestones {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .milestones h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+
+        .milestone-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .milestone-number {
+            background: #ffc107;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #2c5aa0;
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            background: #1e3d6f;
+        }
+
+        @media print {
+            .print-button {
+                display: none;
+            }
+
+            body {
+                font-size: 11px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .header h2 {
+                font-size: 16px;
+            }
+
+            table {
+                font-size: 10px;
+            }
+
+            th, td {
+                padding: 6px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">🖨️ Imprimir</button>
+
+    <div class="header">
+        <img src="logo-millpaginas.png" alt="MillPáginas Logo" class="logo">
+        <h1>CRONOGRAMA DE IMPLEMENTAÇÃO</h1>
+        <h2>Sistema Integrado de Gestão da Ordem dos Médicos de Moçambique (OrMM)</h2>
+    </div>
+
+    <div class="project-info">
+        <div><strong>Projeto:</strong> Desenvolvimento e Implementação do Sistema de Gestão da OrMM</div>
+        <div><strong>Contratante:</strong> Ordem dos Médicos de Moçambique (OrMM)</div>
+        <div><strong>Prestador:</strong> MillPáginas, Lda.</div>
+        <div><strong>Duração:</strong> 5 meses (100 dias úteis)</div>
+        <div><strong>Data de Início:</strong> 17/09/2025</div>
+    </div>
+
+    <div class="status-summary">
+        <h3>📊 STATUS ATUAL DO PROJETO</h3>
+        <div class="status-grid">
+            <div class="status-item">
+                <strong>Progresso Geral:</strong><br>
+                <span class="status-completed">38% Concluído</span><br>
+                <small>2 de 5 fases concluídas; 4/10 módulos concluídos</small>
+            </div>
+            <div class="status-item">
+                <strong>Fase Atual:</strong><br>
+                <span class="status-in-progress">Fase 3 - Desenvolvimento e Integração</span><br>
+                <small>🔄 Em Execução</small>
+            </div>
+            <div class="status-item">
+                <strong>Próxima Atividade:</strong><br>
+                <span class="status-pending">Módulo EXA (Exames)</span><br>
+                <small>⏳ Pendente</small>
+            </div>
+            <div class="status-item">
+                <strong>Prazo:</strong><br>
+                <span class="status-completed">No prazo</span><br>
+                <small>20 dias úteis restantes na Fase 3</small>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 38%"></div>
+        </div>
+    </div>
+
+    <div class="phase-header">
+        📋 CRONOGRAMA CONSOLIDADO
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fase</th>
+                <th>Duração</th>
+                <th>Dias Úteis</th>
+                <th>Entregável Principal</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Fase 1</strong></td>
+                <td>1 semana</td>
+                <td>5 dias</td>
+                <td>DRS aprovado pelo auditor</td>
+                <td><span class="status-completed">✅ Concluída</span></td>
+            </tr>
+            <tr>
+                <td><strong>Fase 2</strong></td>
+                <td>1 semana</td>
+                <td>5 dias</td>
+                <td>Protótipo validado</td>
+                <td><span class="status-completed">✅ Concluída</span></td>
+            </tr>
+            <tr>
+                <td><strong>Fase 3</strong></td>
+                <td>4 semanas</td>
+                <td>20 dias</td>
+                <td>Sistema completo com integrações</td>
+                <td><span class="status-in-progress">🔄 Em Execução</span></td>
+            </tr>
+            <tr>
+                <td><strong>Fase 4</strong></td>
+                <td>2 semanas</td>
+                <td>10 dias</td>
+                <td>Base populada e testes aprovados</td>
+                <td><span class="status-pending">⏳ Pendente</span></td>
+            </tr>
+            <tr>
+                <td><strong>Fase 5</strong></td>
+                <td>2 semanas</td>
+                <td>10 dias</td>
+                <td>Sistema homologado e entregue</td>
+                <td><span class="status-pending">⏳ Pendente</span></td>
+            </tr>
+            <tr style="background: #e3f2fd; font-weight: bold;">
+                <td><strong>TOTAL</strong></td>
+                <td><strong>10 semanas</strong></td>
+                <td><strong>50 dias</strong></td>
+                <td><strong>Sistema completo e operacional</strong></td>
+                <td><span class="status-completed"><strong>38% Concluído</strong></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="phase-header">
+        ✅ FASE 1 - LEVANTAMENTO DE REQUISITOS (CONCLUÍDA)
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Atividade</th>
+                <th>Duração</th>
+                <th>Responsável</th>
+                <th>Status</th>
+                <th>Observações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Reunião 1: Análise de formulários e regulamentos</td>
+                <td>4h</td>
+                <td>Equipe + Secretariado</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>Ata assinada</td>
+            </tr>
+            <tr>
+                <td>Reunião 2: Análise de taxas e processos</td>
+                <td>3h</td>
+                <td>Equipe + Tesouraria</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Reunião 3: Análise de dados e integrações</td>
+                <td>3h</td>
+                <td>Equipe + TI</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Elaboração do DRS</td>
+                <td>2 dias</td>
+                <td>Arquiteto + Analista</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>20+ páginas</td>
+            </tr>
+            <tr>
+                <td>Validação pelo auditor externo</td>
+                <td>1 dia</td>
+                <td>Auditor</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>Aprovado</td>
+            </tr>
+            <tr style="background: #d4edda; font-weight: bold;">
+                <td><strong>TOTAL FASE 1</strong></td>
+                <td><strong>5 dias</strong></td>
+                <td></td>
+                <td><span class="status-in-progress"><strong>🔄 60%</strong></span></td>
+                <td><strong>DRS Entregue</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="phase-header">
+        ✅ FASE 2 - AJUSTES DO PROTÓTIPO (CONCLUÍDA)
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Atividade</th>
+                <th>Duração</th>
+                <th>Responsável</th>
+                <th>Status</th>
+                <th>Observações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Análise e planejamento dos ajustes</td>
+                <td>1 dia</td>
+                <td>Arquiteto</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>Concluído</td>
+            </tr>
+            <tr>
+                <td>Implementação dos ajustes UI</td>
+                <td>2 dias</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>Concluído</td>
+            </tr>
+            <tr>
+                <td>Personalização de formulários</td>
+                <td>1 dia</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>Concluído</td>
+            </tr>
+            <tr>
+                <td>Validação e testes</td>
+                <td>1 dia</td>
+                <td>Equipe + Stakeholders</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente - Submissão em andamento</td>
+            </tr>
+            <tr style="background: #fff3cd; font-weight: bold;">
+                <td><strong>TOTAL FASE 2</strong></td>
+                <td><strong>5 dias</strong></td>
+                <td></td>
+                <td><span class="status-completed"><strong>✅ 80%</strong></span></td>
+                <td><strong>Concluída</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="phase-header">
+        🔄 FASE 3 - DESENVOLVIMENTO E INTEGRAÇÃO (EM EXECUÇÃO)
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Atividade</th>
+                <th>Duração</th>
+                <th>Responsável</th>
+                <th>Status</th>
+                <th>Observações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background: #f8f9fa; font-weight: bold;">
+                <td colspan="5"><strong>Semana 3: Módulo Administrativo e Core</strong></td>
+            </tr>
+            <tr>
+                <td>Módulo ADM (Administração)</td>
+                <td>2 dias</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>Concluído</td>
+            </tr>
+            <tr>
+                <td>Módulo INS (Inscrições)</td>
+                <td>2 dias</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>Concluído</td>
+            </tr>
+            <tr>
+                <td>Testes unitários</td>
+                <td>1 dia</td>
+                <td>Analista QA</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr style="background: #f8f9fa; font-weight: bold;">
+                <td colspan="5"><strong>Semana 4: Módulos de Gestão</strong></td>
+            </tr>
+            <tr>
+                <td>Módulo DOC (Documentos)</td>
+                <td>2 dias</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>Concluído</td>
+            </tr>
+            <tr>
+                <td>Módulo MEM (Membros)</td>
+                <td>2 dias</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-completed">✅</span></td>
+                <td>Concluído</td>
+            </tr>
+            <tr>
+                <td>Testes unitários</td>
+                <td>1 dia</td>
+                <td>Analista QA</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr style="background: #f8f9fa; font-weight: bold;">
+                <td colspan="5"><strong>Semana 5: Módulos de Suporte</strong></td>
+            </tr>
+            <tr>
+                <td>Módulo EXA (Exames)</td>
+                <td>2 dias</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Módulo RES (Residência)</td>
+                <td>2 dias</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Testes unitários</td>
+                <td>1 dia</td>
+                <td>Analista QA</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr style="background: #f8f9fa; font-weight: bold;">
+                <td colspan="5"><strong>Semana 6: Módulos Finais e Integrações</strong></td>
+            </tr>
+            <tr>
+                <td>Módulo PAY (Pagamentos)</td>
+                <td>2 dias</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Módulo CAR (Cartões)</td>
+                <td>1 dia</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Módulo NTF (Notificações)</td>
+                <td>1 dia</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Módulo ARC (Arquivamento)</td>
+                <td>1 dia</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Integrações externas</td>
+                <td>1 dia</td>
+                <td>Especialista</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Testes de integração</td>
+                <td>1 dia</td>
+                <td>Analista QA</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr style="background: #f5c6cb; font-weight: bold;">
+                <td><strong>TOTAL FASE 3</strong></td>
+                <td><strong>20 dias</strong></td>
+                <td></td>
+                <td><span class="status-in-progress"><strong>🔄 40%</strong></span></td>
+                <td><strong>4 de 10 módulos concluídos</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="phase-header">
+        ⏳ FASE 4 - CADASTRO E TESTES (PENDENTE)
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Atividade</th>
+                <th>Duração</th>
+                <th>Responsável</th>
+                <th>Status</th>
+                <th>Observações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background: #f8f9fa; font-weight: bold;">
+                <td colspan="5"><strong>Semana 7: Migração</strong></td>
+            </tr>
+            <tr>
+                <td>Preparação da migração</td>
+                <td>1 dia</td>
+                <td>Analista + TI</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Limpeza de dados</td>
+                <td>1 dia</td>
+                <td>Analista</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Execução da migração</td>
+                <td>2 dias</td>
+                <td>Especialista</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Validação inicial</td>
+                <td>1 dia</td>
+                <td>Equipe + OrMM</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr style="background: #f8f9fa; font-weight: bold;">
+                <td colspan="5"><strong>Semana 8: Testes</strong></td>
+            </tr>
+            <tr>
+                <td>Testes de usabilidade</td>
+                <td>1 dia</td>
+                <td>Usuários + QA</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Testes de performance</td>
+                <td>1 dia</td>
+                <td>Especialista</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Testes de segurança</td>
+                <td>1 dia</td>
+                <td>Especialista</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Correção de problemas</td>
+                <td>1 dia</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Relatório final</td>
+                <td>1 dia</td>
+                <td>Analista</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr style="background: #f5c6cb; font-weight: bold;">
+                <td><strong>TOTAL FASE 4</strong></td>
+                <td><strong>10 dias</strong></td>
+                <td></td>
+                <td><span class="status-pending"><strong>⏳ 0%</strong></span></td>
+                <td><strong>Pendente</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="phase-header">
+        ⏳ FASE 5 - HOMOLOGAÇÃO E ENCERRAMENTO (PENDENTE)
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Atividade</th>
+                <th>Duração</th>
+                <th>Responsável</th>
+                <th>Status</th>
+                <th>Observações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background: #f8f9fa; font-weight: bold;">
+                <td colspan="5"><strong>Semana 9: Homologação</strong></td>
+            </tr>
+            <tr>
+                <td>Preparação para homologação</td>
+                <td>1 dia</td>
+                <td>Equipe</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Homologação pelo auditor</td>
+                <td>2 dias</td>
+                <td>Auditor</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Correção de não conformidades</td>
+                <td>1 dia</td>
+                <td>Desenvolvedores</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Validação final</td>
+                <td>1 dia</td>
+                <td>Auditor</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr style="background: #f8f9fa; font-weight: bold;">
+                <td colspan="5"><strong>Semana 10: Entrega</strong></td>
+            </tr>
+            <tr>
+                <td>Treinamento de usuários</td>
+                <td>2 dias</td>
+                <td>Equipe + OrMM</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Entrega de documentação</td>
+                <td>1 dia</td>
+                <td>Analista</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Aceitação final</td>
+                <td>1 dia</td>
+                <td>OrMM + Auditor</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Configuração de suporte</td>
+                <td>1 dia</td>
+                <td>Especialista</td>
+                <td><span class="status-pending">⏳</span></td>
+                <td>Pendente</td>
+            </tr>
+            <tr style="background: #f5c6cb; font-weight: bold;">
+                <td><strong>TOTAL FASE 5</strong></td>
+                <td><strong>10 dias</strong></td>
+                <td></td>
+                <td><span class="status-pending"><strong>⏳ 0%</strong></span></td>
+                <td><strong>Pendente</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="milestones">
+        <h3>🎯 MARCOLOGIA E ENTREGÁVEIS</h3>
+
+        <div class="milestone-item">
+            <div class="milestone-number">1</div>
+            <div>
+                <strong>Marco 1 (Dia 5):</strong> DRS aprovado
+                <br><small>✅ Concluído - Documento de Requisitos Específicos entregue e validado pelo auditor externo</small>
+            </div>
+        </div>
+
+        <div class="milestone-item">
+            <div class="milestone-number">2</div>
+            <div>
+                <strong>Marco 2 (Dia 10):</strong> Protótipo validado
+                <br><small>✅ Concluído - Ajustes do protótipo implementados (validação pendente)</small>
+            </div>
+        </div>
+
+        <div class="milestone-item">
+            <div class="milestone-number">3</div>
+            <div>
+                <strong>Marco 3 (Dia 30):</strong> Sistema desenvolvido
+                <br><small>🔄 Em Execução - Desenvolvimento dos 10 módulos e integrações externas</small>
+            </div>
+        </div>
+
+        <div class="milestone-item">
+            <div class="milestone-number">4</div>
+            <div>
+                <strong>Marco 4 (Dia 40):</strong> Testes aprovados
+                <br><small>⏳ Pendente - Cadastro de membros e testes funcionais completos</small>
+            </div>
+        </div>
+
+        <div class="milestone-item">
+            <div class="milestone-number">5</div>
+            <div>
+                <strong>Marco 5 (Dia 50):</strong> Projeto concluído
+                <br><small>⏳ Pendente - Homologação formal e entrega final do sistema</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Metodologia:</strong> Scrum com reuniões diárias (30 minutos, 11h00)</p>
+        <p><strong>Equipe:</strong> Gestor de Projeto, Arquiteto de Software, 2 Desenvolvedores Full-Stack, Especialista em Segurança, Analista de Qualidade</p>
+        <p><strong>Supervisão:</strong> Auditor Externo designado pela OrMM</p>
+        <p><strong>Documento gerado em:</strong> <script>document.write(new Date().toLocaleDateString('pt-PT'))</script> | <strong>Versão:</strong> 1.0 | <strong>Status:</strong> Aprovado para execução</p>
+    </div>
+
+    <script>
+        // Auto-refresh da data
+        function updateDate() {
+            const dateElement = document.querySelector('.footer p:last-child');
+            if (dateElement) {
+                const now = new Date();
+                const dateStr = now.toLocaleDateString('pt-PT');
+                dateElement.innerHTML = dateElement.innerHTML.replace(/\d{1,2}\/\d{1,2}\/\d{4}/, dateStr);
+            }
+        }
+
+        // Atualizar data a cada minuto
+        setInterval(updateDate, 60000);
+
+        // Melhorar a experiência de impressão
+        window.addEventListener('beforeprint', function() {
+            document.body.style.fontSize = '11px';
+        });
+
+        window.addEventListener('afterprint', function() {
+            document.body.style.fontSize = '';
+        });
+    </script>
+</body>
+</html>

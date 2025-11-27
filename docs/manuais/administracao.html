@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual do Módulo de Administração - e-Ordem</title>
+    <link rel="stylesheet" href="print-styles.css">
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c5aa0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2c5aa0;
+            font-size: 2.2em;
+            margin: 0;
+            font-weight: 300;
+        }
+        
+        .header .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #2c5aa0;
+            margin: 30px 0;
+        }
+        
+        .toc h2 {
+            color: #2c5aa0;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .toc ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+        }
+        
+        .toc a {
+            color: #2c5aa0;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        h1 {
+            color: #2c5aa0;
+            font-size: 2em;
+            border-bottom: 2px solid #2c5aa0;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #2c5aa0;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2c5aa0;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #444;
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        h4 {
+            color: #555;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 6px 0;
+        }
+        
+        .url {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #495057;
+        }
+        
+        .menu-item {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            margin: 4px 0;
+            border-left: 3px solid #2c5aa0;
+            font-weight: 500;
+        }
+        
+        .feature-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .feature-list ul {
+            margin: 0;
+        }
+        
+        .feature-list li {
+            margin: 8px 0;
+            font-weight: 500;
+        }
+        
+        .admin-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .admin-panel h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .admin-panel ul {
+            margin: 0;
+        }
+        
+        .admin-panel li {
+            margin: 8px 0;
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        @media print {
+            body {
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            
+            h1 {
+                font-size: 18pt;
+            }
+            
+            h2 {
+                font-size: 16pt;
+            }
+            
+            h3 {
+                font-size: 14pt;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Manual do Módulo de Administração</h1>
+        <div class="subtitle">e-Ordem - Sistema de Gestão da Ordem dos Médicos de Moçambique</div>
+    </div>
+
+    <div class="toc">
+        <h2>Índice</h2>
+        <ol>
+            <li><a href="#introdução">Introdução</a></li>
+            <li><a href="#acesso-ao-módulo">Acesso ao Módulo</a></li>
+            <li><a href="#dashboard-administrativo">Dashboard Administrativo</a></li>
+            <li><a href="#gestão-de-utilizadores">Gestão de Utilizadores</a></li>
+            <li><a href="#gestão-de-roles-e-permissões">Gestão de Roles e Permissões</a></li>
+            <li><a href="#configurações-do-sistema">Configurações do Sistema</a></li>
+            <li><a href="#auditoria-e-logs">Auditoria e Logs</a></li>
+            <li><a href="#gestão-de-backups">Gestão de Backups</a></li>
+        </ol>
+    </div>
+
+    <h1 id="introdução">Introdução</h1>
+    
+    <p>O Módulo de Administração do e-Ordem é responsável pela gestão completa do sistema, incluindo utilizadores, permissões, configurações, auditoria e relatórios. Este módulo é exclusivo para administradores e fornece todas as ferramentas necessárias para manter e monitorizar o sistema.</p>
+
+    <div class="feature-list">
+        <h3>Funcionalidades Principais</h3>
+        <ul>
+            <li><strong>Dashboard</strong> com métricas em tempo real</li>
+            <li><strong>Gestão de Utilizadores</strong> completa</li>
+            <li><strong>Sistema RBAC</strong> (Roles e Permissões)</li>
+            <li><strong>Configurações do Sistema</strong> centralizadas</li>
+            <li><strong>Auditoria Completa</strong> de todas as ações</li>
+            <li><strong>Relatórios</strong> operacionais e financeiros</li>
+            <li><strong>Gestão de Backups</strong> automatizada</li>
+            <li><strong>Sistema de Notificações</strong></li>
+        </ul>
+    </div>
+
+    <h1 id="acesso-ao-módulo">Acesso ao Módulo</h1>
+
+    <h2>1. Login Administrativo</h2>
+    <ol>
+        <li>Aceda à página de login do sistema</li>
+        <li>Introduza as suas credenciais de administrador</li>
+        <li>Complete a autenticação de dois fatores (2FA) se estiver activa</li>
+        <li>O sistema redirecionará para o dashboard administrativo</li>
+    </ol>
+
+    <h2>2. Níveis de Acesso</h2>
+    <ul>
+        <li><strong>Super Admin</strong>: Acesso total ao módulo administrativo</li>
+        <li><strong>Admin</strong>: Acesso administrativo com algumas limitações</li>
+        <li><strong>Auditor</strong>: Acesso apenas de leitura para auditoria</li>
+    </ul>
+
+    <h2>3. Estrutura do Menu</h2>
+    <p>O menu administrativo foi simplificado para melhor usabilidade:</p>
+
+    <h3>Menu Principal do Sidebar</h3>
+    <div class="menu-item">Dashboard</div>
+    <div class="menu-item">Inscrições</div>
+    <div class="menu-item">Documentos</div>
+    <div class="menu-item">Membros</div>
+    <div class="menu-item">Exames</div>
+    <div class="menu-item">Residência Médica</div>
+    <div class="menu-item">Pagamentos</div>
+    <div class="menu-item">Cartões</div>
+    <div class="menu-item">Notificações</div>
+    <div class="menu-item">Inteligência Artificial</div>
+    <div class="menu-item">Arquivo</div>
+    <div class="menu-item">Painel de Administração</div>
+
+    <div class="admin-panel">
+        <h3>Painel de Administração (Dashboard)</h3>
+        <p>O Painel de Administração contém todos os menus administrativos em uma interface centralizada:</p>
+        <ul>
+            <li><strong>Gestão de Utilizadores</strong>: Gestão de utilizadores do sistema</li>
+            <li><strong>Gestão de Roles</strong>: Gestão de perfis e funções</li>
+            <li><strong>Gestão de Permissões</strong>: Gestão de permissões</li>
+            <li><strong>Auditoria</strong>: Logs e auditoria do sistema</li>
+            <li><strong>Estatísticas de Auditoria</strong>: Relatórios de auditoria</li>
+            <li><strong>Configurações do Sistema</strong>: Configurações do sistema</li>
+            <li><strong>Gestão de Backups</strong>: Gestão de backups</li>
+        </ul>
+    </div>
+
+    <h1 id="dashboard-administrativo">Dashboard Administrativo</h1>
+
+    <h2>Acesso ao Painel de Administração</h2>
+    <p><strong>URL</strong>: <span class="url">/admin/system/dashboard</span></p>
+    <p><strong>Menu</strong>: Painel de Administração > Dashboard</p>
+
+    <h2>Funcionalidades do Painel de Administração</h2>
+
+    <h3>1. Métricas do Sistema</h3>
+    <ul>
+        <li><strong>Utilizadores</strong>: Número total de utilizadores no sistema</li>
+        <li><strong>Membros</strong>: Número total de membros registados</li>
+        <li><strong>Inscrições</strong>: Total de inscrições processadas</li>
+        <li><strong>Documentos</strong>: Total de documentos submetidos</li>
+        <li><strong>Pagamentos</strong>: Total de pagamentos processados</li>
+        <li><strong>Exames</strong>: Total de exames realizados</li>
+    </ul>
+
+    <h3>2. Atividades Recentes</h3>
+    <ul>
+        <li><strong>Logs de Auditoria</strong>: Últimas 10 atividades do sistema</li>
+        <li><strong>Tipos de Ação</strong>: Criado, Atualizado, Eliminado</li>
+        <li><strong>Módulos</strong>: Entidades afetadas (User, Member, Registration, etc.)</li>
+        <li><strong>Utilizadores</strong>: Quem realizou a ação</li>
+        <li><strong>Data/Hora</strong>: Timestamp da atividade</li>
+    </ul>
+
+    <h3>3. Gestão do Sistema</h3>
+    <p>O Painel de Administração oferece acesso direto a todas as funcionalidades administrativas através de uma interface centralizada:</p>
+
+    <ul>
+        <li><strong>Gestão de Utilizadores</strong>: Acesso direto à gestão de utilizadores do sistema</li>
+        <li><strong>Gestão de Roles</strong>: Acesso direto à gestão de perfis e funções</li>
+        <li><strong>Gestão de Permissões</strong>: Acesso direto à gestão de permissões</li>
+        <li><strong>Auditoria</strong>: Acesso direto aos logs de auditoria do sistema</li>
+        <li><strong>Estatísticas de Auditoria</strong>: Acesso direto aos relatórios de auditoria</li>
+        <li><strong>Configurações do Sistema</strong>: Acesso direto às configurações do sistema</li>
+        <li><strong>Gestão de Backups</strong>: Acesso direto à gestão de backups</li>
+    </ul>
+
+    <p>Todos estes menus estão organizados no dashboard do Painel de Administração, proporcionando uma experiência de navegação mais intuitiva e centralizada.</p>
+
+    <h1 id="gestão-de-utilizadores">Gestão de Utilizadores</h1>
+
+    <h2>Acesso à Gestão de Utilizadores</h2>
+    <p><strong>URL</strong>: <span class="url">/admin/users</span></p>
+    <p><strong>Menu</strong>: Painel de Administração > Gestão de Utilizadores</p>
+
+    <h2>Funcionalidades Disponíveis</h2>
+
+    <h3>1. Listar Utilizadores</h3>
+    <ul>
+        <li><strong>Filtros</strong>: Por nome, email, role</li>
+        <li><strong>Pesquisa</strong>: Pesquisar por critérios específicos</li>
+        <li><strong>Paginação</strong>: 20 utilizadores por página</li>
+        <li><strong>Ordenação</strong>: Por data de criação (mais recentes primeiro)</li>
+    </ul>
+
+    <h3>2. Criar Utilizador</h3>
+    <div class="highlight">
+        <h4>Dados Obrigatórios:</h4>
+        <ul>
+            <li>Nome completo</li>
+            <li>Email (único no sistema)</li>
+            <li>Password (temporária)</li>
+            <li>Roles (funções no sistema)</li>
+        </ul>
+        <p><strong>Validação</strong>: Validação completa dos dados</p>
+    </div>
+
+    <h3>3. Visualizar Utilizador</h3>
+    <ul>
+        <li><strong>Dados Pessoais</strong>: Informações básicas do utilizador</li>
+        <li><strong>Roles</strong>: Funções atribuídas</li>
+        <li><strong>Auditoria</strong>: Logs de ações do utilizador</li>
+    </ul>
+
+    <h3>4. Editar Utilizador</h3>
+    <ul>
+        <li><strong>Modificar Dados</strong>: Nome, email, roles</li>
+        <li><strong>Validação</strong>: Validação dos dados atualizados</li>
+    </ul>
+
+    <h3>5. Alterar Password</h3>
+    <ul>
+        <li><strong>Nova Password</strong>: Password temporária</li>
+        <li><strong>Confirmação</strong>: Confirmação da nova password</li>
+        <li><strong>Validação</strong>: Regras de password do sistema</li>
+    </ul>
+
+    <h3>6. Eliminar Utilizador</h3>
+    <ul>
+        <li><strong>Confirmação</strong>: Confirmação da eliminação</li>
+        <li><strong>Auditoria</strong>: Log da ação de eliminação</li>
+    </ul>
+
+    <h3>7. Gestão de Roles</h3>
+    <ul>
+        <li><strong>Lista de Roles</strong>: Todos os roles disponíveis</li>
+        <li><strong>Criar Role</strong>: Criar novo role</li>
+        <li><strong>Editar Role</strong>: Modificar role existente</li>
+        <li><strong>Eliminar Role</strong>: Eliminar role (se não tiver utilizadores)</li>
+    </ul>
+
+    <h2>Auditoria</h2>
+    <p>Todas as ações são registadas no sistema de auditoria:</p>
+    <ul>
+        <li>Visualização de listas</li>
+        <li>Criação de utilizadores</li>
+        <li>Atualização de dados</li>
+        <li>Alteração de passwords</li>
+        <li>Eliminação de utilizadores</li>
+    </ul>
+
+    <h1 id="gestão-de-roles-e-permissões">Gestão de Roles e Permissões</h1>
+
+    <h2>Acesso à Gestão de Roles</h2>
+    <p><strong>URL</strong>: <span class="url">/admin/roles</span></p>
+    <p><strong>Menu</strong>: Painel de Administração > Gestão de Roles</p>
+
+    <h2>Funcionalidades de Roles</h2>
+
+    <h3>1. Listar Roles</h3>
+    <ul>
+        <li><strong>Filtros</strong>: Por nome do role</li>
+        <li><strong>Pesquisa</strong>: Pesquisar roles</li>
+        <li><strong>Contagem</strong>: Número de utilizadores por role</li>
+        <li><strong>Paginação</strong>: 20 roles por página</li>
+    </ul>
+
+    <h3>2. Criar Role</h3>
+    <div class="highlight">
+        <h4>Dados Obrigatórios:</h4>
+        <ul>
+            <li>Nome do role (único)</li>
+            <li>Nome de exibição</li>
+            <li>Descrição</li>
+        </ul>
+        <p><strong>Permissões</strong>: Seleção de permissões para o role</p>
+        <p><strong>Validação</strong>: Validação completa dos dados</p>
+    </div>
+
+    <h3>3. Visualizar Role</h3>
+    <ul>
+        <li><strong>Informações do Role</strong>: Dados básicos</li>
+        <li><strong>Permissões</strong>: Permissões atribuídas</li>
+        <li><strong>Utilizadores</strong>: Utilizadores com este role</li>
+    </ul>
+
+    <h3>4. Editar Role</h3>
+    <ul>
+        <li><strong>Modificar Dados</strong>: Nome, descrição</li>
+        <li><strong>Permissões</strong>: Adicionar/remover permissões</li>
+        <li><strong>Validação</strong>: Validação dos dados atualizados</li>
+    </ul>
+
+    <h3>5. Eliminar Role</h3>
+    <ul>
+        <li><strong>Validação</strong>: Verificar se não tem utilizadores</li>
+        <li><strong>Confirmação</strong>: Confirmação da eliminação</li>
+        <li><strong>Auditoria</strong>: Log da ação</li>
+    </ul>
+
+    <h3>6. Gestão de Permissões</h3>
+    <ul>
+        <li><strong>Atribuir Permissões</strong>: Associar permissões ao role</li>
+        <li><strong>Remover Permissões</strong>: Remover permissões do role</li>
+        <li><strong>Agrupamento</strong>: Permissões agrupadas por módulo</li>
+    </ul>
+
+    <h2>Acesso à Gestão de Permissões</h2>
+    <p><strong>URL</strong>: <span class="url">/admin/permissions</span></p>
+    <p><strong>Menu</strong>: Painel de Administração > Gestão de Permissões</p>
+
+    <h2>Funcionalidades de Permissões</h2>
+
+    <h3>1. Listar Permissões</h3>
+    <ul>
+        <li><strong>Todas as Permissões</strong>: Lista completa</li>
+        <li><strong>Agrupamento</strong>: Por módulo do sistema</li>
+        <li><strong>Descrições</strong>: Explicação de cada permissão</li>
+    </ul>
+
+    <h3>2. Criar Permissão</h3>
+    <div class="highlight">
+        <h4>Dados Obrigatórios:</h4>
+        <ul>
+            <li>Nome da permissão</li>
+            <li>Nome de exibição</li>
+            <li>Descrição</li>
+            <li>Módulo</li>
+        </ul>
+        <p><strong>Validação</strong>: Validação completa</p>
+    </div>
+
+    <h3>3. Editar Permissão</h3>
+    <ul>
+        <li><strong>Modificar Dados</strong>: Nome, descrição, módulo</li>
+        <li><strong>Validação</strong>: Validação dos dados atualizados</li>
+    </ul>
+
+    <h3>4. Eliminar Permissão</h3>
+    <ul>
+        <li><strong>Validação</strong>: Verificar se não está em uso</li>
+        <li><strong>Confirmação</strong>: Confirmação da eliminação</li>
+    </ul>
+
+    <h1 id="configurações-do-sistema">Configurações do Sistema</h1>
+
+    <h2>Acesso às Configurações</h2>
+    <p><strong>URL</strong>: <span class="url">/admin/system/configs</span></p>
+    <p><strong>Menu</strong>: Painel de Administração > Configurações</p>
+
+    <h2>Funcionalidades de Configuração</h2>
+
+    <h3>1. Listar Configurações</h3>
+    <ul>
+        <li><strong>Filtros</strong>: Por grupo de configuração</li>
+        <li><strong>Grupos Disponíveis</strong>:
+            <ul>
+                <li>General (Geral)</li>
+                <li>Email (Email)</li>
+                <li>Backup (Backup)</li>
+                <li>Security (Segurança)</li>
+                <li>Payment (Pagamentos)</li>
+            </ul>
+        </li>
+        <li><strong>Paginação</strong>: Configurações por grupo</li>
+    </ul>
+
+    <h3>2. Criar Configuração</h3>
+    <div class="highlight">
+        <h4>Dados Obrigatórios:</h4>
+        <ul>
+            <li>Chave (única)</li>
+            <li>Valor</li>
+            <li>Descrição</li>
+            <li>Grupo</li>
+        </ul>
+        <h4>Configurações Opcionais:</h4>
+        <ul>
+            <li>Público (visível para utilizadores)</li>
+        </ul>
+        <p><strong>Validação:</strong> Validação completa</p>
+        
+        <h3>3. Editar Configuração</h3>
+        <ul>
+            <li><strong>Modificar Dados:</strong> Valor, descrição, grupo</li>
+            <li><strong>Validação:</strong> Validação dos dados atualizados</li>
+        </ul>
+        
+        <h3>4. Eliminar Configuração</h3>
+        <ul>
+            <li><strong>Confirmação:</strong> Confirmação da eliminação</li>
+            <li><strong>Auditoria:</strong> Log da ação</li>
+        </ul>
+        
+        <h3>Dashboard do Sistema</h3>
+        <ul>
+            <li><strong>URL:</strong> <code>/admin/system/dashboard</code></li>
+            <li><strong>Funcionalidades:</strong>
+                <ul>
+                    <li>Estatísticas do sistema</li>
+                    <li>Logs de auditoria recentes</li>
+                    <li>Métricas de utilização</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section class="content-section">
+        <h2>7. Auditoria e Logs</h2>
+        
+        <h3>Acesso aos Logs de Auditoria</h3>
+        <ul>
+            <li><strong>URL:</strong> <code>/admin/audit</code></li>
+            <li><strong>Menu:</strong> Painel de Administração > Auditoria</li>
+        </ul>
+        
+        <h3>Funcionalidades de Auditoria</h3>
+        
+        <h4>1. Listar Logs</h4>
+        <h5>Filtros Avançados:</h5>
+        <ul>
+            <li>Por utilizador</li>
+            <li>Por ação</li>
+            <li>Por data</li>
+            <li>Por tipo de entidade</li>
+            <li>Por IP</li>
+            <li>Por status</li>
+        </ul>
+        <ul>
+            <li><strong>Pesquisa:</strong> Pesquisar por texto específico</li>
+            <li><strong>Ordenação:</strong> Por data, utilizador, ação</li>
+        </ul>
+        
+        <h4>2. Visualizar Log</h4>
+        <h5>Detalhes Completos:</h5>
+        <ul>
+            <li>Utilizador (nome, email, role)</li>
+            <li>Ação realizada</li>
+            <li>Entidade afetada (ID, tipo, nome)</li>
+            <li>Data/hora (timestamp preciso)</li>
+            <li>IP do utilizador</li>
+            <li>User Agent</li>
+            <li>Alterações (valores antes e depois)</li>
+            <li>Contexto adicional</li>
+        </ul>
+        
+        <h4>3. Estatísticas</h4>
+        <h5>Métricas de Auditoria:</h5>
+        <ul>
+            <li>Ações por utilizador</li>
+            <li>Ações por dia</li>
+            <li>Tipos de ação</li>
+            <li>Entidades mais afetadas</li>
+            <li>Horários de pico</li>
+            <li>Padrões de acesso</li>
+        </ul>
+        
+        <h4>4. Exportar Logs</h4>
+        <h5>Formatos Disponíveis:</h5>
+        <ul>
+            <li>CSV (para Excel)</li>
+            <li>JSON (para análise programática)</li>
+            <li>PDF (para relatórios formais)</li>
+        </ul>
+        <ul>
+            <li><strong>Filtros Aplicados:</strong> Exportar apenas logs filtrados</li>
+            <li><strong>Período Específico:</strong> Exportar por período</li>
+        </ul>
+        
+        <h3>Alertas de Auditoria</h3>
+        <ul>
+            <li><strong>Ações Críticas:</strong> Alertas para ações críticas</li>
+            <li><strong>Tentativas de Acesso:</strong> Alertas para acessos suspeitos</li>
+            <li><strong>Alterações Massivas:</strong> Alertas para alterações em lote</li>
+            <li><strong>Acessos Fora do Horário:</strong> Alertas para acessos anômalos</li>
+        </ul>
+    </section>
+
+    <section class="content-section">
+        <h2>8. Gestão de Backups</h2>
+        
+        <h3>Acesso à Gestão de Backups</h3>
+        <ul>
+            <li><strong>URL:</strong> <code>/admin/system/backups</code></li>
+        </ul>
+        
+        <h3>Funcionalidades de Backup</h3>
+        
+        <h4>1. Configurações de Backup</h4>
+        <ul>
+            <li><strong>Backup Automático:</strong> Ativar/desativar</li>
+            <li><strong>Frequência:</strong> Horário, diário, semanal, mensal</li>
+            <li><strong>Retenção:</strong> Número de dias (1-365)</li>
+            <li><strong>Destino:</strong> Local, S3, SFTP</li>
+        </ul>
+        
+        <h4>2. Criar Backup Manual</h4>
+        <ul>
+            <li><strong>Backup Imediato:</strong> Criar backup manual</li>
+            <li><strong>Logs:</strong> Registar ação de backup</li>
+            <li><strong>Notificação:</strong> Notificar conclusão</li>
+        </ul>
+        
+        <h4>3. Restaurar Backup</h4>
+        <ul>
+            <li><strong>Seleção de Arquivo:</strong> Escolher backup para restaurar</li>
+            <li><strong>Confirmação:</strong> Confirmação da restauração</li>
+            <li><strong>Logs:</strong> Registar ação de restauração</li>
+        </ul>
+        
+        <h3>Configurações de Backup</h3>
+        <ul>
+            <li><strong>Backup Automático:</strong> Configurável via sistema</li>
+            <li><strong>Frequência:</strong> Configurável (hora, dia, semana, mês)</li>
+            <li><strong>Retenção:</strong> Configurável (1-365 dias)</li>
+            <li><strong>Destino:</strong> Local, S3, SFTP</li>
+        </ul>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p><strong>Última Atualização:</strong> 28 de Outubro de 2025</p>
+            <p><strong>Versão:</strong> 1.0</p>
+            <p><strong>Módulo:</strong> Administração - e-Ordem</p>
+        </div>
+    </footer>
+</body>
+</html>

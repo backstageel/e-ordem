@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual do Módulo de Inscrições - e-Ordem</title>
+    <link rel="stylesheet" href="print-styles.css">
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c5aa0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2c5aa0;
+            font-size: 2.2em;
+            margin: 0;
+            font-weight: 300;
+        }
+        
+        .header .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #2c5aa0;
+            margin: 30px 0;
+        }
+        
+        .toc h2 {
+            color: #2c5aa0;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .toc ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+        }
+        
+        .toc a {
+            color: #2c5aa0;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        h1 {
+            color: #2c5aa0;
+            font-size: 2em;
+            border-bottom: 2px solid #2c5aa0;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #2c5aa0;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2c5aa0;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #444;
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        h4 {
+            color: #555;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 6px 0;
+        }
+        
+        .url {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #495057;
+        }
+        
+        .menu-item {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            margin: 4px 0;
+            border-left: 3px solid #2c5aa0;
+            font-weight: 500;
+        }
+        
+        .feature-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .feature-list ul {
+            margin: 0;
+        }
+        
+        .feature-list li {
+            margin: 8px 0;
+            font-weight: 500;
+        }
+        
+        .registration-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .registration-panel h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .registration-panel ul {
+            margin: 0;
+        }
+        
+        .registration-panel li {
+            margin: 8px 0;
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin: 2px;
+        }
+        
+        .status-draft { background: #6c757d; color: white; }
+        .status-submitted { background: #ffc107; color: #212529; }
+        .status-under-review { background: #17a2b8; color: white; }
+        .status-documents-pending { background: #fd7e14; color: white; }
+        .status-payment-pending { background: #ffc107; color: #212529; }
+        .status-approved { background: #28a745; color: white; }
+        .status-rejected { background: #dc3545; color: white; }
+        .status-archived { background: #343a40; color: white; }
+        .status-expired { background: #dc3545; color: white; }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        @media print {
+            body {
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            
+            h1 {
+                font-size: 18pt;
+            }
+            
+            h2 {
+                font-size: 16pt;
+            }
+            
+            h3 {
+                font-size: 14pt;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Manual do Módulo de Inscrições</h1>
+        <div class="subtitle">e-Ordem - Sistema de Gestão da Ordem dos Médicos de Moçambique</div>
+    </div>
+
+    <div class="toc">
+        <h2>Índice</h2>
+        <ol>
+            <li><a href="#introdução">Introdução</a></li>
+            <li><a href="#tipos-de-inscrição">Tipos de Inscrição</a></li>
+            <li><a href="#processo-de-inscrição">Processo de Inscrição</a></li>
+            <li><a href="#acompanhamento-de-status">Acompanhamento de Status</a></li>
+            <li><a href="#gestão-administrativa">Gestão Administrativa</a></li>
+            <li><a href="#sistema-de-documentos">Sistema de Documentos</a></li>
+            <li><a href="#integração-financeira">Integração Financeira</a></li>
+            <li><a href="#relatórios-e-estatísticas">Relatórios e Estatísticas</a></li>
+        </ol>
+    </div>
+
+    <h1 id="introdução">Introdução</h1>
+    
+    <p>O Módulo de Inscrições do e-Ordem é o núcleo operacional do sistema, responsável pela gestão completa do processo de inscrição de médicos na Ordem dos Médicos de Moçambique. Este módulo automatiza todo o workflow de aprovação e validação, garantindo conformidade com o Regulamento de Inscrição da OrMM.</p>
+
+    <div class="feature-list">
+        <h3>Funcionalidades Principais</h3>
+        <ul>
+            <li><strong>Formulário Multi-Step</strong> inteligente e dinâmico</li>
+            <li><strong>12 Tipos de Inscrição</strong> conforme regulamento</li>
+            <li><strong>Workflow Automatizado</strong> de aprovação</li>
+            <li><strong>Sistema de Documentos</strong> por tipo de inscrição</li>
+            <li><strong>Integração Financeira</strong> completa</li>
+            <li><strong>Acompanhamento em Tempo Real</strong> do status</li>
+            <li><strong>Notificações Automáticas</strong> por email e SMS</li>
+            <li><strong>Gestão Administrativa</strong> centralizada</li>
+        </ul>
+    </div>
+
+    <h1 id="tipos-de-inscrição">Tipos de Inscrição</h1>
+
+    <h2>1. Inscrições Provisórias</h2>
+    <p>As inscrições provisórias são destinadas a médicos que pretendem exercer temporariamente em Moçambique, conforme definido no Artigo 4º do Regulamento de Inscrição.</p>
+
+    <h3>1.1 Formação Médica Especializada (Formador)</h3>
+    <ul>
+        <li><strong>Duração:</strong> 24 meses, renovável por mais 24 meses</li>
+        <li><strong>Requisitos:</strong> 10+ anos experiência, 5+ anos docência, certificado internacional</li>
+        <li><strong>Documentos:</strong> CV com publicações, certificado internacional, diploma</li>
+    </ul>
+
+    <h3>1.2 Formação Médica de Curta Duração</h3>
+    <ul>
+        <li><strong>Duração:</strong> 2 meses, renovável até 3 meses</li>
+        <li><strong>Requisitos:</strong> Certificado especialidade, CV, taxa tramitação</li>
+        <li><strong>Documentos:</strong> Certificado internacional, diploma, CV</li>
+    </ul>
+
+    <h3>1.3 Formação Médica Especializada (Formando)</h3>
+    <ul>
+        <li><strong>Duração:</strong> 24 meses, renovável por mais 24 meses</li>
+        <li><strong>Requisitos:</strong> Carta aceitação CNRM, declaração reciprocidade</li>
+        <li><strong>Documentos:</strong> Carta aceitação CNRM, declaração reciprocidade, diploma</li>
+    </ul>
+
+    <h3>1.4 Investigação Científica</h3>
+    <ul>
+        <li><strong>Duração:</strong> 3 meses, renovável até 6 meses</li>
+        <li><strong>Requisitos:</strong> Aprovação exame ética, protocolo CNBS, 2+ artigos publicados</li>
+        <li><strong>Documentos:</strong> Protocolo investigação, CV com publicações, diploma</li>
+    </ul>
+
+    <h3>1.5 Missões Assistenciais Humanitárias</h3>
+    <ul>
+        <li><strong>Duração:</strong> 12 meses, não renovável</li>
+        <li><strong>Requisitos:</strong> Seguro responsabilidade civil, visto trabalho</li>
+        <li><strong>Documentos:</strong> Seguro responsabilidade civil, visto trabalho, diploma</li>
+    </ul>
+
+    <h3>1.6 Cooperação Intergovernamental</h3>
+    <ul>
+        <li><strong>Duração:</strong> 24 meses, renovável por 12 meses</li>
+        <li><strong>Requisitos:</strong> Específicos para assistência SNS</li>
+        <li><strong>Documentos:</strong> Diploma, documentos oficiais</li>
+    </ul>
+
+    <h3>1.7 Assistência Setor Privado</h3>
+    <ul>
+        <li><strong>Duração:</strong> 12 meses, não renovável</li>
+        <li><strong>Requisitos:</strong> NUIT, registo criminal, autorização Ministério Saúde</li>
+        <li><strong>Documentos:</strong> NUIT, registo criminal, autorização Ministério Saúde, diploma</li>
+    </ul>
+
+    <h3>1.8 Exercício Setor Público (Clínico Geral)</h3>
+    <ul>
+        <li><strong>Duração:</strong> 18 meses, não renovável</li>
+        <li><strong>Requisitos:</strong> Formado em Moçambique</li>
+        <li><strong>Documentos:</strong> Diploma moçambicano, registo criminal</li>
+    </ul>
+
+    <h3>1.9 Exercício Setor Público (Especialista)</h3>
+    <ul>
+        <li><strong>Duração:</strong> 18 meses, não renovável</li>
+        <li><strong>Requisitos:</strong> Formado em Moçambique</li>
+        <li><strong>Documentos:</strong> Diploma moçambicano, registo criminal</li>
+    </ul>
+
+    <h3>1.10 Intercâmbios com Médicos Nacionais</h3>
+    <ul>
+        <li><strong>Duração:</strong> 3 meses, renovável por uma ocasião</li>
+        <li><strong>Requisitos:</strong> Observacional e discussão de casos</li>
+        <li><strong>Documentos:</strong> Diploma, convite oficial</li>
+    </ul>
+
+    <h2>2. Inscrições Efetivas</h2>
+    <p>As inscrições efetivas são destinadas a médicos que pretendem exercer permanentemente em Moçambique, conforme definido no Artigo 9º do Regulamento.</p>
+
+    <h3>2.1 Clínica Geral Nacional</h3>
+    <ul>
+        <li><strong>Requisitos:</strong> Diploma moçambicano, registo criminal, CV</li>
+        <li><strong>Processo:</strong> Submissão → Análise → Exame → Aprovação</li>
+        <li><strong>Documentos:</strong> Diploma, registo criminal, CV, documento identidade</li>
+    </ul>
+
+    <h3>2.2 Especialista Nacional</h3>
+    <ul>
+        <li><strong>Requisitos:</strong> Especialidade reconhecida, experiência comprovada</li>
+        <li><strong>Processo:</strong> Submissão → Análise → Exame → Aprovação</li>
+        <li><strong>Documentos:</strong> Diploma especialidade, registo criminal, CV, documento identidade</li>
+    </ul>
+
+    <h1 id="processo-de-inscrição">Processo de Inscrição</h1>
+
+    <h2>1. Acesso e Início</h2>
+    <ul>
+        <li><strong>Login:</strong> Aceda à área de autenticação e clique em "Inscrição".</li>
+        <li><strong>Seleção de Categoria:</strong> Escolha entre <em>Inscrição Provisória</em> ou <em>Inscrição Efetiva (Definitiva)</em>.</li>
+        <li><strong>Seleção de Tipo:</strong> Dentro da categoria, selecione o tipo específico (ex.: Formação, Investigação, Clínica Geral, Especialista, etc.).</li>
+    </ul>
+
+    <h2>2. Formulário Multi-Step</h2>
+    <p>O sistema utiliza um formulário inteligente que se adapta ao tipo de inscrição selecionado. Cada etapa é validada ao prosseguir e os dados de cada etapa são gravados quando clicar em "Continuar".</p>
+
+    <h3>2.1 Passo 1: Informações de Contacto</h3>
+    <div class="highlight">
+        <h4>Dados Obrigatórios:</h4>
+        <ul>
+            <li>Email (único no sistema)</li>
+            <li>Telefone</li>
+        </ul>
+        <p><strong>Funcionalidade:</strong> Verificação automática de inscrições existentes</p>
+    </div>
+
+    <h3>2.2 Passo 2: Dados Pessoais</h3>
+    <div class="highlight">
+        <h4>Dados Obrigatórios:</h4>
+        <ul>
+            <li>Nome completo (primeiro, meio, último)</li>
+            <li>Data de nascimento</li>
+            <li>Género</li>
+            <li>Estado civil</li>
+            <li>Nacionalidade</li>
+        </ul>
+    </div>
+
+    <h3>2.3 Passo 3: Identidade e Morada</h3>
+    <div class="highlight">
+        <h4>Dados Obrigatórios:</h4>
+        <ul>
+            <li>Tipo de documento de identidade</li>
+            <li>Número do documento</li>
+            <li>Data de emissão</li>
+            <li>Local de emissão</li>
+            <li>Data de validade</li>
+            <li>Endereço completo</li>
+            <li>Província, cidade/distrito, bairro</li>
+        </ul>
+    </div>
+
+    <h3>2.4 Passo 4: Dados Académicos e Profissionais</h3>
+    <div class="highlight">
+        <h4>Dados Obrigatórios:</h4>
+        <ul>
+            <li>Universidade de formação</li>
+            <li>Data de graduação</li>
+            <li>País de formação</li>
+            <li>Anos de experiência</li>
+            <li>Especialidade</li>
+            <li>Instituição atual</li>
+            <li>Categoria profissional</li>
+        </ul>
+        <p><strong>Campos Específicos para Inscrições Provisórias:</strong></p>
+        <ul>
+            <li>Entidade convidante</li>
+            <li>Local da atividade</li>
+            <li>Data de início</li>
+            <li>Data de fim</li>
+            <li>Descrição da atividade</li>
+        </ul>
+    </div>
+
+    <h3>2.5 Passo 5: Upload de Documentos</h3>
+    <div class="highlight">
+        <h4>Documentos Dinâmicos por Tipo:</h4>
+        <ul>
+            <li><strong>Documentos Básicos:</strong> Documento identidade, diploma</li>
+            <li><strong>Documentos Específicos:</strong> Conforme tipo de inscrição</li>
+            <li><strong>Validação:</strong> Formatos PDF, JPG, PNG (máx. 10MB)</li>
+            <li><strong>Checklist:</strong> Lista dinâmica de documentos obrigatórios</li>
+        </ul>
+    </div>
+
+    <h3>2.6 Passo 6: Revisão e Submissão (Apenas Provisórias)</h3>
+    <div class="highlight">
+        <h4>Funcionalidades:</h4>
+        <ul>
+            <li>Revisão completa dos dados</li>
+            <li>Verificação de documentos</li>
+            <li>Confirmação de submissão</li>
+            <li>Geração de número de referência</li>
+        </ul>
+    </div>
+
+    <h2>3. Gravação por Etapa e Continuação</h2>
+    <ul>
+        <li><strong>Como grava:</strong> Os dados são gravados quando clicar em "Continuar" em cada etapa.</li>
+        <li><strong>Retomar depois:</strong> Utilize o mesmo <em>email</em> e <em>telefone</em> do Passo 1 para recuperar o rascunho automaticamente.</li>
+        <li><strong>Identificação do rascunho:</strong> O par Email + Telefone identifica o seu rascunho em segurança.</li>
+    </ul>
+
+    <h2>4. Validação Dinâmica</h2>
+    <p>Cada passo é validado em tempo real, com mensagens de erro específicas e orientações para correção.</p>
+
+    <h1 id="acompanhamento-de-status">Acompanhamento de Status</h1>
+
+    <h2>1. Status do Processo</h2>
+    <p>O sistema mantém um acompanhamento detalhado do status de cada inscrição:</p>
+
+    <div class="status-badge status-draft">Rascunho</div>
+    <p>Candidato ainda preenchendo o formulário</p>
+
+    <div class="status-badge status-submitted">Submetido</div>
+    <p>Inscrição submetida, aguardando análise inicial</p>
+
+    <div class="status-badge status-under-review">Em Análise</div>
+    <p>Documentos sendo verificados pela administração</p>
+
+    <div class="status-badge status-documents-pending">Documentos Pendentes</div>
+    <p>Aguardando submissão de documentos adicionais</p>
+
+    <div class="status-badge status-payment-pending">Pagamento Pendente</div>
+    <p>Aguardando confirmação de pagamento</p>
+
+    <div class="status-badge status-under-review">Validado</div>
+    <p>Inscrição validada (pronta para exame/etapas seguintes)</p>
+
+    <div class="status-badge status-approved">Aprovado</div>
+    <p>Inscrição aprovada e ativa</p>
+
+    <div class="status-badge status-rejected">Rejeitado</div>
+    <p>Inscrição rejeitada com motivo detalhado</p>
+
+    <div class="status-badge status-archived">Arquivado</div>
+    <p>Processo arquivado automaticamente</p>
+
+    <div class="status-badge status-expired">Expirado</div>
+    <p>Inscrição expirada por tempo</p>
+
+    <h2>2. Submissão, Código e Pagamento</h2>
+    <ul>
+        <li><strong>Submissão final:</strong> Cria a inscrição oficial pendente.</li>
+        <li><strong>Código de Inscrição:</strong> Único, usado para acompanhamento.</li>
+        <li><strong>Referência de Pagamento:</strong> Disponibilizada para canais remotos e presenciais.</li>
+        <li><strong>QR Code:</strong> Inclui link direto para a página de estado da inscrição.</li>
+    </ul>
+
+    <h2>3. Acompanhamento para Candidatos</h2>
+    <p><strong>URL:</strong> <span class="url">/guest/registrations/check-status</span></p>
+    <p><strong>Funcionalidades:</strong></p>
+    <ul>
+        <li>Consulta por código de inscrição</li>
+        <li>Consulta por email e telefone</li>
+        <li>Histórico completo do processo</li>
+        <li>Próximos passos necessários</li>
+        <li>Notificações automáticas</li>
+    </ul>
+
+    <h2>3. Notificações Automáticas</h2>
+    <h3>3.1 Notificações por Email</h3>
+    <ul>
+        <li>Confirmação de submissão</li>
+        <li>Mudança de status</li>
+        <li>Documentos pendentes</li>
+        <li>Aprovação/rejeição</li>
+        <li>Lembretes de expiração</li>
+    </ul>
+
+    <h3>3.2 Notificações por SMS</h3>
+    <ul>
+        <li>Status críticos</li>
+        <li>Documentos urgentes</li>
+        <li>Aprovação imediata</li>
+    </ul>
+
+    <h1 id="gestão-administrativa">Gestão Administrativa</h1>
+
+    <h2>1. Acesso à Gestão de Inscrições</h2>
+    <p><strong>URL:</strong> <span class="url">/admin/registrations</span></p>
+    <p><strong>Menu:</strong> Inscrições > Gestão de Inscrições</p>
+
+    <h2>2. Listagem de Inscrições</h2>
+    <h3>2.1 Filtros Disponíveis</h3>
+    <ul>
+        <li><strong>Por Status:</strong> Todos os status disponíveis (inclui Validado)</li>
+        <li><strong>Por Tipo:</strong> Provisórias vs Efetivas</li>
+        <li><strong>Por Data:</strong> Período de submissão</li>
+        <li><strong>Por Pagamento:</strong> Pago ou Pendente</li>
+    </ul>
+
+    <h3>2.2 Pesquisa e Ordenação</h3>
+    <ul>
+        <li><strong>Pesquisa:</strong> Por nome, email, número de referência</li>
+        <li><strong>Ordenação:</strong> Por data, status, prioridade</li>
+        <li><strong>Paginação:</strong> 20 inscrições por página</li>
+    </ul>
+
+    <h2>3. Visualização de Inscrição</h2>
+    <h3>3.1 Dados Completos</h3>
+    <ul>
+        <li><strong>Dados Pessoais:</strong> Informações completas do candidato</li>
+        <li><strong>Dados Profissionais:</strong> Formação e experiência</li>
+        <li><strong>Documentos:</strong> Todos os documentos submetidos</li>
+        <li><strong>Histórico:</strong> Log completo de alterações</li>
+        <li><strong>Pagamentos:</strong> Status e histórico financeiro</li>
+    </ul>
+
+    <h3>3.2 Ações Disponíveis</h3>
+    <ul>
+        <li><strong>Exportar PDF:</strong> Gera PDF formatado da inscrição.</li>
+        <li><strong>Documentos (por anexo):</strong> Aprovar ou Rejeitar individualmente.</li>
+        <li><strong>Documentos (em massa):</strong> Aprovar Todos ou Rejeitar Todos.</li>
+        <li><strong>Pagamento:</strong> Ver referência, método e valor. Botão “Validar Pagamento” abre um modal para inserir data, método, referência, valor e (opcional) comprovativo.</li>
+        <li><strong>Validar Inscrição:</strong> Disponível quando a inscrição não está aprovada nem rejeitada. Requer pagamento validado.</li>
+        <li><strong>Aprovar Inscrição:</strong> Disponível apenas quando a inscrição está em estado “Validado”.</li>
+        <li><strong>Rejeitar Inscrição:</strong> Abre modal para indicar o motivo da rejeição.</li>
+    </ul>
+    <h3>3.3 Perfis e Permissões</h3>
+    <ul>
+        <li><strong>Administrador / Secretariado / Avaliador:</strong> Podem validar dados, documentos e pagamentos antes ou depois do pagamento.</li>
+        <li><strong>Aprovação e Exame:</strong> Após validação, a inscrição é aprovada e segue (quando aplicável) para exame.</li>
+        <li><strong>Isenção de Exame:</strong> Disponível para perfis autorizados, conforme regulamento.</li>
+        <li><strong>Criação de Membro:</strong> Após aprovação (e exame, quando aplicável), cria-se o membro com base nos dados submetidos.</li>
+    </ul>
+
+    <h2>4. Workflow de Aprovação</h2>
+    <h3>4.1 Processo (Resumo Operacional)</h3>
+    <ul>
+        <li><strong>Documentos:</strong> Aprovação/rejeição individual ou em massa (quando pendentes)</li>
+        <li><strong>Pagamento:</strong> Validar pagamento (modal) — torna o pagamento “Pago/Validado”</li>
+        <li><strong>Validação de Inscrição:</strong> Disponível quando não aprovada/rejeitada e pagamento já validado; prepara para exame</li>
+        <li><strong>Aprovação:</strong> Disponível apenas quando o status é “Validado”; cria membro e conclui processo</li>
+        <li><strong>Rejeição:</strong> Solicita motivo, atualiza status e notifica</li>
+    </ul>
+
+    <h3>4.2 Regras de Visibilidade de Botões</h3>
+    <ul>
+        <li>“Validar Pagamento” aparece apenas quando o pagamento está pendente.</li>
+        <li>“Aprovar/Rejeitar” em cada documento aparecem apenas quando o documento está pendente.</li>
+        <li>“Validar Inscrição” aparece quando a inscrição não está aprovada nem rejeitada.</li>
+        <li>“Aprovar Inscrição” e “Rejeitar Inscrição” não aparecem quando a inscrição está aprovada ou rejeitada; “Aprovar Inscrição” só aparece no estado “Validado”.</li>
+    </ul>
+
+    <h1 id="sistema-de-documentos">Sistema de Documentos</h1>
+
+    <h2>1. Documentos por Tipo de Inscrição</h2>
+    <p>O sistema define automaticamente os documentos obrigatórios baseado no tipo de inscrição selecionado.</p>
+
+    <h3>1.1 Documentos Básicos (Todos os Tipos)</h3>
+    <ul>
+        <li>Documento de Identidade (BI, Passaporte, etc.)</li>
+        <li>Diploma/Certificado de Formação Médica</li>
+    </ul>
+
+    <h3>1.2 Documentos Específicos por Tipo</h3>
+    <div class="highlight">
+        <h4>Formação Médica Especializada (Formador):</h4>
+        <ul>
+            <li>Certificado Internacional</li>
+            <li>CV com Publicações Científicas</li>
+        </ul>
+        
+        <h4>Formação Médica de Curta Duração:</h4>
+        <ul>
+            <li>Certificado Internacional</li>
+        </ul>
+        
+        <h4>Formação Médica Especializada (Formando):</h4>
+        <ul>
+            <li>Carta de Aceitação CNRM</li>
+            <li>Declaração de Reciprocidade</li>
+        </ul>
+        
+        <h4>Investigação Científica:</h4>
+        <ul>
+            <li>Protocolo de Investigação</li>
+            <li>CV com Publicações Científicas</li>
+        </ul>
+        
+        <h4>Missões Assistenciais Humanitárias:</h4>
+        <ul>
+            <li>Seguro de Responsabilidade Civil</li>
+            <li>Visto de Trabalho</li>
+        </ul>
+        
+        <h4>Assistência Setor Privado:</h4>
+        <ul>
+            <li>Documento NUIT</li>
+            <li>Registo Criminal</li>
+            <li>Autorização do Ministério da Saúde</li>
+        </ul>
+    </div>
+
+    <h2>2. Validação de Documentos</h2>
+    <h3>2.1 Formatos Aceites</h3>
+    <ul>
+        <li><strong>PDF:</strong> Documentos oficiais</li>
+        <li><strong>JPG/JPEG:</strong> Imagens digitalizadas</li>
+        <li><strong>PNG:</strong> Imagens de alta qualidade</li>
+    </ul>
+
+    <h3>2.2 Limitações</h3>
+    <ul>
+        <li><strong>Tamanho Máximo:</strong> 10MB por documento</li>
+        <li><strong>Resolução Mínima:</strong> 300 DPI para documentos</li>
+        <li><strong>Idioma:</strong> Português ou inglês</li>
+        <li><strong>Tradução:</strong> Documentos estrangeiros devem ser traduzidos</li>
+    </ul>
+
+    <h2>3. Upload e Gestão</h2>
+    <h3>3.1 Processo de Upload</h3>
+    <ul>
+        <li><strong>Drag & Drop:</strong> Arrastar e soltar arquivos</li>
+        <li><strong>Seleção Múltipla:</strong> Vários documentos simultaneamente</li>
+        <li><strong>Preview:</strong> Visualização antes do upload</li>
+        <li><strong>Validação:</strong> Verificação automática de formato</li>
+    </ul>
+
+    <h3>3.2 Gestão de Documentos</h3>
+    <ul>
+        <li><strong>Substituição:</strong> Atualizar documentos existentes</li>
+        <li><strong>Eliminação:</strong> Remover documentos incorretos</li>
+        <li><strong>Download:</strong> Baixar documentos submetidos</li>
+        <li><strong>Histórico:</strong> Versões anteriores dos documentos</li>
+        <li><strong>Registo Completo:</strong> Tipo, ficheiro, tamanho, hash, autor do upload, data/hora e vínculo à inscrição.</li>
+    </ul>
+
+    <h1 id="integração-financeira">Integração Financeira</h1>
+
+    <h2>1. Sistema de Pagamentos</h2>
+    <ul>
+        <li><strong>Disponibilização:</strong> A referência é gerada na submissão.</li>
+        <li><strong>Formas:</strong> Canais remotos integrados e pagamentos presenciais.</li>
+        <li><strong>Comprovativo:</strong> Pode anexar comprovativo quando o pagamento for externo.</li>
+    </ul>
+
+    <h2>2. Tabela de Taxas e Emolumentos (Resumo)</h2>
+    <table>
+        <thead>
+            <tr><th>Nº</th><th>Descrição</th><th>Valor (MT)</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Taxa de candidatura ao Exame de Certificação e Residência Médica</td><td>1.000</td></tr>
+            <tr><td>2</td><td>Taxa de inscrição (Joia)</td><td>3.000</td></tr>
+            <tr><td>3</td><td>Quota anual (2020–2025)</td><td>4.000</td></tr>
+            <tr><td>4</td><td>Multa por atraso no pagamento da quota</td><td>50% do valor da quota</td></tr>
+            <tr><td>5</td><td>Declaração</td><td>500</td></tr>
+            <tr><td>6</td><td>Certificado de Especialidade</td><td>500</td></tr>
+            <tr><td>7</td><td>Certificado de Cumprimento (Good Standing)</td><td>500</td></tr>
+            <tr><td>8</td><td>Cartão emitido no ato da inscrição</td><td>300</td></tr>
+            <tr><td>9</td><td>Renovação do Cartão</td><td>500</td></tr>
+            <tr><td>10</td><td>Carteira Profissional</td><td>500</td></tr>
+            <tr><td>14</td><td>Transcrição da Ata de Especialidade</td><td>500</td></tr>
+            <tr><td>11</td><td>Taxa de tramitação (provisória e certificação estrangeiro)</td><td>2.500</td></tr>
+            <tr><td>12a</td><td>Taxa de autorização provisória (até 3 meses)</td><td>10.000</td></tr>
+            <tr><td>12b</td><td>Taxa de autorização provisória (até 6 meses)</td><td>20.000</td></tr>
+            <tr><td>13</td><td>Taxa de supervisão (por dia)</td><td>6.000</td></tr>
+        </tbody>
+    </table>
+    <p>Nota: Quotas históricas — 2008–2015: 2.500; 2018–2019: 5.000.</p>
+
+    <h2>3. Taxas por Tipo de Inscrição (fee)</h2>
+    <table>
+        <thead>
+            <tr><th>Código</th><th>Tipo</th><th>Taxa (MT)</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>provisional_short_term</td><td>Formação Médica de Curta Duração</td><td>10.000</td></tr>
+            <tr><td>provisional_exchange</td><td>Intercâmbios com Médicos Nacionais</td><td>10.000</td></tr>
+            <tr><td>provisional_research</td><td>Investigação Científica</td><td>20.000</td></tr>
+            <tr><td>provisional_formation</td><td>Formação Médica Especializada (Formador)</td><td>1</td></tr>
+            <tr><td>provisional_trainee</td><td>Formação Médica Especializada (Formando)</td><td>1</td></tr>
+            <tr><td>provisional_humanitarian</td><td>Missões Assistenciais Humanitárias</td><td>1</td></tr>
+            <tr><td>provisional_cooperation</td><td>Cooperação Intergovernamental</td><td>1</td></tr>
+            <tr><td>provisional_private</td><td>Assistência Setor Privado</td><td>1</td></tr>
+            <tr><td>provisional_public_general</td><td>Exercício Setor Público (Clínico Geral)</td><td>1</td></tr>
+            <tr><td>provisional_public_specialist</td><td>Exercício Setor Público (Especialista)</td><td>1</td></tr>
+            <tr><td>effective_general</td><td>Clínica Geral Nacional</td><td>3.000</td></tr>
+            <tr><td>effective_specialist</td><td>Especialista Nacional</td><td>3.000</td></tr>
+        </tbody>
+    </table>
+
+    <h2>3. Métodos de Pagamento</h2>
+    <h3>3.1 Pagamentos Online</h3>
+    <ul>
+        <li><strong>M-Pesa:</strong> Pagamento móvel</li>
+        <li><strong>Visa/Mastercard:</strong> Cartões de crédito</li>
+        <li><strong>Transferência Bancária:</strong> Via internet banking</li>
+    </ul>
+
+    <h3>3.2 Pagamentos Presenciais</h3>
+    <ul>
+        <li><strong>Dinheiro:</strong> Nas instalações da OrMM</li>
+        <li><strong>Cheque:</strong> Cheque bancário</li>
+        <li><strong>Transferência:</strong> Via banco</li>
+    </ul>
+
+    <h2>4. Processo de Pagamento</h2>
+    <h3>4.1 Geração de Referência</h3>
+    <ul>
+        <li><strong>Número Único:</strong> Associado ao código de inscrição</li>
+        <li><strong>Valor Total:</strong> Taxas aplicáveis por tipo de inscrição</li>
+        <li><strong>Validade:</strong> Conforme política da OrMM</li>
+        <li><strong>QR Code:</strong> Acompanha a inscrição para acesso rápido ao estado</li>
+    </ul>
+
+    <h3>4.2 Confirmação de Pagamento</h3>
+    <ul>
+        <li><strong>Automática:</strong> Para pagamentos online</li>
+        <li><strong>Manual:</strong> Para pagamentos presenciais</li>
+        <li><strong>Notificação:</strong> Email de confirmação</li>
+        <li><strong>Recibo:</strong> Comprovativo de pagamento</li>
+    </ul>
+
+    <h2>5. Gestão Financeira</h2>
+    <h3>5.1 Relatórios de Pagamentos</h3>
+    <ul>
+        <li><strong>Por Período:</strong> Relatórios mensais/anuais</li>
+        <li><strong>Por Tipo:</strong> Análise por tipo de inscrição</li>
+        <li><strong>Por Status:</strong> Pagos, pendentes, reembolsos</li>
+        <li><strong>Exportação:</strong> Excel, PDF</li>
+    </ul>
+
+    <h3>5.2 Reembolsos</h3>
+    <ul>
+        <li><strong>Cancelamento:</strong> Reembolso total</li>
+        <li><strong>Rejeição:</strong> Reembolso parcial</li>
+        <li><strong>Processo:</strong> 15 dias úteis</li>
+        <li><strong>Método:</strong> Mesmo método de pagamento</li>
+    </ul>
+
+    <h1 id="relatórios-e-estatísticas">Relatórios e Estatísticas</h1>
+
+    <h2>1. Dashboard de Inscrições</h2>
+    <p><strong>URL:</strong> <span class="url">/admin/registrations/dashboard</span></p>
+    <p><strong>Menu:</strong> Inscrições > Dashboard</p>
+
+    <h2>2. Métricas Principais</h2>
+    <h3>2.1 Estatísticas Gerais</h3>
+    <ul>
+        <li><strong>Total de Inscrições:</strong> Número total processadas</li>
+        <li><strong>Inscrições Ativas:</strong> Aprovadas e em vigor</li>
+        <li><strong>Taxa de Aprovação:</strong> Percentagem de aprovações</li>
+        <li><strong>Tempo Médio:</strong> Processamento por tipo</li>
+    </ul>
+
+    <h3>2.2 Análise por Tipo</h3>
+    <ul>
+        <li><strong>Provisórias vs Efetivas:</strong> Distribuição</li>
+        <li><strong>Por Especialidade:</strong> Mais procuradas</li>
+        <li><strong>Por Origem:</strong> Nacional vs Internacional</li>
+        <li><strong>Por Período:</strong> Tendências temporais</li>
+    </ul>
+
+    <h2>3. Relatórios Operacionais</h2>
+    <h3>3.1 Relatórios de Status</h3>
+    <ul>
+        <li><strong>Pendentes:</strong> Aguardando processamento</li>
+        <li><strong>Em Atraso:</strong> Fora dos prazos</li>
+        <li><strong>Documentos Faltantes:</strong> Aguardando documentos</li>
+        <li><strong>Pagamentos Pendentes:</strong> Aguardando pagamento</li>
+    </ul>
+
+    <h3>3.2 Relatórios Financeiros</h3>
+    <ul>
+        <li><strong>Receitas:</strong> Total arrecadado</li>
+        <li><strong>Por Método:</strong> Distribuição de pagamentos</li>
+        <li><strong>Reembolsos:</strong> Valores devolvidos</li>
+        <li><strong>Projeções:</strong> Previsões de receita</li>
+    </ul>
+
+    <h2>4. Relatórios de Performance</h2>
+    <h3>4.1 Tempos de Processamento</h3>
+    <ul>
+        <li><strong>Média Geral:</strong> Tempo total de processamento</li>
+        <li><strong>Por Etapa:</strong> Tempo em cada status</li>
+        <li><strong>Por Administrador:</strong> Performance individual</li>
+        <li><strong>Comparação:</strong> Anos anteriores</li>
+    </ul>
+
+    <h3>4.2 Indicadores de Qualidade</h3>
+    <ul>
+        <li><strong>Taxa de Rejeição:</strong> Motivos principais</li>
+        <li><strong>Documentos Incorretos:</strong> Tipos mais comuns</li>
+        <li><strong>Satisfação:</strong> Feedback dos candidatos</li>
+        <li><strong>Reclamações:</strong> Análise de problemas</li>
+    </ul>
+
+    <h2>5. Exportação de Dados</h2>
+    <h3>5.1 Formatos Disponíveis</h3>
+    <ul>
+        <li><strong>Excel:</strong> Para análise detalhada</li>
+        <li><strong>PDF:</strong> Para relatórios oficiais</li>
+        <li><strong>CSV:</strong> Para importação em outros sistemas</li>
+        <li><strong>JSON:</strong> Para integração técnica</li>
+    </ul>
+
+    <h3>5.2 Filtros de Exportação</h3>
+    <ul>
+        <li><strong>Período:</strong> Data início e fim</li>
+        <li><strong>Tipo de Inscrição:</strong> Filtro por categoria</li>
+        <li><strong>Status:</strong> Apenas status específicos</li>
+        <li><strong>Campos:</strong> Seleção de colunas</li>
+    </ul>
+
+    <h2>6. Alertas e Notificações</h2>
+    <h3>6.1 Alertas Automáticos</h3>
+    <ul>
+        <li><strong>Prazos:</strong> Inscrições próximas do vencimento</li>
+        <li><strong>Documentos:</strong> Aguardando há mais de 7 dias</li>
+        <li><strong>Pagamentos:</strong> Não confirmados há 3 dias</li>
+        <li><strong>Volume:</strong> Picos de inscrições</li>
+    </ul>
+
+    <h3>6.2 Relatórios Programados</h3>
+    <ul>
+        <li><strong>Diário:</strong> Resumo do dia</li>
+        <li><strong>Semanal:</strong> Relatório de performance</li>
+        <li><strong>Mensal:</strong> Análise completa</li>
+        <li><strong>Anual:</strong> Relatório estatístico</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1>Funcionalidades Avançadas</h1>
+
+    <h2>1. Sistema de Workflow</h2>
+    <p>O sistema implementa um workflow automatizado que guia cada inscrição através das etapas necessárias, com validações automáticas e notificações inteligentes.</p>
+
+    <h3>1.1 Etapas do Workflow (resumo)</h3>
+    <p>Revisão Inicial → Validação de Documentos → Verificação de Pagamento → Revisão Técnica (ou Exame para efetivas) → Aprovação Final → Concluído</p>
+
+    <h3>1.2 Regras de Negócio</h3>
+    <ul>
+        <li><strong>Prazos:</strong> Tempos máximos por etapa</li>
+        <li><strong>Validações:</strong> Regras específicas por tipo</li>
+        <li><strong>Exceções:</strong> Casos especiais tratados</li>
+        <li><strong>Escalação:</strong> Elevação para supervisores</li>
+    </ul>
+    <h3>1.3 Histórico e Auditoria</h3>
+    <ul>
+        <li><strong>Histórico de Estados:</strong> Regista data/hora, responsável e motivo por mudança.</li>
+        <li><strong>Decisões por Etapa:</strong> Aprovação, devolução, rejeição com notas justificativas.</li>
+    </ul>
+
+    <h2>2. Integração com Sistemas Externos</h2>
+    <h3>2.1 Sistemas de Pagamento</h3>
+    <ul>
+        <li><strong>M-Pesa API:</strong> Integração direta</li>
+        <li><strong>Gateway de Pagamentos:</strong> Múltiplos provedores</li>
+        <li><strong>Bancos:</strong> Transferências automáticas</li>
+        <li><strong>Reconciliação:</strong> Sincronização automática</li>
+    </ul>
+
+    <h3>2.2 Sistemas Governamentais</h3>
+    <ul>
+        <li><strong>CNRM:</strong> Verificação de registos</li>
+        <li><strong>Ministério da Saúde:</strong> Validação de autorizações</li>
+        <li><strong>Registo Criminal:</strong> Verificação automática</li>
+        <li><strong>NUIT:</strong> Validação de números</li>
+    </ul>
+
+    <h2>3. Sistema de Notificações Inteligentes</h2>
+    <h3>3.1 Notificações Contextuais</h3>
+    <ul>
+        <li><strong>Personalizadas:</strong> Baseadas no tipo de inscrição</li>
+        <li><strong>Multicanal:</strong> Email, SMS, portal</li>
+        <li><strong>Agendadas:</strong> Lembretes automáticos</li>
+        <li><strong>Inteligentes:</strong> Baseadas no comportamento</li>
+    </ul>
+
+    <h3>3.2 Templates Dinâmicos</h3>
+    <ul>
+        <li><strong>Por Tipo:</strong> Mensagens específicas</li>
+        <li><strong>Multilíngue:</strong> Português e inglês</li>
+        <li><strong>Personalização:</strong> Dados do candidato</li>
+        <li><strong>Branding:</strong> Identidade visual da OrMM</li>
+    </ul>
+
+    <h2>4. Auditoria e Compliance</h2>
+    <h3>4.1 Rastreabilidade Completa</h3>
+    <ul>
+        <li><strong>Log de Ações:</strong> Todas as operações registadas</li>
+        <li><strong>Histórico de Alterações:</strong> Versões dos dados</li>
+        <li><strong>Responsáveis:</strong> Quem fez cada ação</li>
+        <li><strong>Timestamps:</strong> Data e hora precisas</li>
+    </ul>
+
+    <h3>4.2 Conformidade Regulamentar</h3>
+    <ul>
+        <li><strong>LGPD:</strong> Proteção de dados pessoais</li>
+        <li><strong>Regulamento OrMM:</strong> Conformidade total</li>
+        <li><strong>Backup:</strong> Cópias de segurança</li>
+        <li><strong>Retenção:</strong> Política de arquivamento</li>
+    </ul>
+
+    <h2>5. Funcionalidades de Acessibilidade</h2>
+    <h3>5.1 Interface Inclusiva</h3>
+    <ul>
+        <li><strong>Leitores de Tela:</strong> Compatibilidade total</li>
+        <li><strong>Alto Contraste:</strong> Modo acessível</li>
+        <li><strong>Navegação por Teclado:</strong> Sem mouse</li>
+        <li><strong>Textos Alternativos:</strong> Imagens descritas</li>
+    </ul>
+
+    <h3>5.2 Suporte Multilíngue</h3>
+    <ul>
+        <li><strong>Português:</strong> Idioma principal</li>
+        <li><strong>Inglês:</strong> Idioma secundário</li>
+        <li><strong>Tradução Automática:</strong> Para outros idiomas</li>
+        <li><strong>Documentos:</strong> Suporte a múltiplos idiomas</li>
+    </ul>
+
+    <div class="footer">
+        <div class="footer-content">
+            <p><strong>Última Atualização:</strong> 30 de Outubro de 2025</p>
+            <p><strong>Versão:</strong> 1.0</p>
+            <p><strong>Módulo:</strong> Inscrições - e-Ordem</p>
+        </div>
+    </div>
+</body>
+</html>
