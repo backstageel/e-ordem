@@ -1,30 +1,28 @@
-<x-layouts.guest-registration>
-    <x-slot name="header">
-        Selecionar Tipo de Inscrição
-    </x-slot>
+<?php $page = 'guest-registration'; ?>
+<x-layouts.guest>
+    <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3">
+        <div class="flex-grow-1">
+            <h4 class="fw-bold mb-0">Processo de Inscrição</h4>
+            <p class="text-muted mb-0">Selecione o tipo de inscrição que corresponde ao seu perfil profissional</p>
+        </div>
+    </div>
 
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <!-- Header Section -->
-                <div class="text-center mb-5">
-                    <h1 class="heading-1 mb-3">Processo de Inscrição</h1>
-                    <p class="text-base text-muted">Selecione o tipo de inscrição que corresponde ao seu perfil profissional</p>
-                </div>
+    <div class="row">
+        <div class="col-12">
 
-                <!-- Registration Types Cards -->
-                <div class="row g-4">
-                    <!-- Certification Registration Card -->
-                    <div class="col-lg-4">
-                        <div class="card h-100 border-0 shadow-md registration-card">
-                            <div class="card-body card-spacing">
-                                <div class="text-center mb-4">
-                                    <div class="registration-icon bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                        <i class="fas fa-graduation-cap fa-2x" aria-hidden="true"></i>
-                                    </div>
-                                    <h3 class="card-title-lg text-warning mb-2">Pré-Inscrição para Certificação</h3>
-                                    <p class="text-sm text-muted">Para nacionais sem cadastro na ordem</p>
+            <!-- Registration Types Cards -->
+            <div class="row g-4">
+                <!-- Certification Registration Card -->
+                <div class="col-lg-4">
+                    <div class="card h-100 border registration-card">
+                        <div class="card-body">
+                            <div class="text-center mb-4">
+                                <div class="registration-icon bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                    <i class="ti ti-school fa-2x" aria-hidden="true"></i>
                                 </div>
+                                <h3 class="fw-bold mb-2 text-warning">Pré-Inscrição para Certificação</h3>
+                                <p class="text-sm text-muted">Para nacionais sem cadastro na ordem</p>
+                            </div>
 
                                 <div class="mb-4">
                                     <h6 class="fw-bold text-dark mb-3">Público-Alvo:</h6>
@@ -45,26 +43,26 @@
                                     </ul>
                                 </div>
 
-                                <div class="d-grid">
-                                    <a href="{{ route('guest.registrations.certification.wizard') }}" class="btn btn-warning btn-lg">
-                                        <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>Iniciar Pré-Inscrição para Certificação
-                                    </a>
-                                </div>
+                            <div class="d-grid">
+                                <a href="{{ route('guest.registrations.certification.wizard') }}" class="btn btn-warning">
+                                    <i class="ti ti-arrow-right me-2"></i>Iniciar Pré-Inscrição para Certificação
+                                </a>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Provisional Registration Card -->
-                    <div class="col-lg-4">
-                        <div class="card h-100 border-0 shadow-md registration-card">
-                            <div class="card-body card-spacing">
-                                <div class="text-center mb-4">
-                                    <div class="registration-icon bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                        <i class="fas fa-user-clock fa-2x" aria-hidden="true"></i>
-                                    </div>
-                                    <h3 class="card-title-lg text-info mb-2">Inscrição Provisória</h3>
-                                    <p class="text-sm text-muted">Para médicos estrangeiros</p>
+                <!-- Provisional Registration Card -->
+                <div class="col-lg-4">
+                    <div class="card h-100 border registration-card">
+                        <div class="card-body">
+                            <div class="text-center mb-4">
+                                <div class="registration-icon bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                    <i class="ti ti-clock-hour-4 fa-2x" aria-hidden="true"></i>
                                 </div>
+                                <h3 class="fw-bold mb-2 text-info">Inscrição Provisória</h3>
+                                <p class="text-sm text-muted">Para médicos estrangeiros</p>
+                            </div>
 
                                 <div class="mb-4">
                                     <h6 class="fw-bold text-dark mb-3">Público-Alvo:</h6>
@@ -85,26 +83,26 @@
                                     </ul>
                                 </div>
 
-                                <div class="d-grid">
-                                    <a href="{{ route('guest.registrations.provisional.wizard') }}" class="btn btn-info btn-lg">
-                                        <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>Iniciar Inscrição Provisória
-                                    </a>
-                                </div>
+                            <div class="d-grid">
+                                <a href="{{ route('guest.registrations.provisional.wizard') }}" class="btn btn-info">
+                                    <i class="ti ti-arrow-right me-2"></i>Iniciar Inscrição Provisória
+                                </a>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Effective Registration Card -->
-                    <div class="col-lg-4">
-                        <div class="card h-100 border-0 shadow-md registration-card">
-                            <div class="card-body card-spacing">
-                                <div class="text-center mb-4">
-                                    <div class="registration-icon bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                        <i class="fas fa-user-check fa-2x" aria-hidden="true"></i>
-                                    </div>
-                                    <h3 class="card-title-lg text-success mb-2">Inscrição Efetiva</h3>
-                                    <p class="text-sm text-muted">Para nacionais com exame aprovado</p>
+                <!-- Effective Registration Card -->
+                <div class="col-lg-4">
+                    <div class="card h-100 border registration-card">
+                        <div class="card-body">
+                            <div class="text-center mb-4">
+                                <div class="registration-icon bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                    <i class="ti ti-user-check fa-2x" aria-hidden="true"></i>
                                 </div>
+                                <h3 class="fw-bold mb-2 text-success">Inscrição Efetiva</h3>
+                                <p class="text-sm text-muted">Para nacionais com exame aprovado</p>
+                            </div>
 
                                 <div class="mb-4">
                                     <h6 class="fw-bold text-dark mb-3">Público-Alvo:</h6>
@@ -126,67 +124,62 @@
                                     </ul>
                                 </div>
 
-                                <div class="d-grid">
-                                    <a href="{{ route('guest.registrations.effective.wizard') }}" class="btn btn-success btn-lg">
-                                        <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>Iniciar Inscrição Efetiva
-                                    </a>
-                                </div>
+                            <div class="d-grid">
+                                <a href="{{ route('guest.registrations.effective.wizard') }}" class="btn btn-success">
+                                    <i class="ti ti-arrow-right me-2"></i>Iniciar Inscrição Efetiva
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Information Section -->
-                <div class="row mt-5">
-                    <div class="col-12">
-                        <div class="card border-0 bg-light">
-                            <div class="card-body card-spacing">
-                                <div class="row align-items-center">
-                                    <div class="col-md-8">
-                                        <h5 class="heading-5 mb-2">Precisa de Ajuda?</h5>
-                                        <p class="text-base text-muted mb-0">Consulte o regulamento de inscrições ou contacte-nos para esclarecimentos sobre o processo.</p>
-                                    </div>
-                                    <div class="col-md-4 text-md-end">
-                                        <a href="#" class="btn btn-outline-primary me-2">
-                                            <i class="fas fa-book me-2" aria-hidden="true"></i>Regulamento
-                                        </a>
-                                        <a href="#" class="btn btn-outline-secondary">
-                                            <i class="fas fa-phone me-2" aria-hidden="true"></i>Contacto
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+            <!-- Information Section -->
+            <div class="card border mt-4">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="fw-bold mb-2">Precisa de Ajuda?</h5>
+                            <p class="text-muted mb-0">Consulte o regulamento de inscrições ou contacte-nos para esclarecimentos sobre o processo.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <a href="#" class="btn btn-outline-primary me-2">
+                                <i class="ti ti-book me-2"></i>Regulamento
+                            </a>
+                            <a href="#" class="btn btn-outline-secondary">
+                                <i class="ti ti-phone me-2"></i>Contacto
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Back to Login -->
-                <div class="text-center mt-4">
-                    <a href="{{ route('login') }}" class="text-decoration-none text-muted">
-                        <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>Voltar ao Login
-                    </a>
-                </div>
+            <!-- Back to Login -->
+            <div class="text-center mt-4">
+                <a href="{{ route('login') }}" class="text-decoration-none text-muted">
+                    <i class="ti ti-arrow-left me-2"></i>Voltar ao Login
+                </a>
             </div>
         </div>
     </div>
 
     <style>
         .registration-card {
-            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .registration-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .registration-icon {
-            transition: transform var(--transition-normal);
+            transition: transform 0.3s ease;
         }
 
         .registration-card:hover .registration-icon {
             transform: scale(1.1);
         }
     </style>
-</x-layouts.guest-registration>
+</x-layouts.guest>
 

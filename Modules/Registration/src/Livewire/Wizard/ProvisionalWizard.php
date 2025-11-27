@@ -2,6 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard;
 
+use Modules\Registration\Livewire\Wizard\Concerns\CustomWizardRender;
 use Modules\Registration\Livewire\Wizard\Steps\Provisional\AcademicProfessionalStep;
 use Modules\Registration\Livewire\Wizard\Steps\Provisional\ChooseSubtypeStep;
 use Modules\Registration\Livewire\Wizard\Steps\Provisional\ContactInfoStep;
@@ -13,6 +14,7 @@ use Spatie\LivewireWizard\Components\WizardComponent;
 
 class ProvisionalWizard extends WizardComponent
 {
+    use CustomWizardRender;
     public function steps(): array
     {
         return [

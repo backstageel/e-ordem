@@ -2,6 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard;
 
+use Modules\Registration\Livewire\Wizard\Concerns\CustomWizardRender;
 use Modules\Registration\Livewire\Wizard\Steps\Effective\ReviewSubmitStep;
 use Modules\Registration\Livewire\Wizard\Steps\Effective\SelectGradeStep;
 use Modules\Registration\Livewire\Wizard\Steps\Effective\UploadDocumentsStep;
@@ -10,6 +11,7 @@ use Spatie\LivewireWizard\Components\WizardComponent;
 
 class EffectiveWizard extends WizardComponent
 {
+    use CustomWizardRender;
     public function steps(): array
     {
         return [

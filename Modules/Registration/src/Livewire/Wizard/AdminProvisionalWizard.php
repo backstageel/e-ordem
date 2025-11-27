@@ -2,6 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard;
 
+use Modules\Registration\Livewire\Wizard\Concerns\CustomWizardRender;
 use Modules\Registration\Livewire\Wizard\Steps\Admin\Provisional\AcademicProfessionalStep;
 use Modules\Registration\Livewire\Wizard\Steps\Admin\Provisional\ChooseSubtypeStep;
 use Modules\Registration\Livewire\Wizard\Steps\Admin\Provisional\ContactInfoStep;
@@ -13,6 +14,7 @@ use Spatie\LivewireWizard\Components\WizardComponent;
 
 class AdminProvisionalWizard extends WizardComponent
 {
+    use CustomWizardRender;
     public ?int $editingRegistrationId = null;
 
     public function mount(?int $registrationId = null): void

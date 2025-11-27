@@ -1,11 +1,18 @@
+<?php $page = 'admin-registrations'; ?>
 <x-layouts.app>
-    <x-slot name="header">
-        <h2 class="heading-2 mb-0">Pré-Inscrição para Certificação</h2>
-        <p class="text-sm text-muted mb-0 mt-2">Criar nova pré-inscrição para certificação (modo interno)</p>
-    </x-slot>
+    <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3">
+        <div class="flex-grow-1">
+            <h4 class="fw-bold mb-0">Pré-Inscrição para Certificação</h4>
+            <p class="text-muted mb-0">Criar nova pré-inscrição para certificação (modo interno)</p>
+        </div>
+    </div>
 
-    @livewire(\Modules\Registration\Livewire\Wizard\AdminCertificationWizard::class, [
-        'registrationId' => $registrationId ?? null,
-    ])
+    <div class="row">
+        <div class="col-12">
+            @livewire(\Modules\Registration\Livewire\Wizard\AdminCertificationWizard::class, [
+                'registrationId' => $registrationId ?? null,
+            ])
+        </div>
+    </div>
 </x-layouts.app>
 

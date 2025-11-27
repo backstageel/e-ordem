@@ -71,34 +71,8 @@ class ChooseCategoryStep extends StepComponent
             return;
         }
 
-        // Don't advance automatically - user must click "Continuar" button
+        // Advance automatically to next step
         // State is automatically saved by LivewireWizard
-    }
-
-    public function continue(): void
-    {
-        if ($this->category <= 0) {
-            $this->addError('category', 'Por favor, selecione uma categoria antes de continuar.');
-
-            return;
-        }
-
-        // Validate the selected category
-        $this->validate([
-            'category' => ['required', 'integer', 'in:1,2,3'],
-        ]);
-
-        // Get registration type by code
-        $categoryData = $this->categories[$this->category];
-        $registrationType = RegistrationType::where('code', $categoryData['code'])->first();
-
-        if (! $registrationType) {
-            $this->addError('category', 'Tipo de inscrição não encontrado para a categoria selecionada.');
-
-            return;
-        }
-
-        // Save state and advance
         $this->nextStep();
     }
 
