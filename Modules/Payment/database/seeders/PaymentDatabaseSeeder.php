@@ -11,6 +11,9 @@ class PaymentDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([]);
+        $this->call([
+            PaymentTypesAndMethodsSeeder::class,
+            PaymentSeeder::class,
+        ]);
     }
 }

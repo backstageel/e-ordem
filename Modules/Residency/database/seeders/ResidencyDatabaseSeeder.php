@@ -11,6 +11,9 @@ class ResidencyDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([]);
+        $this->call([
+            ResidencyProgramSeeder::class,
+            ResidencyApplicationSeeder::class,
+        ]);
     }
 }

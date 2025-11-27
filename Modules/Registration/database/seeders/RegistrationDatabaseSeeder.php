@@ -14,6 +14,7 @@ class RegistrationDatabaseSeeder extends Seeder
         $this->call([
             RegistrationTypesSeeder::class,
             RegistrationFeesSeeder::class,
+            ApplicationStatusSeeder::class,
             RegistrationSeeder::class,
         ]);
     }

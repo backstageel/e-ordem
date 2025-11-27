@@ -11,6 +11,9 @@ class MemberDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([]);
+        $this->call([
+            MemberSeeder::class,
+            MemberQuotaSeeder::class,
+        ]);
     }
 }

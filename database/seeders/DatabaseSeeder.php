@@ -25,31 +25,31 @@ class DatabaseSeeder extends Seeder
         \Artisan::call('ensure-database-state-is-loaded');
 
         $this->call([
-            // Configuration tables first
+            // Configuration tables first (core seeders)
             // DocumentTypeSeeder is now handled by EnsureDocumentTypesArePresent State
-            ExamTypeSeeder::class,
+            // ExamTypeSeeder is now handled by ExamDatabaseSeeder
             LanguageSeeder::class,
-            ApplicationStatusSeeder::class,
-            PaymentTypesAndMethodsSeeder::class,
+            // ApplicationStatusSeeder is now handled by RegistrationDatabaseSeeder
+            // PaymentTypesAndMethodsSeeder is now handled by PaymentDatabaseSeeder
             WorkflowStatesSeeder::class,
-            NotificationTemplatesSeeder::class,
+            // NotificationTemplatesSeeder is now handled by NotificationDatabaseSeeder
             UserProfilesSeeder::class,
-            CardTypesSeeder::class,
-            ExamTypesSeeder::class,
+            // CardTypesSeeder is now handled by CardDatabaseSeeder
+            // ExamTypesSeeder is now handled by ExamDatabaseSeeder
 
-            // Main entities
+            // Main entities (moved to modules)
             // UserSeeder is now handled by EnsureAdministratorIsPresent State
-            MemberSeeder::class,
+            // MemberSeeder is now handled by MemberDatabaseSeeder
             // RegistrationSeeder is now handled by RegistrationDatabaseSeeder
-            DocumentSeeder::class,
-            ExamSeeder::class,
-            ExamApplicationSeeder::class,
-            ExamResultSeeder::class,
-            PaymentSeeder::class,
+            // DocumentSeeder is now handled by DocumentDatabaseSeeder
+            // ExamSeeder is now handled by ExamDatabaseSeeder
+            // ExamApplicationSeeder is now handled by ExamDatabaseSeeder
+            // ExamResultSeeder is now handled by ExamDatabaseSeeder
+            // PaymentSeeder is now handled by PaymentDatabaseSeeder
 
-            // Medical Residency Seeders
-            ResidencyProgramSeeder::class,
-            ResidencyApplicationSeeder::class,
+            // Medical Residency Seeders (moved to modules)
+            // ResidencyProgramSeeder is now handled by ResidencyDatabaseSeeder
+            // ResidencyApplicationSeeder is now handled by ResidencyDatabaseSeeder
             // MedicalSpecialitySeeder is now handled by EnsureInitialConfigIsDone State
         ]);
 
