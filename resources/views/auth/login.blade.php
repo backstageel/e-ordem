@@ -10,18 +10,14 @@
                             <div class="authentication-card w-100">
                                 <div class="authen-overlay-item w-100">
                                     <div class="authen-head text-center">
-                                        <h1 class="text-white fs-32 fw-bold mb-2">{{ __('Seamless healthcare access') }} <br> {{ __('with smart, modern clinic') }}</h1>
-                                        <p class="text-light fw-normal text-light">{{ __('Experience efficient, secure, and user-friendly healthcare management designed for modern clinics and growing practices.') }}</p>
-                                    </div>
-                                    <div class="mt-4 mx-auto authen-overlay-img">
-                                        <img src="{{URL::asset('build/img/auth/cover-imgs-1.png')}}" alt="Img">
+                                        <h1 class="text-white fs-32 fw-bold mb-2">Sistema de Gestão Integrada da Ordem dos Médicos de Moçambique</h1>
                                     </div>
                                 </div>
                             </div>
                             <img src="{{URL::asset('build/img/auth/cover-imgs-2.png')}}" alt="cover-imgs-2" class="img-fluid cover-img">
                         </div>
                     </div> <!-- end row-->
-    
+
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="row justify-content-center align-items-center overflow-auto flex-wrap vh-100">
                             <div class="col-md-8 mx-auto">
@@ -29,16 +25,16 @@
                                     @csrf
                                     <div class="d-flex flex-column justify-content-lg-center p-4 p-lg-0 pb-0 flex-fill">
                                         <div class=" mx-auto mb-4 text-center">
-                                            <img src="{{URL::asset('build/img/logo.svg')}}" class="img-fluid" alt="Logo">
+                                            <img src="{{URL::asset('build/img/ordem-logo.png')}}" class="img-fluid" alt="Logo OrMM">
                                         </div>
                                         <div class="card border-1 p-lg-3 shadow-md rounded-3 m-0">
                                             <div class="card-body">
                                                 <div class="text-center mb-3">
-                                                    <h5 class="mb-1 fs-20 fw-bold">{{ __('Sign In') }}</h5>
-                                                    <p class="mb-0">{{ __('Please enter below details to access the dashboard') }}</p>
+                                                    <h5 class="mb-1 fs-20 fw-bold">e-Ordem</h5>
+                                                    <p class="mb-0">Por favor, insira os dados abaixo para aceder ao painel</p>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">{{ __('Email Address') }}</label>
+                                                    <label class="form-label">Endereço de Email</label>
                                                     <div class="input-group">
                                                         <span class="input-group-text border-end-0 bg-white">
                                                             <i class="ti ti-mail fs-14 text-dark"></i>
@@ -48,7 +44,7 @@
                                                                class="form-control border-start-0 ps-0 @error('email') is-invalid @enderror"
                                                                name="email"
                                                                id="email"
-                                                               placeholder="{{ __('Enter Email Address') }}"
+                                                               placeholder="Insira o endereço de email"
                                                                required
                                                                autofocus
                                                                aria-describedby="email-error">
@@ -60,7 +56,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">{{ __('Password') }}</label>
+                                                    <label class="form-label">Palavra-passe</label>
                                                     <div class="position-relative">
                                                         <div class="pass-group input-group position-relative border rounded">
                                                             <span class="input-group-text bg-white border-0">
@@ -73,8 +69,8 @@
                                                                    placeholder="****************"
                                                                    required
                                                                    aria-describedby="password-error">
-                                                            <span class="input-group-text bg-white border-0 toggle-password">
-                                                                <i class="ti toggle-password ti-eye-off text-dark fs-14"></i>
+                                                            <span class="input-group-text bg-white border-0 toggle-password d-flex align-items-center justify-content-center" style="cursor: pointer; min-width: 45px;" role="button" aria-label="Mostrar/Ocultar senha">
+                                                                <i class="ti ti-eye-off text-dark fs-14"></i>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -84,27 +80,21 @@
                                                         </div>
                                                     @enderror
                                                 </div>
-                                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="form-check form-check-md mb-0">
-                                                            <input class="form-check-input" id="remember_me" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                                            <label for="remember_me" class="form-check-label mt-0 text-dark">{{ __('Remember Me') }}</label>
-                                                        </div>
-                                                    </div>
+                                                <div class="d-flex align-items-center justify-content-end mb-3">
                                                     <div class="text-end">
-                                                        <a href="{{ route('password.request') }}" class="text-danger">{{ __('Forgot Password?') }}</a>
+                                                        <a href="{{ route('password.request') }}" class="text-danger">Esqueceu a palavra-passe?</a>
                                                     </div>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <button type="submit" class="btn bg-primary text-white w-100">{{ __('Login') }}</button>
+                                                    <button type="submit" class="btn bg-primary text-white w-100">Entrar</button>
                                                 </div>
                                                 <div class="login-or position-relative mb-3">
-                                                    <span class="span-or">{{ __('OR') }}</span>
+                                                    <span class="span-or">OU</span>
                                                 </div>
                                                 <div class="text-center">
-                                                    <h6 class="fw-normal fs-14 text-dark mb-0">{{ __("Don't have an account yet?") }}
-                                                        <a href="{{ route('register') }}" class="hover-a"> {{ __('Register') }}</a>
-                                                    </h6>
+                                                    <a href="{{ route('guest.registrations.type') }}" class="btn btn-outline-primary w-100">
+                                                        <i class="ti ti-user-plus me-2"></i>Ainda não é membro? Fazer Inscrição
+                                                    </a>
                                                 </div>
                                             </div><!-- end card body -->
                                         </div><!-- end card -->
@@ -113,32 +103,38 @@
                                 <p class="fs-14 text-dark text-center mt-4">Copyright &copy; {{ date('Y') }} - {{ config('app.name') }}</p>
                             </div> <!-- end row-->
                         </div>
-    
+
                     </div>
                 </div>
                 <!-- end row-->
-    
+
             </div>
         </div>
         <!-- End Content -->
-    
+
         @push('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // Toggle password visibility
                 const togglePassword = document.querySelector('.toggle-password');
                 const passwordInput = document.getElementById('password');
-    
+
                 if (togglePassword && passwordInput) {
-                    togglePassword.addEventListener('click', function() {
+                    togglePassword.addEventListener('click', function(e) {
+                        e.preventDefault();
                         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                         passwordInput.setAttribute('type', type);
-    
+
                         // Toggle eye icon
                         const eyeIcon = this.querySelector('i');
                         if (eyeIcon) {
-                            eyeIcon.classList.toggle('ti-eye-off');
-                            eyeIcon.classList.toggle('ti-eye');
+                            if (type === 'password') {
+                                eyeIcon.classList.remove('ti-eye');
+                                eyeIcon.classList.add('ti-eye-off');
+                            } else {
+                                eyeIcon.classList.remove('ti-eye-off');
+                                eyeIcon.classList.add('ti-eye');
+                            }
                         }
                     });
                 }

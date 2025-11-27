@@ -26,7 +26,7 @@
                 @if(!empty($system_alerts))
                 <div class="row mb-4">
                     <div class="col-12">
-                        @foreach($system_alerts as $alert)
+                        @foreach($system_alerts as $alert
                         <div class="alert alert-{{ $alert['type'] }} alert-dismissible fade show" role="alert">
                             <i class="ti ti-{{ str_replace('fas fa-', '', $alert['icon']) }} me-2"></i>
                             <strong>{{ $alert['title'] }}</strong> {{ $alert['message'] }}
