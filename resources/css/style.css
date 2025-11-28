@@ -38,7 +38,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --orange: #E04F16;
   --pink: #DD2590;
   --purple: #800080;
-  --teal: #0E9384;
+  --teal: #2d5016;
   --warning: #E2B93B;
   --black: #000;
   --gray-100: #CED1D7;
@@ -71,7 +71,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --purple-hover: #7F177F;
   --pink-hover: #E4479B;
   --orange-hover: #CF5A32;
-  --teal-hover: #358E82;
+  --teal-hover: #234010;
   --cyan-hover: #39A4C3;
   --dark-hover: #080A0B;
   --cyan-transparent: #E9F8FB;
@@ -87,7 +87,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --purple-transparent: #F9F2F9;
   --secondary-transparent: #E8FBFA;
   --success-transparent: #F4FBF7;
-  --teal-transparent: #E9F5F4;
+  --teal-transparent: #e9f0e6;
   --warning-transparent: #FEFBF5;
   --heading-color: #0A1B39;
   --border-color: #E7E8EB;
@@ -106,7 +106,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --pink-rgb: 221, 37, 144;
   --purple-rgb: 128, 0, 128;
   --warning-rgb: 253, 175, 34;
-  --teal-rgb: 14, 147, 132;
+  --teal-rgb: 45, 80, 22;
   --body-color-rgb: 107, 114, 128;
   --box-shadow: 0px 0px 35px 0px rgba(104, 134, 177, 0.15);
   --box-shadow-sm: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
@@ -161,7 +161,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --purple-transparent: #2B172B;
   --secondary-transparent: #103937;
   --success-transparent: #142B1E;
-  --teal-transparent: #1B3230;
+  --teal-transparent: #1a2e0f;
   --warning-transparent: #31240A;
   --dark-hover: #DADFE2;
   --border-color: #161641;
@@ -6169,8 +6169,8 @@ Author URL: https://themeforest.net/user/dreamstechnologies
 }
 
 [data-color=teal] {
-  --primary: #0E9384;
-  --primary-rgb: 14, 147, 132;
+  --primary: #2d5016;
+  --primary-rgb: 45, 80, 22;
 }
 
 /*

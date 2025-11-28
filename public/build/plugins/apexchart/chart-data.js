@@ -736,7 +736,7 @@ $(document).ready(function () {
 
     chart.render();
   }
-
+  
     // s-col-5
     if ($('#s-col-5').length > 0) {
       var sCol = {

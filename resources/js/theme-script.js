@@ -7,7 +7,7 @@
 			theme: "light",
 			nav: "vertical",
 			color: {
-				color: "primary"
+				color: "teal"
 			},
 			layout: {
 				mode: "fluid"

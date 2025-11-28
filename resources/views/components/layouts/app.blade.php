@@ -8,6 +8,9 @@
     $htmlAttributes = [];
     $htmlLang = 'en';
 
+    // Set default theme color to teal (closest to OrMM green logo)
+    $htmlAttributes['data-color'] = 'teal';
+
     if (Route::is(['layout-dark'])) {
         $htmlAttributes['data-bs-theme'] = 'dark';
     }

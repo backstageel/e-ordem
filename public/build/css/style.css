@@ -38,7 +38,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --orange: #E04F16;
   --pink: #DD2590;
   --purple: #800080;
-  --teal: #0E9384;
+  --teal: #2d5016;
   --warning: #E2B93B;
   --black: #000;
   --gray-100: #CED1D7;
@@ -71,7 +71,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --purple-hover: #7F177F;
   --pink-hover: #E4479B;
   --orange-hover: #CF5A32;
-  --teal-hover: #358E82;
+  --teal-hover: #234010;
   --cyan-hover: #39A4C3;
   --dark-hover: #080A0B;
   --cyan-transparent: #E9F8FB;
@@ -87,7 +87,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --purple-transparent: #F9F2F9;
   --secondary-transparent: #E8FBFA;
   --success-transparent: #F4FBF7;
-  --teal-transparent: #E9F5F4;
+  --teal-transparent: #e9f0e6;
   --warning-transparent: #FEFBF5;
   --heading-color: #0A1B39;
   --border-color: #E7E8EB;
@@ -106,7 +106,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --pink-rgb: 221, 37, 144;
   --purple-rgb: 128, 0, 128;
   --warning-rgb: 253, 175, 34;
-  --teal-rgb: 14, 147, 132;
+  --teal-rgb: 45, 80, 22;
   --body-color-rgb: 107, 114, 128;
   --box-shadow: 0px 0px 35px 0px rgba(104, 134, 177, 0.15);
   --box-shadow-sm: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
@@ -161,7 +161,7 @@ Author URL: https://themeforest.net/user/dreamstechnologies
   --purple-transparent: #2B172B;
   --secondary-transparent: #103937;
   --success-transparent: #142B1E;
-  --teal-transparent: #1B3230;
+  --teal-transparent: #1a2e0f;
   --warning-transparent: #31240A;
   --dark-hover: #DADFE2;
   --border-color: #161641;
@@ -6169,8 +6169,8 @@ Author URL: https://themeforest.net/user/dreamstechnologies
 }
 
 [data-color=teal] {
-  --primary: #0E9384;
-  --primary-rgb: 14, 147, 132;
+  --primary: #2d5016;
+  --primary-rgb: 45, 80, 22;
 }
 
 /*
@@ -6641,6 +6641,30 @@ select.form-control-sm:not([size]):not([multiple]) {
 }
 .form-select:focus {
   box-shadow: none;
+}
+.form-select.is-invalid,
+.form-control.is-invalid {
+  border-color: var(--danger);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 3.6 .4.4.4-.4m0 4.8-.4-.4-.4.4'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  padding-right: calc(1.5em + 0.75rem);
+}
+.form-select.is-invalid:focus,
+.form-control.is-invalid:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 0.25rem rgba(var(--danger-rgb), 0.25);
+}
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: var(--danger);
+}
+.invalid-feedback.d-block {
+  display: block !important;
 }
 
 .form-label {
