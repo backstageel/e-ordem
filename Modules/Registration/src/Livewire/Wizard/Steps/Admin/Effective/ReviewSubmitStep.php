@@ -2,6 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard\Steps\Admin\Effective;
 
+use Livewire\Attributes\On;
 use Modules\Registration\Models\RegistrationType;
 use Spatie\LivewireWizard\Components\StepComponent;
 
@@ -56,5 +57,15 @@ class ReviewSubmitStep extends StepComponent
         return view('registration::livewire.registration.wizard.steps.admin.effective.review-submit', [
             'summary' => $this->summary(),
         ]);
+    }
+
+    /**
+     * Handle wizard next button click - calls submit.
+     * This allows the wizard buttons to trigger validation before navigation.
+     */
+    #[On('wizard-next-step')]
+    public function handleWizardNext(): void
+    {
+        $this->submit();
     }
 }

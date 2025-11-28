@@ -2,6 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard\Steps\Admin\Effective;
 
+use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
 use Modules\Registration\Models\RegistrationType;
 use Spatie\LivewireWizard\Components\StepComponent;
@@ -80,6 +81,16 @@ class UploadDocumentsStep extends StepComponent
         // Effective registrations don't use temporary storage
 
         $this->nextStep();
+    }
+
+    /**
+     * Handle wizard next button click - calls saveAndNext.
+     * This allows the wizard buttons to trigger validation before navigation.
+     */
+    #[On('wizard-next-step')]
+    public function handleWizardNext(): void
+    {
+        $this->saveAndNext();
     }
 
     public function render()

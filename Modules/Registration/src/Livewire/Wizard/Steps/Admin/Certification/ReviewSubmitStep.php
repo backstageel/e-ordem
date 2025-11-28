@@ -8,6 +8,7 @@ use App\Models\District;
 use App\Models\Gender;
 use App\Models\IdentityDocument;
 use App\Models\Province;
+use Livewire\Attributes\On;
 use Modules\Registration\Models\RegistrationType;
 use Spatie\LivewireWizard\Components\StepComponent;
 
@@ -264,6 +265,16 @@ class ReviewSubmitStep extends StepComponent
         $chooseCategoryStep = new ChooseCategoryStep;
 
         return $chooseCategoryStep->getCategoriesProperty();
+    }
+
+    /**
+     * Handle wizard next button click - calls submit.
+     * This allows the wizard buttons to trigger validation before navigation.
+     */
+    #[On('wizard-next-step')]
+    public function handleWizardNext(): void
+    {
+        $this->submit();
     }
 
     public function render()

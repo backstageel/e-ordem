@@ -2,6 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard\Steps\Admin\Provisional;
 
+use Livewire\Attributes\On;
 use Modules\Registration\Models\RegistrationType;
 use Modules\Registration\Models\TemporaryRegistration;
 use Spatie\LivewireWizard\Components\StepComponent;
@@ -79,6 +80,16 @@ class ContactInfoStep extends StepComponent
         ]);
 
         $this->nextStep();
+    }
+
+    /**
+     * Handle wizard next button click - calls continue.
+     * This allows the wizard buttons to trigger validation before navigation.
+     */
+    #[On('wizard-next-step')]
+    public function handleWizardNext(): void
+    {
+        $this->continue();
     }
 
     public function render()

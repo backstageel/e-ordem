@@ -2,12 +2,17 @@
 
 namespace Modules\Registration\Livewire\Wizard\Steps\Admin\Provisional;
 
+use Livewire\Attributes\On;
 use Modules\Registration\Models\TemporaryRegistration;
 use Spatie\LivewireWizard\Components\StepComponent;
 
 class PersonalInfoStep extends StepComponent
 {
     public array $form = [];
+
+    public array $genders = [];
+    public array $civilStates = [];
+    public array $countries = [];
 
     public function mount(): void
     {
@@ -31,6 +36,16 @@ class PersonalInfoStep extends StepComponent
                 }
             }
         }
+
+        // Load select options as arrays
+        $this->loadSelectOptions();
+    }
+
+    protected function loadSelectOptions(): void
+    {
+        $this->genders = \App\Models\Gender::query()->orderBy('name')->get(['id', 'name'])->toArray();
+        $this->civilStates = \App\Models\CivilState::query()->orderBy('name')->get(['id', 'name'])->toArray();
+        $this->countries = \App\Models\Country::query()->orderBy('name')->get(['id', 'name'])->toArray();
     }
 
     public function saveAndNext(): void
@@ -55,6 +70,16 @@ class PersonalInfoStep extends StepComponent
         $temp->setStepData(3, $this->form);
 
         $this->nextStep();
+    }
+
+    /**
+     * Handle wizard next button click - calls saveAndNext.
+     * This allows the wizard buttons to trigger validation before navigation.
+     */
+    #[On('wizard-next-step')]
+    public function handleWizardNext(): void
+    {
+        $this->saveAndNext();
     }
 
     protected function rules(): array
@@ -100,51 +125,51 @@ class PersonalInfoStep extends StepComponent
 
     public function getGendersProperty()
     {
-        return \App\Models\Gender::query()->orderBy('name')->get(['id', 'name']);
+        return $this->genders;
     }
 
     public function getCivilStatesProperty()
     {
-        return \App\Models\CivilState::query()->orderBy('name')->get(['id', 'name']);
+        return $this->civilStates;
     }
 
     public function getCountriesProperty()
     {
-        return \App\Models\Country::query()->orderBy('name')->get(['id', 'name']);
+        return $this->countries;
     }
 
     public function getBirthProvincesProperty()
     {
         $countryId = (int) ($this->form['birth_country_id'] ?? 0);
         if (! $countryId) {
-            return collect();
+            return [];
         }
 
         $provinces = \App\Models\Province::query()->where('country_id', $countryId)->orderBy('name')->get(['id', 'name']);
 
         // If country has no provinces, return empty (will show "Estrangeiro" option in view)
         if ($provinces->isEmpty()) {
-            return collect();
+            return [];
         }
 
-        return $provinces;
+        return $provinces->toArray();
     }
 
     public function getBirthDistrictsProperty()
     {
         $provinceId = (int) ($this->form['birth_province_id'] ?? 0);
         if (! $provinceId) {
-            return collect();
+            return [];
         }
 
         $districts = \App\Models\District::query()->where('province_id', $provinceId)->orderBy('name')->get(['id', 'name']);
 
         // If province has no districts, return empty (will show "Estrangeiro" option in view)
         if ($districts->isEmpty()) {
-            return collect();
+            return [];
         }
 
-        return $districts;
+        return $districts->toArray();
     }
 
     public function getBirthCountryHasProvincesProperty(): bool

@@ -11,29 +11,52 @@
             </div>
         @endif
 
-        <x-bootstrap::form.form wire:submit="verify">
-            <x-bootstrap::form.input
-                name="registration_number"
-                label="Número de Inscrição"
-                wire:model="registration_number"
-                required
-                help="O seu número de inscrição do exame"
-            />
+        <form wire:submit="verify">
+            <div class="mb-3">
+                <label for="registration_number" class="form-label">Número de Inscrição <span class="text-danger">*</span></label>
+                <input
+                    type="text"
+                    id="registration_number"
+                    name="registration_number"
+                    class="form-control @error('registration_number') is-invalid @enderror"
+                    wire:model="registration_number"
+                    required
+                    placeholder="Número de inscrição do exame"
+                />
+                <small class="form-text text-muted">O seu número de inscrição do exame</small>
+                @error('registration_number')
+                    <div class="invalid-feedback d-block">
+                        <i class="ti ti-exclamation-circle me-1" aria-hidden="true"></i>
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
 
-            <x-bootstrap::form.input
-                name="exam_result_id"
-                label="ID do Resultado do Exame"
-                wire:model="exam_result_id"
-                required
-                help="O ID do seu resultado do exame"
-            />
+            <div class="mb-3">
+                <label for="exam_result_id" class="form-label">ID do Resultado do Exame <span class="text-danger">*</span></label>
+                <input
+                    type="text"
+                    id="exam_result_id"
+                    name="exam_result_id"
+                    class="form-control @error('exam_result_id') is-invalid @enderror"
+                    wire:model="exam_result_id"
+                    required
+                    placeholder="ID do resultado do exame"
+                />
+                <small class="form-text text-muted">O ID do seu resultado do exame</small>
+                @error('exam_result_id')
+                    <div class="invalid-feedback d-block">
+                        <i class="ti ti-exclamation-circle me-1" aria-hidden="true"></i>
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
 
             <div class="d-flex justify-content-end gap-2 mt-4">
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-check me-2" aria-hidden="true"></i>Verificar
                 </button>
             </div>
-        </x-bootstrap::form.form>
+        </form>
     </div>
 </div>
-

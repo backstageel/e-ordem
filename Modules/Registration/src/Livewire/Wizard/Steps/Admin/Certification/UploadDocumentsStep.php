@@ -2,6 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard\Steps\Admin\Certification;
 
+use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
 use Modules\Registration\Models\RegistrationType;
 use Modules\Registration\Models\TemporaryRegistration;
@@ -121,6 +122,16 @@ class UploadDocumentsStep extends StepComponent
         $temp->setStepData(6, ['uploads' => $this->uploads]);
 
         $this->nextStep();
+    }
+
+    /**
+     * Handle wizard next button click - calls saveAndNext.
+     * This allows the wizard buttons to trigger validation before navigation.
+     */
+    #[On('wizard-next-step')]
+    public function handleWizardNext(): void
+    {
+        $this->saveAndNext();
     }
 
     public function render()
