@@ -40,6 +40,7 @@ trait CustomWizardRender
         }
 
         // Dispatch event to current step to call saveAndNext or continue
+        // The step will handle validation and call nextStep() internally
         $this->dispatch('wizard-next-step')->to($this->currentStepName);
     }
 
@@ -56,15 +57,5 @@ trait CustomWizardRender
         $this->showStep($stepName, $currentStepState);
     }
 
-    /**
-     * Listen for step completion events from steps.
-     */
-    #[On('step-completed')]
-    public function handleStepCompleted(): void
-    {
-        // Step has completed its saveAndNext/continue, now navigate
-        $currentStepState = $this->getCurrentStepState();
-        $this->nextStep($currentStepState);
-    }
 }
 

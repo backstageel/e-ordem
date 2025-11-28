@@ -79,12 +79,13 @@ class IdentityAddressStep extends StepComponent
         ]);
         $temp->setStepData(4, $this->form);
 
-        // Notify wizard that step is completed
-        $this->dispatch('step-completed')->to($this->wizardClassName);
+        // Use the package's built-in nextStep() method
+        $this->nextStep();
     }
 
     /**
      * Handle wizard next button click - calls saveAndNext.
+     * This allows the wizard buttons to trigger validation before navigation.
      */
     #[On('wizard-next-step')]
     public function handleWizardNext(): void
