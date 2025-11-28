@@ -11,6 +11,13 @@ class PersonalInfoStep extends StepComponent
 {
     public array $form = [];
 
+    // Public properties for select options - loaded in mount()
+    public $genders = [];
+
+    public $civilStates = [];
+
+    public $countries = [];
+
     public function mount(): void
     {
         $this->form = (array) ($this->state()->forStepClass(self::class)['form'] ?? []);
@@ -33,6 +40,17 @@ class PersonalInfoStep extends StepComponent
                 }
             }
         }
+
+        // Load select options data
+        $this->loadSelectOptions();
+    }
+
+    protected function loadSelectOptions(): void
+    {
+        // Convert Collections to arrays for proper Livewire serialization
+        $this->genders = \App\Models\Gender::query()->orderBy('name')->get(['id', 'name'])->toArray();
+        $this->civilStates = \App\Models\CivilState::query()->orderBy('name')->get(['id', 'name'])->toArray();
+        $this->countries = \App\Models\Country::query()->orderBy('name')->get(['id', 'name'])->toArray();
     }
 
     public function saveAndNext(): void
@@ -124,17 +142,32 @@ class PersonalInfoStep extends StepComponent
 
     public function getGendersProperty()
     {
-        return \App\Models\Gender::query()->orderBy('name')->get(['id', 'name']);
+        // Return from public property if loaded, otherwise load it
+        if (empty($this->genders)) {
+            $this->loadSelectOptions();
+        }
+
+        return $this->genders;
     }
 
     public function getCivilStatesProperty()
     {
-        return \App\Models\CivilState::query()->orderBy('name')->get(['id', 'name']);
+        // Return from public property if loaded, otherwise load it
+        if (empty($this->civilStates)) {
+            $this->loadSelectOptions();
+        }
+
+        return $this->civilStates;
     }
 
     public function getCountriesProperty()
     {
-        return \App\Models\Country::query()->orderBy('name')->get(['id', 'name']);
+        // Return from public property if loaded, otherwise load it
+        if (empty($this->countries)) {
+            $this->loadSelectOptions();
+        }
+
+        return $this->countries;
     }
 
     public function getBirthProvincesProperty()

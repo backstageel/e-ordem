@@ -25,7 +25,7 @@
         position: fixed;
         height: 56px;
         width: 276px;
-        padding: 13px 22px;
+        padding: 5px 22px;
         border-bottom: 1px solid $menu-item-border;
         .logo {
             display: block;
@@ -82,7 +82,7 @@
         }
     }
     .sidebar-inner {
-        width: 100%;        
+        width: 100%;
     }
     .sidebar-menu {
         margin-top: 56px;
@@ -150,7 +150,7 @@
                     padding: 10px 15px ;
                     position: relative;
                     color: $gray-900;
-                    border-bottom: none;                    
+                    border-bottom: none;
                     &.active{
                         background: $menu-light-bg;
                         border-radius: 5px;
@@ -211,7 +211,7 @@
                                     opacity: 1;
                                 }
                             }
-                        }  
+                        }
                     }
                     & > li {
                         &.active a{
@@ -237,7 +237,7 @@
                                 }
                                 span {
                                     color: $primary;
-                                    
+
                                 }
                             }
                         }
@@ -256,7 +256,7 @@
                     }
                 }
             }
-            li {            
+            li {
                 &.menu-title {
                     font-weight: $font-weight-semibold;
                     color: $menu-title-color;
@@ -292,7 +292,7 @@
                                         color: $menu-item-hover-color;
                                     }
                                 }
-                                &:hover {                                 
+                                &:hover {
                                     color: $menu-item-hover-color;
                                     .menu-arrow {
                                         &::before {
@@ -302,7 +302,7 @@
                                     &::after {
                                         color: $menu-item-hover-color;
                                     }
-                                }                                
+                                }
                                 &::before {
                                     content: "";
                                     position: absolute;
@@ -329,7 +329,7 @@
                             }
                         }
                     }
-                    
+
                     a {
                         &.subdrop {
                             color: $menu-item-hover-color;
@@ -347,8 +347,8 @@
                     a {
                         &.subdrop, &.active {
                             background: transparent;
-                            color: $menu-item-active-color;   
-                            border: 0;                         
+                            color: $menu-item-active-color;
+                            border: 0;
                             .menu-arrow {
                                 &::before {
                                     border-color: $menu-item-active-color;
@@ -372,7 +372,7 @@
                 }
             }
 
-        }            
+        }
         .menu-arrow {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -415,7 +415,7 @@
         }
         &.subdrop {
             .menu-arrow {
-                transform: translateY(-50%) rotate(90deg);                          
+                transform: translateY(-50%) rotate(90deg);
                 background: #FFEDDC;
             }
         }
@@ -425,7 +425,7 @@
             .menu-arrow {
                 &::before {
                     content: "\ea5f";
-                }  
+                }
             }
         }
     }
@@ -496,7 +496,7 @@
                     opacity: 1;
                     transform: rotate(180deg);
                 }
-            }  
+            }
             .sidebar {
                 .sidebar-menu {
                     .clinicdropdown > a {
@@ -522,13 +522,13 @@
                             &::after {
                                 margin-left: 0;
                             }
-                        }                                                       
+                        }
                         svg {
                             margin-right:0;
                         }
                     }
                 }
-            } 
+            }
         }
         .sidebar {
             width: 70px;
@@ -570,19 +570,19 @@
                     display: block;
                 }
             }
-            .sidebar {    
-                width: 276px;    
-                .sidebar-logo {   
-                    width: 276px;  
-                    padding: 13px 22px;   
+            .sidebar {
+                width: 276px;
+                .sidebar-logo {
+                    width: 276px;
+                    padding: 13px 22px;
                     .logo {
                         display: block;
                     }
                     .logo-small {
                         display: none;
                         text-align: center;
-                    } 
-                }     
+                    }
+                }
                 .sidebar-menu {
                     padding: 24px 24px 0;
                     ul {
@@ -605,7 +605,7 @@
                 .user-names{
                     display: none;
                 }
-            } 
+            }
         }
         .sidebar-right {
             display: block;
@@ -620,7 +620,7 @@
                             span{
                                 display:inline-block;
                             }
-                        }      
+                        }
                     }
                 }
                 .menu-title {
@@ -690,7 +690,7 @@
             .sidebar-logo-content{
                 justify-content: center !important;
             }
-             @include respond-below(lg) {                
+             @include respond-below(lg) {
                 width: 276px;
                 .logo-small{
                     display: none;
@@ -728,7 +728,7 @@
             }
         }
     }
-     
+
     &.expand-menu {
         .sidebar {
             .sidebar-menu > ul > li.submenu-open ul li a {
@@ -745,7 +745,7 @@
             }
             .sidebar-menu {
                 > ul {
-                    li { 
+                    li {
                         &.menu-title {
                             &::before {
                                 content: none;
@@ -761,7 +761,7 @@
                 }
             }
         }
-        
+
     }
 }
 .slide-nav{

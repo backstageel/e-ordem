@@ -22,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
+        // Set application locale to Portuguese
+        app()->setLocale('pt');
+
         // Register model observers
         \App\Models\Payment::observe(\App\Observers\PaymentObserver::class);
     }
