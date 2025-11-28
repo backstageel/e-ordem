@@ -84,12 +84,4 @@
             </div>
         @enderror
     </div>
-    <div class="card-footer bg-transparent border-top d-flex justify-content-between">
-        <button type="button" class="btn btn-outline-secondary" wire:click="previousStep" aria-label="Passo Anterior">
-            <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>Voltar
-        </button>
-        <button type="button" class="btn btn-success" wire:click="submit" wire:loading.attr="disabled" aria-label="Submeter Inscrição">
-            <i class="fas fa-check me-2" aria-hidden="true"></i>Submeter
-        </button>
-    </div>
 </div>

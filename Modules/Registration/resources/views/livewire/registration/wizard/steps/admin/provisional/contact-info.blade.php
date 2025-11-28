@@ -43,15 +43,6 @@
                     {{ $message }}
                 </div>
             @enderror
-
-            <div class="d-flex justify-content-between mt-4">
-                <button type="button" class="btn btn-outline-secondary" wire:click="previousStep">
-                    <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>Voltar
-                </button>
-                <button type="submit" class="btn btn-primary">
-                    Continuar<i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
-                </button>
-            </div>
         </x-bootstrap::form.form>
     </div>
 </div>

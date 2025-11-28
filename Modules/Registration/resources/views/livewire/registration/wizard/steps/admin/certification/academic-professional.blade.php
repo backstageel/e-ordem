@@ -219,12 +219,4 @@
             </div>
         </div>
     </div>
-    <div class="card-footer bg-transparent border-top d-flex justify-content-between">
-        <button type="button" class="btn btn-outline-secondary" wire:click="previousStep" aria-label="Passo Anterior">
-            <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>Voltar
-        </button>
-        <button type="button" class="btn btn-primary" wire:click="saveAndNext" wire:loading.attr="disabled" aria-label="Continuar para o Próximo Passo">
-            Continuar<i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
-        </button>
-    </div>
 </div>
