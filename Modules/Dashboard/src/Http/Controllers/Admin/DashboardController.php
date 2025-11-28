@@ -23,13 +23,16 @@ class DashboardController extends Controller
      */
     public function index(): View
     {
+
         $statistics = $this->getStatistics();
         $paymentStatistics = $this->getPaymentStatistics();
         $recentActivities = $this->getRecentActivities();
+
         $registrationChartData = $this->getRegistrationChartData();
         $membersBySpecialityChartData = $this->getMembersBySpecialityChartData();
         $sparklineChartData = $this->getSparklineChartData();
         $systemAlerts = $this->getSystemAlerts();
+
 
         return view('dashboard::admin.index', array_merge(
             $statistics,
@@ -191,48 +194,59 @@ class DashboardController extends Controller
     private function getRegistrationChartData(): array
     {
         $months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-        $provisionalData = [];
-        $effectiveData = [];
+        
+        // Initialize data arrays with zeros
+        $provisionalData = array_fill(0, 12, 0);
+        $effectiveData = array_fill(0, 12, 0);
+        $approvedData = array_fill(0, 12, 0);
+        $pendingData = array_fill(0, 12, 0);
+        $rejectedData = array_fill(0, 12, 0);
+        $underReviewData = array_fill(0, 12, 0);
 
-        for ($i = 1; $i <= 12; $i++) {
-            $provisionalData[] = Registration::provisional()
-                ->whereMonth('created_at', $i)
-                ->whereYear('created_at', now()->year)
-                ->count();
+        // Get provisional registrations grouped by month
+        $provisionalStats = Registration::provisional()
+            ->selectRaw('EXTRACT(MONTH FROM created_at) as month, count(*) as count')
+            ->whereYear('created_at', now()->year)
+            ->groupBy('month')
+            ->get();
 
-            $effectiveData[] = Registration::effective()
-                ->whereMonth('created_at', $i)
-                ->whereYear('created_at', now()->year)
-                ->count();
+        foreach ($provisionalStats as $stat) {
+            $provisionalData[(int)$stat->month - 1] = $stat->count;
         }
 
-        // Data for registration status statistics chart
-        $approvedData = [];
-        $pendingData = [];
-        $rejectedData = [];
-        $underReviewData = [];
+        // Get effective registrations grouped by month
+        $effectiveStats = Registration::effective()
+            ->selectRaw('EXTRACT(MONTH FROM created_at) as month, count(*) as count')
+            ->whereYear('created_at', now()->year)
+            ->groupBy('month')
+            ->get();
 
-        for ($i = 1; $i <= 12; $i++) {
-            $approvedData[] = Registration::where('status', RegistrationStatus::APPROVED->value)
-                ->whereMonth('created_at', $i)
-                ->whereYear('created_at', now()->year)
-                ->count();
+        foreach ($effectiveStats as $stat) {
+            $effectiveData[(int)$stat->month - 1] = $stat->count;
+        }
 
-            $pendingStatuses = RegistrationStatus::getPendingStatuses();
-            $pendingData[] = Registration::whereIn('status', array_map(fn ($status) => $status->value, $pendingStatuses))
-                ->whereMonth('created_at', $i)
-                ->whereYear('created_at', now()->year)
-                ->count();
+        // Get status statistics grouped by month and status
+        $statusStats = Registration::selectRaw('EXTRACT(MONTH FROM created_at) as month, status, count(*) as count')
+            ->whereYear('created_at', now()->year)
+            ->groupBy('month', 'status')
+            ->get();
 
-            $rejectedData[] = Registration::where('status', RegistrationStatus::REJECTED->value)
-                ->whereMonth('created_at', $i)
-                ->whereYear('created_at', now()->year)
-                ->count();
+        $pendingStatuses = RegistrationStatus::getPendingStatuses();
+        $pendingStatusValues = array_map(fn ($status) => $status->value, $pendingStatuses);
 
-            $underReviewData[] = Registration::where('status', RegistrationStatus::UNDER_REVIEW->value)
-                ->whereMonth('created_at', $i)
-                ->whereYear('created_at', now()->year)
-                ->count();
+        foreach ($statusStats as $stat) {
+            $monthIndex = (int)$stat->month - 1;
+            $statusValue = $stat->status instanceof RegistrationStatus ? $stat->status->value : $stat->status;
+
+            if ($statusValue === RegistrationStatus::APPROVED->value) {
+                $approvedData[$monthIndex] += $stat->count;
+            } elseif (in_array($statusValue, $pendingStatusValues)) {
+                $pendingData[$monthIndex] += $stat->count;
+            } elseif ($statusValue === RegistrationStatus::REJECTED->value) {
+                $rejectedData[$monthIndex] += $stat->count;
+            } elseif ($statusValue === RegistrationStatus::UNDER_REVIEW->value) {
+                $underReviewData[$monthIndex] += $stat->count;
+            }
         }
 
         return [
