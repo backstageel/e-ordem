@@ -1,19 +1,18 @@
+<?php $page = 'admin-registrations'; ?>
 <x-layouts.app>
-    <x-slot name="header">
-        <h2 class="heading-2 mb-0">Nova Inscrição</h2>
-        <p class="text-sm text-muted mb-0 mt-2">Selecione o tipo de inscrição a criar</p>
-    </x-slot>
-
-    <div class="container-fluid py-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <!-- Header Section -->
-                <div class="text-center mb-5">
-                    <h1 class="heading-1 mb-3">Processo de Inscrição</h1>
-                    <p class="text-base text-muted">Selecione o tipo de inscrição que corresponde ao perfil profissional do candidato</p>
+    <div class="page-wrapper">
+        <div class="content pb-0">
+            <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2 pb-3">
+                <div class="flex-grow-1">
+                    <h4 class="fw-bold mb-0">Processo de Inscrição</h4>
+                    <p class="text-muted mb-0">Selecione o tipo de inscrição que corresponde ao perfil profissional do candidato</p>
                 </div>
+            </div>
 
-                <!-- Registration Types Cards -->
+            <div class="container-fluid py-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <!-- Registration Types Cards -->
                 <div class="row g-4">
                     <!-- Certification Registration Card -->
                     <div class="col-lg-4">
@@ -157,5 +156,7 @@
             transform: scale(1.1);
         }
     </style>
+        </div>
+    </div>
 </x-layouts.app>
 

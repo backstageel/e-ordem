@@ -125,7 +125,7 @@ $(document).ready(function () {
         },
         grid: {
             show: false, // Hides grid lines
-            padding: { left: 0, right: 0, top: 0, bottom: 0 } 
+            padding: { left: 0, right: 0, top: 0, bottom: 0 }
         },
         yaxis: { labels: { show: false } },
         tooltip: {
@@ -161,10 +161,10 @@ $(document).ready(function () {
       },
       stroke: {
         curve: 'smooth',
-        width: 2 
+        width: 2
       },
       colors: ['#7539FF'],
-    
+
       tooltip: {
         fixed: {
           enabled: false
@@ -184,9 +184,9 @@ $(document).ready(function () {
         }
       }
     };
-    
-    
-    
+
+
+
 
     var chart = new ApexCharts(document.querySelector("#report_chart"), options);
     chart.render();
@@ -206,10 +206,10 @@ $(document).ready(function () {
       },
       stroke: {
         curve: 'smooth',
-        width: 2 
+        width: 2
       },
       colors: ['#27AE60'],
-    
+
       tooltip: {
         fixed: {
           enabled: false
@@ -229,9 +229,9 @@ $(document).ready(function () {
         }
       }
     };
-    
-    
-    
+
+
+
 
     var chart = new ApexCharts(document.querySelector("#report_chart_2"), options);
     chart.render();
@@ -251,10 +251,10 @@ $(document).ready(function () {
       },
       stroke: {
         curve: 'smooth',
-        width: 2 
+        width: 2
       },
       colors: ['#E2B93B'],
-    
+
       tooltip: {
         fixed: {
           enabled: false
@@ -293,10 +293,10 @@ $(document).ready(function () {
       },
       stroke: {
         curve: 'smooth',
-        width: 2 
+        width: 2
       },
       colors: ['#EF1E1E'],
-    
+
       tooltip: {
         fixed: {
           enabled: false
@@ -335,10 +335,10 @@ $(document).ready(function () {
       },
       stroke: {
         curve: 'smooth',
-        width: 2 
+        width: 2
       },
       colors: ['#7539FF'],
-    
+
       tooltip: {
         fixed: {
           enabled: false
@@ -358,9 +358,9 @@ $(document).ready(function () {
         }
       }
     };
-    
-    
-    
+
+
+
 
     var chart = new ApexCharts(document.querySelector("#payment_report_chart"), options);
     chart.render();
@@ -379,10 +379,10 @@ $(document).ready(function () {
       },
       stroke: {
         curve: 'smooth',
-        width: 2 
+        width: 2
       },
       colors: ['#27AE60'],
-    
+
       tooltip: {
         fixed: {
           enabled: false
@@ -402,9 +402,9 @@ $(document).ready(function () {
         }
       }
     };
-    
-    
-    
+
+
+
 
     var chart = new ApexCharts(document.querySelector("#payment_report_chart_2"), options);
     chart.render();
@@ -423,10 +423,10 @@ $(document).ready(function () {
       },
       stroke: {
         curve: 'smooth',
-        width: 2 
+        width: 2
       },
       colors: ['#E2B93B'],
-    
+
       tooltip: {
         fixed: {
           enabled: false
@@ -464,10 +464,10 @@ $(document).ready(function () {
       },
       stroke: {
         curve: 'smooth',
-        width: 2 
+        width: 2
       },
       colors: ['#EF1E1E'],
-    
+
       tooltip: {
         fixed: {
           enabled: false
@@ -664,7 +664,7 @@ $(document).ready(function () {
         bar: {
           horizontal: false,
           columnWidth: '80%',
-          borderRadius: 5, 
+          borderRadius: 5,
           endingShape: 'rounded', // This rounds the top edges of the bars
         },
       },
@@ -686,7 +686,7 @@ $(document).ready(function () {
       }, {
         name: 'Active',
         data: [89, 45, 89, 46, 61, 25, 79]
-      }, 
+      },
       {
         name: 'Completed',
         data: [39, 39, 39, 80, 48, 48, 48]
@@ -695,7 +695,7 @@ $(document).ready(function () {
         categories: ['15 Jan', '16 Jan', '17 Jan', '18 Jan', '19 Jan', '20 Jan', '21 Jan'],
         labels: {
           style: {
-            colors: '#0C1C29', 
+            colors: '#0C1C29',
             fontSize: '12px',
           }
         }
@@ -704,7 +704,7 @@ $(document).ready(function () {
         labels: {
           offsetX: -15,
           style: {
-            colors: '#6D777F', 
+            colors: '#6D777F',
             fontSize: '14px',
           }
         }
@@ -714,7 +714,7 @@ $(document).ready(function () {
         strokeDashArray: 3,
         padding: {
           left: -8,
-          right: -15, 
+          right: -15,
         },
       },
       fill: {
@@ -728,216 +728,12 @@ $(document).ready(function () {
         }
       }
     }
-  
+
     var chart = new ApexCharts(
       document.querySelector("#s-col-chart"),
       sCol
     );
-  
-    chart.render();
-  }
 
-  if ($('#s-col').length > 0) {
-    var sCol = {
-      chart: {
-        width: 80,
-        height: 54,
-        type: 'bar',
-        toolbar: { show: false },
-        sparkline: { enabled: true }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: '70%',
-          borderRadius: 3,
-          endingShape: 'rounded'
-        }
-      },
-      dataLabels: { enabled: false },
-      stroke: { show: false },
-      grid: {
-        strokeDashArray: 3,
-      },
-      series: [{
-        name: 'Data',
-        data: [
-          { x: 'A', y: 40, fillColor: '#2E37A4' },
-          { x: 'B', y: 15, fillColor: '#2E37A4' },
-          { x: 'C', y: 60, fillColor: '#2E37A4' },
-          { x: 'D', y: 15, fillColor: '#2E37A4' },
-          { x: 'E', y: 90, fillColor: '#FF955A' },
-          { x: 'F', y: 20, fillColor: '#2E37A4' },
-          { x: 'G', y: 70, fillColor: '#2E37A4' }
-        ]
-      }],
-      xaxis: {
-        labels: { show: false },
-        axisTicks: { show: false },
-        axisBorder: { show: false }
-      },
-      yaxis: { show: false },
-      grid: { show: false },
-      tooltip: { enabled: false }
-    };
-  
-    var chart = new ApexCharts(document.querySelector("#s-col"), sCol);
-    chart.render();
-  }
-
-  // s-col-2
-  if ($('#s-col-2').length > 0) {
-    var sCol = {
-      chart: {
-        width: 100,
-        height: 54,
-        type: 'area',
-        toolbar: { show: false },
-        sparkline: { enabled: true }
-      },
-      stroke: {
-        curve: 'smooth',
-        width: 1,
-        colors: ['#F36C3D']  // orange line
-      },
-      fill: {
-        type: 'gradient',
-        gradient: {
-          shadeIntensity: 1,
-          opacityFrom: 0.4,
-          opacityTo: 0,
-          stops: [0, 90, 100],
-          colorStops: [
-            {
-              offset: 0,
-              color: "#F36C3D",
-              opacity: 0.4
-            },
-            {
-              offset: 100,
-              color: "#ffffff",
-              opacity: 0.1
-            }
-          ]
-        }
-      },
-      dataLabels: { enabled: false },
-      series: [{
-        name: 'Data',
-        data: [22, 35, 30, 40, 28, 45, 40] // You can adjust these
-      }],
-      xaxis: {
-        labels: { show: false },
-        axisTicks: { show: false },
-        axisBorder: { show: false }
-      },
-      yaxis: { show: false },
-      grid: { show: false },
-      tooltip: { enabled: false }
-    };
-  
-    var chart = new ApexCharts(document.querySelector("#s-col-2"), sCol);
-    chart.render();
-  }
-
-  // s-col-3
-  if ($('#s-col-3').length > 0) {
-    var sCol = {
-      chart: {
-        width: 80,
-        height: 54,
-        type: 'bar',
-        toolbar: { show: false },
-        sparkline: { enabled: true }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: '70%',
-          borderRadius: 0,
-          endingShape: 'rounded'
-        }
-      },
-      dataLabels: { enabled: false },
-      stroke: { show: false },
-      series: [{
-        name: 'Data',
-        data: [
-          { x: 'A', y: 80, fillColor: '#06AED4' },
-          { x: 'B', y: 35, fillColor: '#06AED4' },
-          { x: 'C', y: 50, fillColor: '#06AED4' },
-          { x: 'D', y: 45, fillColor: '#06AED4' },
-          { x: 'E', y: 35, fillColor: '#06AED4' },
-          { x: 'F', y: 60, fillColor: '#06AED4' },
-          { x: 'G', y: 50, fillColor: '#06AED4' }
-        ]
-      }],
-      xaxis: {
-        labels: { show: false },
-        axisTicks: { show: false },
-        axisBorder: { show: false }
-      },
-      yaxis: { show: false },
-      grid: { show: false },
-      tooltip: { enabled: false }
-    };
-  
-    var chart = new ApexCharts(document.querySelector("#s-col-3"), sCol);
-    chart.render();
-  }
-
-  // s-col-4
-  if ($('#s-col-4').length > 0) {
-    var sCol = {
-      chart: {
-        width: 100,
-        height: 54,
-        type: 'area',
-        toolbar: { show: false },
-        sparkline: { enabled: true }
-      },
-      stroke: {
-        curve: 'smooth',
-        width: 2,
-        colors: ['#008073']  // consistent green stroke
-      },
-      fill: {
-        type: 'gradient',
-        gradient: {
-          shadeIntensity: 1,
-          opacityFrom: 0.5,
-          opacityTo: 0,
-          stops: [0, 90, 100],
-          colorStops: [
-            {
-              offset: 0,
-              color: "#008073",
-              opacity: 0.4
-            },
-            {
-              offset: 100,
-              color: "#ffffff",
-              opacity: 0.1
-            }
-          ]
-        }
-      },
-      dataLabels: { enabled: false },
-      series: [{
-        name: 'Data',
-        data: [20, 12, 9, 14, 18, 25, 30, 28, 35, 40]
-      }],
-      xaxis: {
-        labels: { show: false },
-        axisTicks: { show: false },
-        axisBorder: { show: false }
-      },
-      yaxis: { show: false },
-      grid: { show: false },
-      tooltip: { enabled: false }
-    };
-  
-    var chart = new ApexCharts(document.querySelector("#s-col-4"), sCol);
     chart.render();
   }
 
@@ -978,7 +774,7 @@ $(document).ready(function () {
         grid: { show: false },
         tooltip: { enabled: false }
       };
-    
+
       var chart = new ApexCharts(document.querySelector("#s-col-5"), sCol);
       chart.render();
     }
@@ -1020,7 +816,7 @@ $(document).ready(function () {
         grid: { show: false },
         tooltip: { enabled: false }
       };
-    
+
       var chart = new ApexCharts(document.querySelector("#s-col-6"), sCol);
       chart.render();
     }
@@ -1062,7 +858,7 @@ $(document).ready(function () {
         grid: { show: false },
         tooltip: { enabled: false }
       };
-    
+
       var chart = new ApexCharts(document.querySelector("#s-col-7"), sCol);
       chart.render();
     }
@@ -1117,7 +913,7 @@ $(document).ready(function () {
         grid: { show: false },
         tooltip: { enabled: false }
       };
-    
+
       var chart = new ApexCharts(document.querySelector("#s-col-8"), sCol);
       chart.render();
     }
@@ -1172,7 +968,7 @@ $(document).ready(function () {
         grid: { show: false },
         tooltip: { enabled: false }
       };
-    
+
       var chart = new ApexCharts(document.querySelector("#s-col-9"), sCol);
       chart.render();
     }
@@ -1253,11 +1049,11 @@ $(document).ready(function () {
           show: false
         }
       };
-    
+
       var chart = new ApexCharts(document.querySelector("#s-col-10"), options);
       chart.render();
     }
-    
+
 // s-col-11
 if ($('#s-col-11').length > 0) {
   var sCol = {
@@ -1484,7 +1280,7 @@ if ($('#s-col-14').length > 0) {
 
   var chart = new ApexCharts(document.querySelector("#s-col-14"), sCol);
   chart.render();
-} 
+}
 
  // s-col-15
  if ($('#s-col-15').length > 0) {
@@ -1591,7 +1387,7 @@ if ($('#s-col-14').length > 0) {
   var chart = new ApexCharts(document.querySelector("#s-col-16"), sCol);
   chart.render();
 }
-   
+
  // s-col-17
  if ($('#s-col-17').length > 0) {
   var sCol = {
@@ -1886,7 +1682,7 @@ if ($('#s-col-14').length > 0) {
 }
 
 
-    
+
   // circle chart
   if ($('#circle-chart').length > 0) {
     var sCol = {
@@ -1945,11 +1741,11 @@ if ($('#s-col-14').length > 0) {
         enabled: true
       }
     };
-  
+
     var chart = new ApexCharts(document.querySelector("#circle-chart"), sCol);
     chart.render();
   }
-  
+
   // circle chart 2
   if ($('#circle-chart-2').length > 0) {
     var sCol = {
@@ -2016,14 +1812,14 @@ if ($('#s-col-14').length > 0) {
         }]
       }
     };
-  
+
     var chart = new ApexCharts(document.querySelector("#circle-chart-2"), sCol);
     chart.render();
   }
-  
-  
-  
-  
+
+
+
+
 
   if ($('#earnings-chart').length > 0) {
     var sCol = {
@@ -2052,7 +1848,7 @@ if ($('#s-col-14').length > 0) {
         width: 2,
         colors: ['transparent']
       },
-      
+
       series: [{
         name: 'Income',
         data: [28, 28, 43, 75, 45, 38, 47,28, 33, 23, 58, 40]
@@ -2061,7 +1857,7 @@ if ($('#s-col-14').length > 0) {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         labels: {
           style: {
-            colors: '#051321', 
+            colors: '#051321',
             fontSize: '14px',
           }
         }
@@ -2071,7 +1867,7 @@ if ($('#s-col-14').length > 0) {
         labels: {
           offsetX: -15,
           style: {
-            colors: '#051321', 
+            colors: '#051321',
             fontSize: '14px',
           }
         }
@@ -2081,7 +1877,7 @@ if ($('#s-col-14').length > 0) {
         strokeDashArray: 3,
         padding: {
           left: -8,
-          right: -15, 
+          right: -15,
         },
       },
       fill: {
@@ -2095,15 +1891,15 @@ if ($('#s-col-14').length > 0) {
         }
       }
     }
-  
+
     var chart = new ApexCharts(
       document.querySelector("#earnings-chart"),
       sCol
     );
-  
+
     chart.render();
   }
-  
+
   if ($('#register-chart').length > 0) {
     var sCol = {
       chart: {
@@ -2178,15 +1974,15 @@ if ($('#s-col-14').length > 0) {
         }
       }
     }
-  
+
     var chart = new ApexCharts(
       document.querySelector("#register-chart"),
       sCol
     );
-  
+
     chart.render();
   }
-  
+
   if ($('#plane-chart').length > 0) {
     var options = {
       series: [{
@@ -2276,7 +2072,7 @@ if ($('#s-col-14').length > 0) {
         }
       }
     };
-  
+
     // Categories used for labeling inside dataLabels
     const categories = [
       'Enterprise (Monthly) • Sales: $6,100.00',
@@ -2286,12 +2082,12 @@ if ($('#s-col-14').length > 0) {
       'Basic (Monthly) • Sales: $3,100.00',
       'Advanced (Monthly) • Sales: $2,900.00'
     ];
-  
+
     var chart = new ApexCharts(document.querySelector("#plane-chart"), options);
     chart.render();
   }
-  
-  
+
+
   // Simple Column Stacked
   if ($('#s-col-stacked').length > 0) {
     var sColStacked = {
@@ -2576,15 +2372,15 @@ if ($('#s-col-14').length > 0) {
         enabled: false
       }
     };
-  
+
     var chart = new ApexCharts(
       document.querySelector("#radial-chart2"),
       options
     );
-  
+
     chart.render();
   }
-  
+
    // Radial Chart3
    if ($('#radial-chart3').length > 0) {
     var options = {
@@ -2633,12 +2429,12 @@ if ($('#s-col-14').length > 0) {
         enabled: false
       }
     };
-  
+
     var chart = new ApexCharts(
       document.querySelector("#radial-chart3"),
       options
     );
-  
+
     chart.render();
   }
 
@@ -2690,12 +2486,12 @@ if ($('#s-col-14').length > 0) {
           enabled: false
         }
       };
-    
+
       var chart = new ApexCharts(
         document.querySelector("#radial-chart4"),
         options
       );
-    
+
       chart.render();
     }
 
@@ -2748,12 +2544,12 @@ if ($('#s-col-14').length > 0) {
         enabled: false
       }
     };
-  
+
     var chart = new ApexCharts(
       document.querySelector("#radial-chart5"),
       options
     );
-  
+
     chart.render();
   }
 
@@ -2805,12 +2601,12 @@ if ($('#s-col-14').length > 0) {
         enabled: false
       }
     };
-  
+
     var chart = new ApexCharts(
       document.querySelector("#radial-chart6"),
       options
     );
-  
+
     chart.render();
   }
 
@@ -2862,12 +2658,12 @@ if ($('#s-col-14').length > 0) {
         enabled: false
       }
     };
-  
+
     var chart = new ApexCharts(
       document.querySelector("#radial-chart7"),
       options
     );
-  
+
     chart.render();
   }
 
@@ -2919,12 +2715,12 @@ if ($('#s-col-14').length > 0) {
         enabled: false
       }
     };
-  
+
     var chart = new ApexCharts(
       document.querySelector("#radial-chart8"),
       options
     );
-  
+
     chart.render();
   }
 
@@ -2976,12 +2772,12 @@ if ($('#s-col-14').length > 0) {
         enabled: false
       }
     };
-  
+
     var chart = new ApexCharts(
       document.querySelector("#radial-chart9"),
       options
     );
-  
+
     chart.render();
   }
 
@@ -3033,12 +2829,12 @@ if ($('#s-col-14').length > 0) {
         enabled: false
       }
     };
-  
+
     var chart = new ApexCharts(
       document.querySelector("#radial-chart10"),
       options
     );
-  
+
     chart.render();
   }
 
@@ -3090,15 +2886,15 @@ if ($('#s-col-14').length > 0) {
           enabled: false
         }
       };
-    
+
       var chart = new ApexCharts(
         document.querySelector("#radial-chart11"),
         options
       );
-    
+
       chart.render();
     }
-  
+
     // Radial Chart12
     if ($('#radial-chart12').length > 0) {
       var options = {
@@ -3147,15 +2943,15 @@ if ($('#s-col-14').length > 0) {
           enabled: false
         }
       };
-    
+
       var chart = new ApexCharts(
         document.querySelector("#radial-chart12"),
         options
       );
-    
+
       chart.render();
     }
-  
+
     // Radial Chart13
     if ($('#radial-chart13').length > 0) {
       var options = {
@@ -3204,15 +3000,15 @@ if ($('#s-col-14').length > 0) {
           enabled: false
         }
       };
-    
+
       var chart = new ApexCharts(
         document.querySelector("#radial-chart13"),
         options
       );
-    
+
       chart.render();
     }
-  
+
     // Radial Chart14
     if ($('#radial-chart14').length > 0) {
       var options = {
@@ -3261,16 +3057,16 @@ if ($('#s-col-14').length > 0) {
           enabled: false
         }
       };
-    
+
       var chart = new ApexCharts(
         document.querySelector("#radial-chart14"),
         options
       );
-    
+
       chart.render();
     }
-  
-  
+
+
   // end chart
 
   if ($('#sales_charts').length > 0) {
@@ -3305,7 +3101,7 @@ if ($('#s-col-14').length > 0) {
         bar: {
           horizontal: false,
           borderRadius: 4,
-          borderRadiusApplication: "end", // "around" / "end" 
+          borderRadiusApplication: "end", // "around" / "end"
           borderRadiusWhenStacked: "all", // "all"/"last"
           columnWidth: '20%',
         },
@@ -4870,7 +4666,7 @@ if ($('#leave-report').length > 0) {
     }, {
       name: 'Others',
       data: [25, 20, 30, 35,50,60,25, 20, 30, 35,50,60] // Replace with your data
-    }, 
+    },
   ],
     chart: {
       type: 'bar',
@@ -4972,7 +4768,7 @@ if ($('#revenue-chart').length > 0) {
           bar: {
               horizontal: false,
               columnWidth: '50%',
-              endingShape: 'rounded'  
+              endingShape: 'rounded'
           },
       },
       dataLabels: {
@@ -4998,12 +4794,12 @@ if ($('#revenue-chart').length > 0) {
           }
       }
   }
-  
+
   var chart = new ApexCharts(
       document.querySelector("#revenue-chart"),
       sCol
   );
-  
+
   chart.render();
 }
 
@@ -5030,7 +4826,7 @@ if ($('#emp-department').length > 0) {
       strokeDashArray: 5,
       padding: {
         top: -20,
-        left: 0,   
+        left: 0,
         right: 0,
         bottom: 0
       }
@@ -5054,7 +4850,7 @@ if ($('#emp-department').length > 0) {
       categories: ['UI/UX', 'Development', 'Management', 'HR', 'Testing', 'Marketing'],
       labels: {
         style: {
-          colors: '#111827', 
+          colors: '#111827',
           fontSize: '13px',
         }
       }
@@ -5093,7 +4889,7 @@ if ($('#company-chart').length > 0) {
     }],
     plotOptions: {
       bar: {
-        borderRadius: 10, 
+        borderRadius: 10,
         borderRadiusWhenStacked: 'all',
         horizontal: false,
         endingShape: 'rounded',
@@ -5115,7 +4911,7 @@ if ($('#company-chart').length > 0) {
       categories: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
       labels: {
         style: {
-          colors: '#6B7280', 
+          colors: '#6B7280',
           fontSize: '13px',
         }
       }
@@ -5123,7 +4919,7 @@ if ($('#company-chart').length > 0) {
     yaxis: {
       labels: {
         offsetX: -15,
-        show: false 
+        show: false
       }
     },
     grid: {
@@ -5233,7 +5029,7 @@ if ($('#plan-overview').length > 0) {
       }],
       plotOptions: {
         bar: {
-          borderRadius: 5, 
+          borderRadius: 5,
           borderRadiusWhenStacked: 'all',
           horizontal: false,
           endingShape: 'rounded'
@@ -5250,7 +5046,7 @@ if ($('#plan-overview').length > 0) {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct','Nov', 'Dec'],
         labels: {
           style: {
-            colors: '#6B7280', 
+            colors: '#6B7280',
             fontSize: '13px',
           }
         }
@@ -5259,7 +5055,7 @@ if ($('#plan-overview').length > 0) {
         labels: {
           offsetX: -15,
           style: {
-            colors: '#6B7280', 
+            colors: '#6B7280',
             fontSize: '13px',
           }
         }
@@ -5369,7 +5165,7 @@ if ($('#plan-overview').length > 0) {
       }],
       plotOptions: {
         bar: {
-          borderRadius: 5, 
+          borderRadius: 5,
           horizontal: false,
           endingShape: 'rounded'
         },
@@ -5385,7 +5181,7 @@ if ($('#plan-overview').length > 0) {
         categories: ['Inpipeline', 'Follow Up', 'Schedule', 'Conversion'],
         labels: {
           style: {
-            colors: '#6B7280', 
+            colors: '#6B7280',
             fontSize: '13px',
           }
         }
@@ -5394,7 +5190,7 @@ if ($('#plan-overview').length > 0) {
         labels: {
           offsetX: -15,
           style: {
-            colors: '#6B7280', 
+            colors: '#6B7280',
             fontSize: '13px',
           }
         }
@@ -5427,7 +5223,7 @@ if ($('#plan-overview').length > 0) {
     name: 'Series 1',
     data: [80, 50, 30, 40, 100, 20],
     color: '#F37438',
-    
+
   }, {
     name: 'Series 2',
     data: [20, 30, 40, 80, 20, 80],
@@ -5454,7 +5250,7 @@ if ($('#plan-overview').length > 0) {
   },
   stroke: {
     width: 2,
-    curve: 'smooth' 
+    curve: 'smooth'
   },
   fill: {
     opacity: 1
@@ -5510,7 +5306,7 @@ if ($('#plan-overview').length > 0) {
   dataLabels: {
     enabled: true,
     formatter: function (val, opt) {
-      return opt.w.globals.labels[opt.dataPointIndex] 
+      return opt.w.globals.labels[opt.dataPointIndex]
     },
     dropShadow: {
       enabled: true,
@@ -5556,7 +5352,7 @@ if ($('#plan-overview').length > 0) {
       }],
       plotOptions: {
         bar: {
-          borderRadius: 5, 
+          borderRadius: 5,
           borderRadiusWhenStacked: 'all',
           horizontal: false,
           endingShape: 'rounded'
@@ -5573,7 +5369,7 @@ if ($('#plan-overview').length > 0) {
         categories: ['Competitor', 'Budget', 'Unresponsie', 'Timing'],
         labels: {
           style: {
-            colors: '#6B7280', 
+            colors: '#6B7280',
             fontSize: '9px',
           }
         }
@@ -5582,7 +5378,7 @@ if ($('#plan-overview').length > 0) {
         labels: {
           offsetX: -15,
           style: {
-            colors: '#6B7280', 
+            colors: '#6B7280',
             fontSize: '10px',
           }
         }
@@ -5620,7 +5416,7 @@ if ($('#plan-overview').length > 0) {
     labels: ['Paid', 'Google', 'Referals', 'Campaigns'], // Labels for the data
     colors: ['#FFC107', '#0C4B5E', '#AB47BC', '#FD3995'], // Colors from the image
     plotOptions: {
-        pie: { 
+        pie: {
             donut: {
                 size: '60%',
                 labels: {
@@ -5637,7 +5433,7 @@ if ($('#plan-overview').length > 0) {
         }
     },
     stroke: {
-   
+
   lineCap: 'round',
   show: true,
   width: 0,    // Space between donut sections
@@ -5658,7 +5454,7 @@ var chart = new ApexCharts(document.querySelector("#donut-chart-2"), options);
 chart.render();
  }
 
- 
+
 
  // Revenue income
 
@@ -5685,7 +5481,7 @@ chart.render();
     }],
     plotOptions: {
       bar: {
-        borderRadius: 5, 
+        borderRadius: 5,
         borderRadiusWhenStacked: 'all',
         horizontal: false,
         endingShape: 'rounded'
@@ -5702,7 +5498,7 @@ chart.render();
       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct','Nov', 'Dec'],
       labels: {
         style: {
-          colors: '#6B7280', 
+          colors: '#6B7280',
           fontSize: '13px',
         }
       }
@@ -5713,7 +5509,7 @@ chart.render();
       labels: {
         offsetX: -15,
         style: {
-          colors: '#6B7280', 
+          colors: '#6B7280',
           fontSize: '13px',
         },
         formatter: function (value) {
@@ -5732,7 +5528,7 @@ chart.render();
       show: false
     },
     dataLabels: {
-      enabled: false 
+      enabled: false
     },
     tooltip: {
       y: {
@@ -5779,11 +5575,11 @@ chart.render();
         {
           x: 'Tue',
           y: 29
-        }, 
+        },
         {
           x: 'Wed',
           y: 13
-        }, 
+        },
         {
           x: 'Thu',
           y: 32
@@ -5812,11 +5608,11 @@ chart.render();
         {
           x: 'Tue',
           y: 29
-        }, 
+        },
         {
           x: 'Wed',
           y: 13
-        }, 
+        },
         {
           x: 'Thu',
           y: 32
@@ -5844,11 +5640,11 @@ chart.render();
         {
           x: 'Tue',
           y: 29
-        }, 
+        },
         {
           x: 'Wed',
           y: 13
-        }, 
+        },
         {
           x: 'Thu',
           y: 32
@@ -5876,11 +5672,11 @@ chart.render();
         {
           x: 'Tue',
           y: 29
-        }, 
+        },
         {
           x: 'Wed',
           y: 13
-        }, 
+        },
         {
           x: 'Thu',
           y: 32
@@ -5908,11 +5704,11 @@ chart.render();
         {
           x: 'Tue',
           y: 20
-        }, 
+        },
         {
           x: 'Wed',
           y: 13
-        }, 
+        },
         {
           x: 'Thu',
           y: 32
@@ -5940,11 +5736,11 @@ chart.render();
         {
           x: 'Tue',
           y: 0
-        }, 
+        },
         {
           x: 'Wed',
           y: 75
-        }, 
+        },
         {
           x: 'Thu',
           y: 0
@@ -6125,7 +5921,7 @@ if ($('#utilization').length > 0) {
     }, {
       name: 'Active',
       data: [30, 20, 2, 10, 60, 20, 30, 2, 20, 10]
-    }, 
+    },
     {
       name: 'Completed',
       data: [10, 2, 2, 20, 10, 30, 2, 10, 30, 20]
@@ -6203,11 +5999,11 @@ if ($('#car-chart').length > 0) {
       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July'],
       labels: { show: false },
       axisTicks: { show: false },
-      axisBorder: { show: false } 
+      axisBorder: { show: false }
   },
   grid: {
     show: false, // Set false to hide all grid lines
-    padding: { left: 0, right: 0, top: -15, bottom: 0 } 
+    padding: { left: 0, right: 0, top: -15, bottom: 0 }
 },
     yaxis: {
       labels: { show: false }  // Hides Y-axis values
@@ -6215,7 +6011,7 @@ if ($('#car-chart').length > 0) {
     tooltip: {
       y: {
         formatter: function (val) {
-          return  val 
+          return  val
         }
       }
     }
@@ -6313,7 +6109,7 @@ if ($('#summary_chart').length > 0) {
           },
         ],
       },
-  
+
     }
   },
   legend: {
@@ -6323,7 +6119,7 @@ if ($('#summary_chart').length > 0) {
     enabled: false
   },
  stroke: {
-    width: 5, 
+    width: 5,
     colors: ['#fff']
   },
   grid: {
@@ -6350,7 +6146,7 @@ xaxis: {
     },
   },
   xaxis: {
-    axisBorder: { show: false }, 
+    axisBorder: { show: false },
     axisTicks: { show: false } // ❌ Removes axis ticks
 },
   yaxis: {
@@ -6368,11 +6164,11 @@ xaxis: {
         {
           x: '10:00',
           y: 100
-        }, 
+        },
         {
           x: '11:00',
           y: 0
-        }, 
+        },
         {
           x: '12:00',
           y: 50
@@ -6416,11 +6212,11 @@ xaxis: {
         {
           x: '10:00',
           y: 60
-        }, 
+        },
         {
           x: '11:00',
           y: 60
-        }, 
+        },
         {
           x: '12:00',
           y: 50
@@ -6464,11 +6260,11 @@ xaxis: {
         {
           x: '10:00',
           y: 0
-        }, 
+        },
         {
           x: '11:00',
           y: 60
-        }, 
+        },
         {
           x: '12:00',
           y: 90
@@ -6512,11 +6308,11 @@ xaxis: {
         {
           x: '10:00',
           y: 0
-        }, 
+        },
         {
           x: '11:00',
           y: 60
-        }, 
+        },
         {
           x: '12:00',
           y: 0
@@ -6560,11 +6356,11 @@ xaxis: {
         {
           x: '10:00',
           y: 50
-        }, 
+        },
         {
           x: '11:00',
           y: 0
-        }, 
+        },
         {
           x: '12:00',
           y: 0
@@ -6608,11 +6404,11 @@ xaxis: {
         {
           x: '10:00',
           y: 0
-        }, 
+        },
         {
           x: '11:00',
           y: 90
-        }, 
+        },
         {
           x: '12:00',
           y: 80
@@ -6675,7 +6471,7 @@ if($('#hours_chart').length > 0) {
     chart: {
       type: 'bar',
       height: 250,
-      stacked: true,        
+      stacked: true,
       zoom: {
         enabled: true
       }
@@ -6716,7 +6512,7 @@ if($('#hours_chart').length > 0) {
     },
     grid: {
       padding: {
-        right: -10, 
+        right: -10,
       },
     },
     legend: {show: false},
@@ -6732,7 +6528,7 @@ if($('#hours_chart').length > 0) {
       }
     },
     };
-    
+
 
     var chart = new ApexCharts(document.querySelector("#hours_chart"), options);
     chart.render();
@@ -6778,7 +6574,7 @@ if($('#hours_chart').length > 0) {
         show: false,
       }
   };
-  
+
   var chart = new ApexCharts(document.querySelector("#total_sales"), options);
   chart.render();
    }
@@ -6810,7 +6606,7 @@ if ($('#invoice_income').length > 0) {
     }],
     grid: {
       show: false, // Set false to hide all grid lines
-      padding: { left: -10, right: -10, top: -30, bottom: -28 } 
+      padding: { left: -10, right: -10, top: -30, bottom: -28 }
   },
       yaxis: {
         min: 0,
@@ -6850,7 +6646,7 @@ if ($('#revenue_chart').length > 0) {
     plotOptions: {
       bar: {
         horizontal: false,
-        borderRadius: 5, 
+        borderRadius: 5,
         borderRadiusWhenStacked: 'all',
         endingShape: 'rounded',
       },
@@ -6876,7 +6672,7 @@ if ($('#revenue_chart').length > 0) {
       borderColor: '#E2E4E6',
       strokeDashArray: 5,
       padding: {
-        right: -10, left: -10, 
+        right: -10, left: -10,
       },
     },
     xaxis: {
@@ -6936,7 +6732,7 @@ if ($('#sales_analytics').length > 0) {
       borderColor: '#E2E4E6',
       strokeDashArray: 5,
       padding: {
-        right: -10, left: 0, 
+        right: -10, left: 0,
       },
     },
     xaxis: {
@@ -6945,9 +6741,9 @@ if ($('#sales_analytics').length > 0) {
     yaxis: {
       min: 0,
       max: 100,
-      labels: {offsetX: -15, 
+      labels: {offsetX: -15,
         formatter: (val) => {
-          return '$' + val / 1 
+          return '$' + val / 1
         }
       }
     },
@@ -6997,7 +6793,7 @@ if ($('#invoice_analytics').length > 0) {
     },
     legend: {
       show: true,
-      position: "bottom", 
+      position: "bottom",
     },
     label: {
       show: false,

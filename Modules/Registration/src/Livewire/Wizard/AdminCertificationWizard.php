@@ -2,7 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard;
 
-use Modules\Registration\Livewire\Wizard\Concerns\CustomWizardRender;
+use Modules\Registration\Livewire\Wizard\Concerns\AdminWizardRender;
 use Modules\Registration\Livewire\Wizard\Steps\Admin\Certification\AcademicProfessionalStep;
 use Modules\Registration\Livewire\Wizard\Steps\Admin\Certification\ChooseCategoryStep;
 use Modules\Registration\Livewire\Wizard\Steps\Admin\Certification\ContactInfoStep;
@@ -14,7 +14,7 @@ use Spatie\LivewireWizard\Components\WizardComponent;
 
 class AdminCertificationWizard extends WizardComponent
 {
-    use CustomWizardRender;
+    use AdminWizardRender;
     public ?int $editingRegistrationId = null;
 
     public function mount(?int $registrationId = null): void

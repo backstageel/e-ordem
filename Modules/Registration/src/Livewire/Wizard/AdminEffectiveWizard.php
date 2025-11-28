@@ -2,7 +2,7 @@
 
 namespace Modules\Registration\Livewire\Wizard;
 
-use Modules\Registration\Livewire\Wizard\Concerns\CustomWizardRender;
+use Modules\Registration\Livewire\Wizard\Concerns\AdminWizardRender;
 use Modules\Registration\Livewire\Wizard\Steps\Admin\Effective\ReviewSubmitStep;
 use Modules\Registration\Livewire\Wizard\Steps\Admin\Effective\SelectGradeStep;
 use Modules\Registration\Livewire\Wizard\Steps\Admin\Effective\UploadDocumentsStep;
@@ -11,7 +11,7 @@ use Spatie\LivewireWizard\Components\WizardComponent;
 
 class AdminEffectiveWizard extends WizardComponent
 {
-    use CustomWizardRender;
+    use AdminWizardRender;
     public ?int $editingRegistrationId = null;
 
     public function mount(?int $registrationId = null): void

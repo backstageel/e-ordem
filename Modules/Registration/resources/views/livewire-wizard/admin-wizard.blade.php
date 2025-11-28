@@ -6,35 +6,35 @@
     $currentStepNumber = $currentStepIndex !== false ? $currentStepIndex + 1 : 1;
     $totalSteps = count($stepNames);
 
-    // Step titles mapping (can be customized per wizard)
+    // Step titles mapping for admin wizards
     $stepTitles = [
-        'registration::livewire.wizard.steps.certification.choose-category' => ['title' => 'Categoria', 'icon' => 'ti ti-category'],
-        'registration::livewire.wizard.steps.certification.contact-info' => ['title' => 'Contacto', 'icon' => 'ti ti-phone'],
-        'registration::livewire.wizard.steps.certification.personal-info' => ['title' => 'Pessoal', 'icon' => 'ti ti-user'],
-        'registration::livewire.wizard.steps.certification.identity-address' => ['title' => 'Identidade', 'icon' => 'ti ti-id'],
-        'registration::livewire.wizard.steps.certification.academic-professional' => ['title' => 'Académico', 'icon' => 'ti ti-school'],
-        'registration::livewire.wizard.steps.certification.upload-documents' => ['title' => 'Documentos', 'icon' => 'ti ti-file-upload'],
-        'registration::livewire.wizard.steps.certification.review-submit' => ['title' => 'Revisão', 'icon' => 'ti ti-check'],
+        'registration::livewire.wizard.steps.admin.certification.choose-category' => ['title' => 'Categoria', 'icon' => 'ti ti-category'],
+        'registration::livewire.wizard.steps.admin.certification.contact-info' => ['title' => 'Contacto', 'icon' => 'ti ti-phone'],
+        'registration::livewire.wizard.steps.admin.certification.personal-info' => ['title' => 'Pessoal', 'icon' => 'ti ti-user'],
+        'registration::livewire.wizard.steps.admin.certification.identity-address' => ['title' => 'Identidade', 'icon' => 'ti ti-id'],
+        'registration::livewire.wizard.steps.admin.certification.academic-professional' => ['title' => 'Académico', 'icon' => 'ti ti-school'],
+        'registration::livewire.wizard.steps.admin.certification.upload-documents' => ['title' => 'Documentos', 'icon' => 'ti ti-file-upload'],
+        'registration::livewire.wizard.steps.admin.certification.review-submit' => ['title' => 'Revisão', 'icon' => 'ti ti-check'],
 
-        'registration::livewire.wizard.steps.provisional.choose-subtype' => ['title' => 'Subtipo', 'icon' => 'ti ti-category'],
-        'registration::livewire.wizard.steps.provisional.contact-info' => ['title' => 'Contacto', 'icon' => 'ti ti-phone'],
-        'registration::livewire.wizard.steps.provisional.personal-info' => ['title' => 'Pessoal', 'icon' => 'ti ti-user'],
-        'registration::livewire.wizard.steps.provisional.identity-address' => ['title' => 'Identidade', 'icon' => 'ti ti-id'],
-        'registration::livewire.wizard.steps.provisional.academic-professional' => ['title' => 'Académico', 'icon' => 'ti ti-school'],
-        'registration::livewire.wizard.steps.provisional.upload-documents' => ['title' => 'Documentos', 'icon' => 'ti ti-file-upload'],
-        'registration::livewire.wizard.steps.provisional.review-submit' => ['title' => 'Revisão', 'icon' => 'ti ti-check'],
+        'registration::livewire.wizard.steps.admin.provisional.choose-subtype' => ['title' => 'Subtipo', 'icon' => 'ti ti-category'],
+        'registration::livewire.wizard.steps.admin.provisional.contact-info' => ['title' => 'Contacto', 'icon' => 'ti ti-phone'],
+        'registration::livewire.wizard.steps.admin.provisional.personal-info' => ['title' => 'Pessoal', 'icon' => 'ti ti-user'],
+        'registration::livewire.wizard.steps.admin.provisional.identity-address' => ['title' => 'Identidade', 'icon' => 'ti ti-id'],
+        'registration::livewire.wizard.steps.admin.provisional.academic-professional' => ['title' => 'Académico', 'icon' => 'ti ti-school'],
+        'registration::livewire.wizard.steps.admin.provisional.upload-documents' => ['title' => 'Documentos', 'icon' => 'ti ti-file-upload'],
+        'registration::livewire.wizard.steps.admin.provisional.review-submit' => ['title' => 'Revisão', 'icon' => 'ti ti-check'],
 
-        'registration::livewire.wizard.steps.effective.verify-eligibility' => ['title' => 'Elegibilidade', 'icon' => 'ti ti-shield-check'],
-        'registration::livewire.wizard.steps.effective.select-grade' => ['title' => 'Grau', 'icon' => 'ti ti-star'],
-        'registration::livewire.wizard.steps.effective.upload-documents' => ['title' => 'Documentos', 'icon' => 'ti ti-file-upload'],
-        'registration::livewire.wizard.steps.effective.review-submit' => ['title' => 'Revisão', 'icon' => 'ti ti-check'],
+        'registration::livewire.wizard.steps.admin.effective.verify-eligibility' => ['title' => 'Elegibilidade', 'icon' => 'ti ti-shield-check'],
+        'registration::livewire.wizard.steps.admin.effective.select-grade' => ['title' => 'Grau', 'icon' => 'ti ti-star'],
+        'registration::livewire.wizard.steps.admin.effective.upload-documents' => ['title' => 'Documentos', 'icon' => 'ti ti-file-upload'],
+        'registration::livewire.wizard.steps.admin.effective.review-submit' => ['title' => 'Revisão', 'icon' => 'ti ti-check'],
     ];
 @endphp
 
 <div>
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-center">
-            <h4 class="header-title mb-0">Processo de Inscrição</h4>
+            <h4 class="header-title mb-0">Processo de Inscrição (Modo Admin)</h4>
         </div>
 
         <div class="card-body">
@@ -121,3 +121,4 @@
         </div>
     </div>
 </div>
+
