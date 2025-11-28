@@ -4,7 +4,7 @@
 
 @php
     // Determine HTML attributes based on route
-    $htmlAttributes = [];
+    $htmlAttributes = ['data-layout' => 'full-width'];
     $htmlLang = 'pt';
 
     // Determine wrapper class for guest pages
@@ -21,16 +21,18 @@
     <div class="{{ $wrapperClass }}">
 
         <!-- Guest Top Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom" style="height: 60px;">
-            <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center" href="{{ route('login') }}">
-                    <img src="{{ asset('build/img/ordem-logo.png') }}" alt="Ordem dos Médicos de Moçambique" height="40" class="me-2">
-                    <span class="fw-bold text-dark d-none d-md-inline">e-Ordem</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#guestNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="guestNavbar">
+        <header class="navbar-header">
+            <div class="page-container topbar-menu">
+                <div class="d-flex align-items-center gap-2">
+                    <!-- Logo -->
+                    <a href="{{ route('login') }}" class="logo d-flex align-items-center">
+                        <span class="logo-light">
+                            <span class="logo-lg"><img src="{{ asset('build/img/ordem-logo.png') }}" alt="Ordem dos Médicos de Moçambique" height="40"></span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="d-flex align-items-center">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">
@@ -40,13 +42,15 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </header>
 
         <!-- Page Content -->
         <div class="page-wrapper">
+            <!-- Start Content -->
             <div class="content pb-0">
                 {{ $slot }}
             </div>
+            <!-- End Content -->
         </div>
 
         <x-modal-popup />
